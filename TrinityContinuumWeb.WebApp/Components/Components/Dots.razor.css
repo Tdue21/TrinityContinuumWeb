@@ -1,0 +1,27 @@
+﻿.circle {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: inline-block;
+    border: 2px solid #666;
+    padding: 0px;
+    box-shadow: 1px 1px 3px #888;
+    background-color: white;
+}
+
+    .circle.filled {
+        background-color: black;
+    }
+
+.dot-value {
+    display: flex;
+    margin: 0px;
+    padding: 0px;
+    gap: 2px;
+}
+
+.dot {
+    cursor: pointer;
+    margin: 0px;
+    padding: 0px;
+}

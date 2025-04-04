@@ -1,0 +1,21 @@
+﻿@inherits SheetComponent
+@page "/sheet"
+@using TrinityContinuum.WebApp.Components.SheetSections
+@using TrinityContinuum.WebApp.Components.Components
+
+@rendermode InteractiveServer
+
+<PageTitle>Character Sheet</PageTitle>
+
+<main>
+    <LogoSection />
+
+    <GeneralSection Model="Model" />
+    <SkillsSection Model="Model" />
+    <AttributesSection Model="Model" />
+
+    <div class="section">
+        <InjuryConditions Model="Model" />
+        <InjuryConditions Model="Model" />
+    </div>
+</main>

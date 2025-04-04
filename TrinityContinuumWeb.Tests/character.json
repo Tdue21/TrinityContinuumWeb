@@ -1,0 +1,181 @@
+{
+	"Name": "Test Character",
+	"Player": "Test Player",
+	"Concept": "Test Concept",
+	"Description": "Test Description",
+	"Background": "Test Background",
+	"Aspirations": [
+		{
+			"IsLongTerm": true,
+			"Description": "Test Long Term Aspiration"
+		},
+		{
+			"IsLongTerm": false,
+			"Description": "Test Short Term Aspiration"
+		},
+		{
+			"IsLongTerm": false,
+			"Description": "Test Short Term Aspiration"
+		}
+	],
+	"Paths": {
+		"Origin": {
+			"Name": "Test Origin",
+			"Dots": 1
+		},
+		"Role": {
+			"Name": "Test Role",
+			"Dots": 1
+		},
+		"Society": {
+			"Name": "Test Society",
+			"Dots": 1
+		}
+	},
+	"Attributes": {
+		"PreferredApproach": "Test Approach",
+		"Physical": [
+			{
+				"Name": "Might",
+				"Dots": 1
+			},
+			{
+				"Name": "Dexterity",
+				"Dots": 1
+			},
+			{
+				"Name": "Stamina",
+				"Dots": 1
+			}
+		],
+		"Social": [
+			{
+				"Name": "Presence",
+				"Dots": 1
+			},
+			{
+				"Name": "Manipulation",
+				"Dots": 1
+			},
+			{
+				"Name": "Composure",
+				"Dots": 1
+			}
+		],
+		"Mental": [
+			{
+				"Name": "Intellect",
+				"Dots": 1
+			},
+			{
+				"Name": "Cunning",
+				"Dots": 1
+			},
+			{
+				"Name": "Resolve",
+				"Dots": 1
+			}
+		]
+	},
+	"Skills": [
+		{
+			"Name": "Aim",
+			"Dots": 0
+		},
+		{
+			"Name": "Athletics",
+			"Dots": 0
+		},
+		{
+			"Name": "Close Combat",
+			"Dots": 0
+		},
+		{
+			"Name": "Command",
+			"Dots": 0
+		},
+		{
+			"Name": "Culture",
+			"Dots": 0
+		},
+		{
+			"Name": "Empathy",
+			"Dots": 0
+		},
+		{
+			"Name": "Enigmas",
+			"Dots": 0
+		},
+		{
+			"Name": "Humanities",
+			"Dots": 0
+		},
+		{
+			"Name": "Integrity",
+			"Dots": 0
+		},
+		{
+			"Name": "Larceny",
+			"Dots": 0
+		},
+		{
+			"Name": "Medicine",
+			"Dots": 0
+		},
+		{
+			"Name": "Persuasion",
+			"Dots": 0
+		},
+		{
+			"Name": "Pilot",
+			"Dots": 0
+		},
+		{
+			"Name": "Science",
+			"Dots": 0
+		},
+		{
+			"Name": "Survival",
+			"Dots": 0
+		},
+		{
+			"Name": "Technology",
+			"Dots": 0
+		}
+	],
+	"Armor": {
+		"Soft": 0,
+		"Hard": 0
+	},
+	"Defense": 0,
+	"Experience": 0,
+	"Statblock": false,
+	"Source": "Test Source",
+	"Edges": [
+		{
+			"Name": "Test Edge",
+			"Dots": 1
+		}
+	],
+	"Psi": {
+		"Aptitude": "Test Aptitude",
+		"Trait": 1,
+		"Tolerance": 0,
+		"BasicPowers": [ "Basic Power 1", "Basic Power 2" ],
+		"Modes": [
+			{
+				"Name": "Test Mode",
+				"Dots": 1
+			},
+			{
+				"Name": "Test Mode",
+				"Dots": 1
+			},
+			{
+				"Name": "Test Mode",
+				"Dots": 1
+			}
+		]
+	}
+}
+

@@ -1,0 +1,65 @@
+﻿@using TrinityContinuum.WebApp.Components.Components
+@inherits SkillsSectionBase
+
+<SectionHeading Heading="Skills" />
+
+<div class="section">
+    <div class="column">
+        @{
+            foreach (var skill in Model.Skills.Take(8))
+            {
+                <div class="skill">
+                    <label>@skill.Name</label>
+                    @if (skill?.Specialties != null && skill?.Specialties.Count() > 0)
+                    {
+                        <span class="chips">
+                            @foreach (var spec in skill.Specialties)
+                            {
+                                <span class="chip specialty">@spec</span>
+                            }
+                            @foreach (var trick in skill.Tricks)
+                            {
+                                <span class="chip trick">@trick</span>
+                            }
+                        </span>
+                    }
+                    else
+                    {
+                        <span></span>
+                    }
+                    <Dots @bind-Value="@skill.Dots" ReadOnly="true" />
+                </div>
+            }
+        }
+    </div>
+
+    <div class="column">
+        @{
+            foreach (var skill in Model.Skills.Skip(8))
+            {
+                <div class="skill">
+                    <label>@skill.Name</label>
+                    @if (skill?.Tricks != null && skill?.Tricks.Count() > 0)
+                    {
+                        <span class="chips">
+                            @foreach (var spec in skill.Specialties)
+                            {
+                                <span class="chip specialty">@spec</span>
+                            }
+                            @foreach (var trick in skill.Tricks)
+                            {
+                                <span class="chip trick">@trick</span>
+                            }
+                        </span>
+                    }
+                    else
+                    {
+                        <span></span>
+                    }
+                    <Dots @bind-Value="@skill.Dots" ReadOnly="true" />
+                </div>
+            }
+        }
+    </div>
+
+</div>

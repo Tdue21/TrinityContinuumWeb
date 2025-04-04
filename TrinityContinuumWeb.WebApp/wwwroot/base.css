@@ -1,0 +1,32 @@
+﻿:root {
+    /* Generic colors */
+    --bg-color-light: #fff;
+    --fg-color-light: #000;
+    /* Aeon specific colors */
+    --header-bg-aeon: #A4181C;
+    --header-fg-aeon: #fff;
+    --row-color-aeon: #F4ADB2;
+    /* Aberrant specific colors*/
+    --header-bg-aberrant: #000;
+    --header-fg-aberrant: #FEC00F;
+    --row-color-aberrant: #F9E19F;
+    /* Continuum (Modern) colors */
+    --header-bg-continuum: #005b7f;
+    --header-fg-continuum: #fff;
+    --row-color-continuum: #96B7D9;
+    /* Theme aware colors*/
+    --background-color: var(--bg-color-light);
+    --foreground-color: var(--fg-color-light);
+    --header-bg: var(--header-bg-aeon);
+    --header-fg: var(--header-fg-aeon);
+    --row-color: var(--row-color-aeon);
+    --specialty-color: #DBF9DB;
+    --trick-color: #C2EDED;
+    /* Aeon fonts */
+    --header-font: Blinddate;
+    --body-font: Philosopher;
+    /* Common Settings*/
+    background-color: var(--background-color);
+    color: var(--foreground-color);
+    font-family: var(--body-font);
+}

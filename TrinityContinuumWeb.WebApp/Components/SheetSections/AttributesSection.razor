@@ -1,0 +1,53 @@
+﻿@using TrinityContinuum.WebApp.Components.Components
+@using TrinityContinuumWeb.Models
+@inherits AttributesSectionBase
+
+<SectionHeading Heading="Attributes" />
+
+<div class="section">
+
+    <div class="approach">
+        <div>
+            <div class="@(Model.Attributes.PreferredApproach == PreferredApproach.Force ? "filled" : "empty")"></div>
+            <span>Force</span>
+        </div>
+        <div>
+            <div class="@(Model.Attributes.PreferredApproach == PreferredApproach.Finesse ? "filled" : "empty")"></div>
+            <span>Finesse</span>
+        </div>
+        <div>
+            <div class="@(Model.Attributes.PreferredApproach == PreferredApproach.Resilience ? "filled" : "empty")"></div>
+            <span>Resilience</span>
+        </div>
+    </div>
+
+    <div class="arena">
+        @foreach (var attr in Model.Attributes.Mental)
+        {
+            <div class="attribute">
+                <label>@attr.Name</label>
+                <Dots @bind-Value="@attr.Dots" ReadOnly="true" />
+            </div>
+        }
+    </div>
+
+    <div class="arena">
+        @foreach (var attr in Model.Attributes.Physical)
+        {
+            <div class="attribute">
+                <label>@attr.Name</label>
+                <Dots @bind-Value="@attr.Dots" ReadOnly="true" />
+            </div>
+        }
+    </div>
+
+    <div class="arena">
+        @foreach (var attr in Model.Attributes.Social)
+        {
+            <div class="attribute">
+                <label>@attr.Name</label>
+                <Dots @bind-Value="@attr.Dots" ReadOnly="true" />
+            </div>
+        }
+    </div>
+</div>

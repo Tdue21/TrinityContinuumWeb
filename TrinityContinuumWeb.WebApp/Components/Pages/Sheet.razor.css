@@ -1,0 +1,16 @@
+﻿
+@media (min-width: 1024px) {
+    main {
+        margin-left: 150px;
+        margin-right: 150px;
+        padding: 50px;
+        border: 1px solid black;
+        box-shadow: 5px 5px 5px #cfcfcf;
+    }
+}
+
+.section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}

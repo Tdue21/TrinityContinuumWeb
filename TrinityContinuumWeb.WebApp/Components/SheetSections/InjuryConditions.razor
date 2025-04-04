@@ -1,0 +1,17 @@
+﻿@using TrinityContinuum.WebApp.Components.Components
+@inherits InjuryConditionsBase
+
+<div>
+    <SectionHeading Heading="Injury Conditions"></SectionHeading>
+    <div class="column">
+        @foreach(var level in Levels)
+        {
+            <div class="injury-line">
+                <span class="square"></span>
+                <span>@level.Name</span>
+                <span>@level.Diff</span>
+            </div>
+        }
+        <div class="takenout"><span>Taken Out</span></div>
+    </div>
+</div>

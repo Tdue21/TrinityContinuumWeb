@@ -1,0 +1,18 @@
+﻿@inherits DotsBase
+
+<div class="dot-value">
+    @for (var idx = 1; idx <= @MaxValue; idx++)
+    {
+        var localIndex = idx;
+        <span class="dot" @onclick="() => UpdateValueAsync(localIndex)">
+            @if (localIndex <= @Value)
+            {
+                <span class="circle filled">&nbsp;</span>
+            }
+            else
+            {
+                <span class="circle">&nbsp;</span>
+            }
+        </span>
+    }
+</div>

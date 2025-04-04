@@ -1,0 +1,174 @@
+{
+	"name": "Connor McCormick",
+	"player": "Thomas",
+	"concept": "Private Investigator",
+	"psiOrder": "ISRA",
+
+	"originPath": {
+		"name": "Street Rat",
+		"dots": 1
+	},
+	"rolePath": {
+		"name": "Detective",
+		"dots": 1
+	},
+	"societyPath": {
+		"name": "Æon Trinity",
+		"dots": 1
+	},
+
+	"skills": [
+		{
+			"name": "aim",
+			"dots": 2
+		},
+		{
+			"name": "athletics",
+			"dots": 1
+		},
+		{
+			"name": "closeCombat",
+			"dots": 1
+		},
+		{
+			"name": "command",
+			"dots": 0
+		},
+		{
+			"name": "culture",
+			"dots": 0
+		},
+		{
+			"name": "empathy",
+			"dots": 0
+		},
+		{
+			"name": "enigmas",
+			"dots": 3,
+			"specialties": [ "Riddles" ],
+			"tricks": ["Connecting the Dots"]
+		},
+		{
+			"name": "humanities",
+			"dots": 1
+		},
+		{
+			"name": "integrity",
+			"dots": 2
+		},
+		{
+			"name": "larceny",
+			"dots": 0
+		},
+		{
+			"name": "medicine",
+			"dots": 0
+		},
+		{
+			"name": "persuasion",
+			"dots": 2
+		},
+		{
+			"name": "pilot",
+			"dots": 0
+		},
+		{
+			"name": "science",
+			"dots": 0
+		},
+		{
+			"name": "survival",
+			"dots": 0
+		},
+		{
+			"name": "technology",
+			"dots": 3,
+			"specialties": [ "Electronic Locks" ],
+			"tricks": [ "Engineer's Eye" ]
+		}
+	],
+
+
+	"attributes": {
+		"preferredApproach": "finesse",
+		"mental": [
+			{
+				"name": "intellect",
+				"dots": 3
+			},
+			{
+				"name": "cunning",
+				"dots": 4
+			},
+			{
+				"name": "resolve",
+				"dots": 3
+			}
+		],
+		"physical": [
+			{
+				"name": "might",
+				"dots": 2
+			},
+			{
+				"name": "dexterity",
+				"dots": 3
+			},
+			{
+				"name": "stamina",
+				"dots": 3
+			}
+		],
+		"social": [
+			{
+				"name": "Presence",
+				"dots": 2
+			},
+			{
+				"name": "manipulation",
+				"dots": 2
+			},
+			{
+				"name": "composure",
+				"dots": 2
+			}
+		],
+	},
+
+	"aptitude": {
+		"name": "Clairsentience",
+		"psi": 3,
+		"tolerance": 0,
+		"basic": [ "Extended Attunement", "The Sight" ],
+		"modes": [
+			{
+				"name": "Psychometry",
+				"rating": 3
+			},
+			{
+				"name": "Psycholocation",
+				"rating": 1
+			},
+			{
+				"name": "Psychocognition",
+				"rating": 0
+			}
+		]
+	},
+
+	"edges": {
+		"Danger Sense": {
+			"value": 1
+		},
+		"Adrenaline Spike": {
+			"value": 1
+		},
+		"Photographic Memory": {
+			"value": 2
+		},
+		"Favored Mode": {
+			"note": "Psychometry",
+			"value": 2
+		}
+	}
+}
