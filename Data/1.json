@@ -17,105 +17,117 @@
 		"dots": 1
 	},
 
+	"aspirations": [
+		{
+			"isLongTerm": true,
+			"description": "Bring down the king-pin and his whole organization."
+		},
+		{
+			"isLongTerm": false,
+			"description": "Do one good deed every day."
+		},
+		{
+			"isLongTerm": false,
+			"description": "Eat at least two apples."
+		}
+	],
 	"skills": [
 		{
-			"name": "aim",
+			"name": "Aim",
 			"dots": 2
 		},
 		{
-			"name": "athletics",
+			"name": "Athletics",
 			"dots": 1
 		},
 		{
-			"name": "closeCombat",
+			"name": "Close Combat",
 			"dots": 1
 		},
 		{
-			"name": "command",
+			"name": "Command",
 			"dots": 0
 		},
 		{
-			"name": "culture",
+			"name": "Culture",
 			"dots": 0
 		},
 		{
-			"name": "empathy",
+			"name": "Empathy",
 			"dots": 0
 		},
 		{
-			"name": "enigmas",
+			"name": "Enigmas",
 			"dots": 3,
 			"specialties": [ "Riddles" ],
-			"tricks": ["Connecting the Dots"]
+			"tricks": [ "Connecting the Dots" ]
 		},
 		{
-			"name": "humanities",
+			"name": "Humanities",
 			"dots": 1
 		},
 		{
-			"name": "integrity",
+			"name": "Integrity",
 			"dots": 2
 		},
 		{
-			"name": "larceny",
+			"name": "Larceny",
 			"dots": 0
 		},
 		{
-			"name": "medicine",
+			"name": "Medicine",
 			"dots": 0
 		},
 		{
-			"name": "persuasion",
+			"name": "Persuasion",
 			"dots": 2
 		},
 		{
-			"name": "pilot",
+			"name": "Pilot",
 			"dots": 0
 		},
 		{
-			"name": "science",
+			"name": "Science",
 			"dots": 0
 		},
 		{
-			"name": "survival",
+			"name": "Survival",
 			"dots": 0
 		},
 		{
-			"name": "technology",
+			"name": "Technology",
 			"dots": 3,
 			"specialties": [ "Electronic Locks" ],
 			"tricks": [ "Engineer's Eye" ]
 		}
 	],
-
-
 	"attributes": {
 		"preferredApproach": "finesse",
 		"mental": [
 			{
-				"name": "intellect",
+				"name": "Intellect",
 				"dots": 3
 			},
 			{
-				"name": "cunning",
+				"name": "Cunning",
 				"dots": 4
 			},
 			{
-				"name": "resolve",
+				"name": "Resolve",
 				"dots": 3
 			}
 		],
 		"physical": [
 			{
-				"name": "might",
+				"name": "Might",
 				"dots": 2
 			},
 			{
-				"name": "dexterity",
+				"name": "Dexterity",
 				"dots": 3
 			},
 			{
-				"name": "stamina",
+				"name": "Stamina",
 				"dots": 3
 			}
 		],
@@ -125,50 +137,52 @@
 				"dots": 2
 			},
 			{
-				"name": "manipulation",
+				"name": "Manipulation",
 				"dots": 2
 			},
 			{
-				"name": "composure",
+				"name": "Composure",
 				"dots": 2
-			}
-		],
-	},
-
-	"aptitude": {
-		"name": "Clairsentience",
-		"psi": 3,
-		"tolerance": 0,
-		"basic": [ "Extended Attunement", "The Sight" ],
-		"modes": [
-			{
-				"name": "Psychometry",
-				"rating": 3
-			},
-			{
-				"name": "Psycholocation",
-				"rating": 1
-			},
-			{
-				"name": "Psychocognition",
-				"rating": 0
 			}
 		]
 	},
-
-	"edges": {
-		"Danger Sense": {
-			"value": 1
+	"psi": {
+		"aptitude": "Clairsentience",
+		"trait": 3,
+		"tolerance": 0,
+		"basicPowers": [ "Extended Attunement", "The Sight" ],
+		"modes": [
+			{
+				"name": "Psychometry",
+				"dots": 3
+			},
+			{
+				"name": "Psycholocation",
+				"dots": 1
+			},
+			{
+				"name": "Psychocognition",
+				"dots": 0
+			}
+		]
+	},
+	"edges": [
+		{
+			"name": "Danger Sense",
+			"dots": 1
 		},
-		"Adrenaline Spike": {
-			"value": 1
+		{
+			"name": "Adrenaline Spike",
+			"dots": 1
 		},
-		"Photographic Memory": {
-			"value": 2
+		{
+			"name": "Photographic Memory",
+			"dots": 2
 		},
-		"Favored Mode": {
-			"note": "Psychometry",
-			"value": 2
+		{
+			"name": "Favored Mode",
+			"dots": 2,
+			"note": "Psychometry"
 		}
-	}
+	]
 }

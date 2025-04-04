@@ -3,5 +3,5 @@
 namespace TrinityContinuum.WebApp.Components.Components;
 public partial class SectionHeadingBase : ComponentBase
 {
-    [Parameter] public string Heading { get; set; }
+    [Parameter] public RenderFragment ChildContent { get; set; }
 }

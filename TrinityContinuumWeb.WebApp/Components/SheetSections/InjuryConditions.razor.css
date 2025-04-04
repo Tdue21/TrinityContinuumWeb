@@ -10,6 +10,16 @@
     gap: 5px;
 }
 
+.misc {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 5px;
+}
+
+.misc > label {
+    font-weight: bold;
+}
+
 .injury-line {
     padding-left: 20px;
     padding-right: 20px;

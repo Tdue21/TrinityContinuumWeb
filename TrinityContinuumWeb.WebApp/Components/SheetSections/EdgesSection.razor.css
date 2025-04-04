@@ -1,0 +1,16 @@
+﻿
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+    .column > div {
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        gap: 5px;
+    }
+
+.aspirations > div:nth-child(even) {
+    background-color: var(--row-color);
+}

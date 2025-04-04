@@ -1,4 +1,6 @@
-﻿namespace TrinityContinuumWeb.Models;
+﻿using System.Text.Json.Serialization;
+
+namespace TrinityContinuumWeb.Models;
 public class Character
 {
     public required string Name { get; set; }
@@ -11,10 +13,10 @@ public class Character
     public required PathTrait OriginPath { get; set; }
     public required PathTrait RolePath { get; set; }
     public required PathTrait SocietyPath { get; set; }
-    public List<Skill> Skills { get; init; } = new List<Skill>();
+    public List<Skill> Skills { get; set; } = new List<Skill>();
     public Attributes Attributes { get; } = new Attributes();
     public Psi Psi { get;  } = new Psi();
-    public List<Trait> Edges { get; } = new List<Trait>();
+    public List<Edge> Edges { get; } = new List<Edge>();
     public int Defense { get; set; }
     public Armor Armor { get; } = new Armor();
     public int Experience { get; set; }
@@ -40,6 +42,11 @@ public class Trait
     public int Dots { get; set; }
 }
 
+public class Edge : Trait
+{
+    public string? Note { get; set; }
+}
+
 public class PathTrait : Trait
 {
     public List<Contact> Contacts { get; } = new List<Contact>();
@@ -52,8 +59,8 @@ public class Contact : Trait
 
 public class Skill : Trait
 {
-    public List<string> Specialties { get; init; } = new List<string>();
-    public List<string> Tricks { get; init; } = new List<string>();
+    public List<string> Specialties { get; set; } = new List<string>();
+    public List<string> Tricks { get; set; } = new List<string>();
 }
 
 public enum PreferredApproach
@@ -65,11 +72,13 @@ public enum PreferredApproach
 
 public class Attributes
 {
+    [JsonPropertyName("preferredApproach")]
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public PreferredApproach PreferredApproach { get; set; } = PreferredApproach.Force;
 
-    public List<Trait> Physical { get; init;  } = new List<Trait>();
-    public List<Trait> Social { get; init; } = new List<Trait>();
-    public List<Trait> Mental { get; init; } = new List<Trait>();
+    public List<Trait> Mental { get; set; } = new List<Trait>();
+    public List<Trait> Physical { get; set; } = new List<Trait>();
+    public List<Trait> Social { get; set; } = new List<Trait>();
 }
 
 public class Psi

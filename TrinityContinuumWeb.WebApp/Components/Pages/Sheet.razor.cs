@@ -1,11 +1,23 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Newtonsoft.Json;
 using TrinityContinuumWeb.Models;
 
 namespace TrinityContinuum.WebApp.Components.Pages;
 
 public class SheetComponent : ComponentBase
 {
-    public Character Model { get; set; } = new Character
+    public Character Model { get; set; }
+
+    protected override Task OnInitializedAsync()
+    {
+        var data = File.ReadAllText(@"C:\Development\Projects\TrinityContinuumWeb\Data\1.json");
+        Model = JsonConvert.DeserializeObject<Character>(data)!;
+
+        return base.OnInitializedAsync();
+    }
+
+    /*
+    private Character test = new Character
     {
         Name = "John Doe",
         Player = "Jane Doe",
@@ -60,31 +72,5 @@ public class SheetComponent : ComponentBase
             new() { Name = "Endurance", Dots = 1 },
         },
     };
+    */
 }
-/*
-public class Character
-{
-    public required string Name { get; set; }
-    public string? Player { get; set; }
-    public string? Concept { get; set; }
-    public string? PsiOrder { get; set; }
-
-    public required Trait OriginPath { get; set; }
-    public required Trait RolePath { get; set; }
-    public required Trait SocietyPath { get; set; }
-
-    public IEnumerable<Skill>? Skills { get; set; } 
-}
-
-public class  Trait 
-{
-    public required string Name { get; set; }
-    public int Value { get; set; }
-}
-
-public class Skill : Trait
-{
-    public string[]? Specialties { get; set; }
-    public string[]? Tricks { get; set; }
-}
-*/
