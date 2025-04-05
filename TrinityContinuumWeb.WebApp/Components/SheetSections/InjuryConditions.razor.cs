@@ -3,39 +3,45 @@ using TrinityContinuumWeb.Models;
 using System.Linq;
 
 namespace TrinityContinuum.WebApp.Components.SheetSections;
-    
-public partial class InjuryConditionsBase : ComponentBase
+
+public partial class InjuryConditionsBase : AbstractSectionBase
 {
-    [Parameter] public Character Model { get; set; }
 
     protected IEnumerable<(int Order, string Name, string Diff)> Levels { get; private set; }
 
-    protected override Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
-        var levels = new List<(int Order, string Name, string Diff)> {
+        try
+        {
+            var levels = new List<(int Order, string Name, string Diff)> {
                 (0, "Bruised", "+1"),
                 (1, "Injured", "+2"),
                 (2, "Maimed",  "+4")
-        };
+            };
 
-        var stamina = Model.Attributes.Physical.First(x => x.Name == "Stamina");
+            var stamina = Model.Attributes.Physical.TryGetValue("Stamina", out int result) ? result : 0;
 
-        if (stamina.Dots >= 3)
-        {
-            levels.Add((1, "Injured", "+2"));
+            if (stamina >= 3)
+            {
+                levels.Add((1, "Injured", "+2"));
+            }
+
+            if (stamina >= 5)
+            {
+                levels.Add((0, "Bruised", "+1"));
+            }
+
+            if (Model.Edges.Any(x => x.Name == "Endurance"))
+            {
+                levels.Add((0, "Bruised", "+1"));
+            }
+            Levels = levels.OrderBy(x => x.Order).ToList();
+
         }
-
-        if(stamina.Dots >= 5)
+        catch (Exception)
         {
-            levels.Add((0, "Bruised", "+1"));
+            throw;
         }
-
-        if (Model.Edges.Any(x => x.Name == "Endurance"))
-        {
-            levels.Add((0, "Bruised", "+1"));
-        }
-        Levels = levels.OrderBy(x => x.Order).ToList();
-
-        return base.OnInitializedAsync();
+        await base.OnInitializedAsync();
     }
 }

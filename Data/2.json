@@ -1,15 +1,15 @@
 {
-	"name": "Connor McCormick",
-	"player": "Thomas",
-	"concept": "Private Investigator",
-	"psiOrder": "ISRA",
+	"name": "Aziel \"Dog\" Octavius",
+	"player": "Lina",
+	"concept": "Soldier",
+	"psiOrder": "The Legions",
 
 	"originPath": {
-		"name": "Street Rat",
+		"name": "Military Brat",
 		"dots": 1
 	},
 	"rolePath": {
-		"name": "Detective",
+		"name": "Pilot",
 		"dots": 1
 	},
 	"societyPath": {
@@ -52,12 +52,10 @@
 			"dots": 0
 		},
 		"Enigmas": {
-			"dots": 3,
-			"specialties": [ "Riddles" ],
-			"tricks": [ "Connecting the Dots" ]
+			"dots": 1
 		},
 		"Humanities": {
-			"dots": 1
+			"dots": 0
 		},
 		"Integrity": {
 			"dots": 2
@@ -69,81 +67,83 @@
 			"dots": 0
 		},
 		"Persuasion": {
-			"dots": 2
+			"dots": 1
 		},
 		"Pilot": {
-			"dots": 0
+			"dots": 3,
+			"specialties": [ "Helicopter" ],
+			"tricks": [ "Fighter Pilot" ]
 		},
 		"Science": {
 			"dots": 0
 		},
 		"Survival": {
-			"dots": 0
+			"dots": 1
 		},
 		"Technology": {
-			"dots": 3,
-			"specialties": [ "Electronic Locks" ],
-			"tricks": [ "Engineer's Eye" ]
+			"dots": 2
 		}
 	},
 
 	"attributes": {
 		"preferredApproach": "finesse",
 		"mental": {
-			"Intellect": 3,
-			"Cunning": 4,
-			"Resolve": 3
+			"Intellect": 2,
+			"Cunning": 3,
+			"Resolve": 2
 		},
 		"physical": {
-			"Might": 2,
-			"Dexterity": 3,
+			"Might": 3,
+			"Dexterity": 4,
 			"Stamina": 3
 		},
 		"social": {
 			"Presence": 2,
-			"Manipulation": 2,
-			"Composure": 2
+			"Manipulation": 3,
+			"Composure": 3
 		}
 	},
 
 	"psi": {
-		"aptitude": "Clairsentience",
+		"aptitude": "Psychokinesis",
 		"trait": 3,
 		"tolerance": 0,
-		"basicPowers": [ "Extended Attunement", "The Sight" ],
+		"basicPowers": [ "Distance Touch", "Nudge" ],
 		"modes": [
 			{
-				"name": "Psychometry",
-				"dots": 3
-			},
-			{
-				"name": "Psycholocation",
+				"name": "Thermokinesis",
 				"dots": 1
 			},
 			{
-				"name": "Psychocognition",
-				"dots": 0
+				"name": "Telekinesis",
+				"dots": 1
+			},
+			{
+				"name": "Perikinesis",
+				"dots": 2
 			}
 		]
 	},
-
 	"edges": [
 		{
-			"name": "Danger Sense",
-			"dots": 1
-		},
-		{
-			"name": "Adrenaline Spike",
-			"dots": 1
-		},
-		{
-			"name": "Photographic Memory",
+			"name": "Patron",
 			"dots": 2
 		},
 		{
-			"name": "Favored Mode",
-			"dots": 2,
-			"note": "Psychometry"
+			"name": "Iron Will",
+			"dots": 3
+		},
+		{
+			"name": "Ms. Fix It",
+			"dots": 2
+		},
+		{
+			"name": "Direction Sense",
+			"dots": 1
+		},
+		{
+			"name": "Far-Reaching Influence",
+			"dots": 2
 		}
 	],
 
@@ -154,6 +154,6 @@
 	},
 	"experience": {
 		"total": 12,
-		"spent":  0
+		"spent": 0
 	}
 }

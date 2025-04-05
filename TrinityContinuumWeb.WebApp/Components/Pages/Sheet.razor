@@ -7,16 +7,21 @@
 
 <PageTitle>Character Sheet</PageTitle>
 
-<main>
+<main class="container">
     <LogoSection />
 
     <GeneralSection Model="Model" />
     <SkillsSection Model="Model" />
     <AttributesSection Model="Model" />
 
-    <div class="section">
+    <div class="row">
         <InjuryConditions Model="Model" />
         <PsiSection Model="Model" />
-        <EdgesSection Model="Model" />
     </div>
+
+    <div class="row">
+        <EdgesSection Model="Model" />
+        <AspirationsSection Model="Model" />
+    </div>
+
 </main>

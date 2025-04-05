@@ -1,0 +1,10 @@
+﻿@inherits CharacterSelectorBase
+
+<div>
+    <InputSelect @bind-Value="SelectedCharacter">
+        <option value="">Select a character</option>
+        @foreach (var character in Characters)
+        {
+            <option value="@character.Id">@character.Name</option>
+        }
+</div>

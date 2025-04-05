@@ -1,7 +1,7 @@
 ﻿@using TrinityContinuum.WebApp.Components.Components
 @inherits EdgesSectionBase
 
-<div>
+<div class="col container">
     <SectionHeading>Edges</SectionHeading>
 
     <div class="column">
@@ -10,17 +10,6 @@
             <div>
                 <label>@edge.Name @(!string.IsNullOrEmpty(edge.Note) ? "(" + edge.Note + ")" : "")</label>
                 <Dots Value="@edge.Dots" ReadOnly="true" />
-            </div>
-        }
-    </div>
-
-    <SectionHeading>Aspirations</SectionHeading>
-
-    <div class="column aspirations">
-        @foreach (var asp in Model.Aspirations)
-        {
-            <div>
-                <span>@(asp.IsLongTerm ? "(Long)" : "(Short)") @asp.Description</span>
             </div>
         }
     </div>

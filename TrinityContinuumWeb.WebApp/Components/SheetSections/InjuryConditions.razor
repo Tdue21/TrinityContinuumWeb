@@ -1,7 +1,7 @@
 ﻿@using TrinityContinuum.WebApp.Components.Components
 @inherits InjuryConditionsBase
 
-<div>
+<div class="col container">
     <SectionHeading>Health</SectionHeading>
     <div class="column">
         @foreach(var level in Levels)
@@ -18,7 +18,7 @@
 
         <div class="misc">
             <label>Defense</label>
-            <span>Appropriate Resilence Attribute</span>
+            <span>@Model.Defense or Appropriate Resilence Attribute</span>
         </div>
 
         <div class="misc">
@@ -28,7 +28,7 @@
 
         <div class="misc">
             <label>Experience</label>
-            <span>Total: @Model.Experience</span>
+            <span>Total: @Model.Experience.Total<br />Remaining: @(Model.Experience.Total - Model.Experience.Spent)</span>
         </div>
     </div>
 

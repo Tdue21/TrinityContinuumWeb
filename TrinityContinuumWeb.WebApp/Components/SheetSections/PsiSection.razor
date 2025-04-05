@@ -1,7 +1,7 @@
 ﻿@using TrinityContinuum.WebApp.Components.Components
 @inherits PsiSectionBase
 
-<div>
+<div class="col container">
     <SectionHeading>Psi</SectionHeading>
 
     <div class="column">
@@ -48,5 +48,13 @@
             <label>Tolerance</label>
             <Dots Value="@Model.Psi.Tolerance" MaxValue="@MaxTolerance" ReadOnly="true" />
         </div>
+
+        <hr />
+
+        <div>
+            <label style="grid-column: 1 / 3">Auxilliary Modes</label>
+        </div>
+
+
     </div>
 </div>

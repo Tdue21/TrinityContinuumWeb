@@ -1,27 +1,33 @@
-﻿using System.Text.Json.Serialization;
+﻿namespace TrinityContinuumWeb.Models;
 
-namespace TrinityContinuumWeb.Models;
 public class Character
 {
+    public int Id { get; set; }
     public required string Name { get; set; }
     public string? Player { get; set; }
     public string? Concept { get; set; }
     public string? Description { get; set; }
     public string? Background { get; set; }
-    public List<Aspiration> Aspirations { get; } = new List<Aspiration>();
+    public List<Aspiration> Aspirations { get; } = new();
     public string? PsiOrder { get; set; }
     public required PathTrait OriginPath { get; set; }
     public required PathTrait RolePath { get; set; }
     public required PathTrait SocietyPath { get; set; }
-    public List<Skill> Skills { get; set; } = new List<Skill>();
-    public Attributes Attributes { get; } = new Attributes();
+    public Dictionary<string, Skill> Skills { get; set; } = new();
+    public Attributes Attributes { get; } = new();
     public Psi Psi { get;  } = new Psi();
-    public List<Edge> Edges { get; } = new List<Edge>();
+    public List<Edge> Edges { get; } = new();
     public int Defense { get; set; }
-    public Armor Armor { get; } = new Armor();
-    public int Experience { get; set; }
+    public Armor Armor { get; } = new();
+    public Experience Experience { get; set; } = new();
     public bool Statblock { get; set; }
     public string? Source { get; set; }
+}
+
+public class Experience
+{
+    public int Total { get; set; }
+    public int Spent { get; set; }
 }
 
 public class Armor
@@ -63,6 +69,27 @@ public class Skill : Trait
     public List<string> Tricks { get; set; } = new List<string>();
 }
 
+
+//public class Skills
+//{
+//    public Skill Aim { get; set; } = new();
+//	public Skill Athletics { get; set; } = new();
+//	public Skill CloseCombat { get; set; } = new();
+//	public Skill Command { get; set; } = new();
+//	public Skill Culture { get; set; } = new();
+//	public Skill Empathy { get; set; } = new();
+//	public Skill Enigmas { get; set; } = new();
+//	public Skill Humanities { get; set; } = new();
+//	public Skill Integrity { get; set; } = new();
+//	public Skill Larceny { get; set; } = new();
+//	public Skill Medicine { get; set; } = new();
+//	public Skill Persuasion { get; set; } = new();
+//	public Skill Pilot { get; set; } = new();
+//	public Skill Science { get; set; } = new();
+//	public Skill Survival { get; set; } = new();
+//    public Skill Technology { get; set; } = new();
+//}
+
 public enum PreferredApproach
 {
     Force,
@@ -72,13 +99,11 @@ public enum PreferredApproach
 
 public class Attributes
 {
-    [JsonPropertyName("preferredApproach")]
-    [JsonConverter(typeof(JsonStringEnumConverter))]
     public PreferredApproach PreferredApproach { get; set; } = PreferredApproach.Force;
-
-    public List<Trait> Mental { get; set; } = new List<Trait>();
-    public List<Trait> Physical { get; set; } = new List<Trait>();
-    public List<Trait> Social { get; set; } = new List<Trait>();
+    
+    public Dictionary<string, int> Mental { get; set; } = new();
+    public Dictionary<string, int> Physical { get; set; } = new();
+    public Dictionary<string, int> Social { get; set; } = new();
 }
 
 public class Psi
@@ -88,4 +113,5 @@ public class Psi
     public int Tolerance { get; set; }
     public List<string> BasicPowers { get; } = new List<string>();
     public List<Trait> Modes { get;  } = new List<Trait>();
+    public List<Trait> AuxilliaryModes { get;  } = new List<Trait>();
 }

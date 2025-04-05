@@ -1,10 +1,23 @@
+using Microsoft.Extensions.Options;
 using TrinityContinuum.WebApp.Components;
+using TrinityContinuum.WebApp.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.Configure<ApplicationSettings>(builder.Configuration.GetSection(ApplicationSettings.SectionName));
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+builder.Services.AddHttpClient("API", (provider, config) =>
+{
+    var configuration = provider.GetRequiredService<IOptions<ApplicationSettings>>();
+    if (configuration?.Value?.ApiBaseUrl is null)
+    {
+        throw new ArgumentNullException(nameof(configuration.Value.ApiBaseUrl), "API base URL is not configured.");
+    }
+    config.BaseAddress = new Uri(configuration.Value.ApiBaseUrl);
+});
 
 var app = builder.Build();
 

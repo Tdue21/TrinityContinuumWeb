@@ -2,7 +2,7 @@
 using TrinityContinuumWeb.Models;
 
 namespace TrinityContinuum.WebApp.Components.SheetSections;
-public partial class AttributesSectionBase : AbstractSectionBase
+public partial class AspirationsSectionBase : AbstractSectionBase
 {
 
 

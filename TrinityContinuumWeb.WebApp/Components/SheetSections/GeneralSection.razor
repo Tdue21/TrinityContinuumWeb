@@ -1,42 +1,45 @@
 ﻿@using TrinityContinuum.WebApp.Components.Components
 @inherits GeneralSectionBase
 
-<div class="section">
 
-    <div class="column">
-        <div class="trait">
-            <label>Name</label>
-            <span>@Model.Name</span>
-        </div>
-        <div class="trait">
-            <label>Player</label>
-            <span>@Model.Player</span>
-        </div>
-        <div class="trait">
-            <label>Concept</label>
-            <span>@Model.Concept</span>
-        </div>
-        <div class="trait">
-            <label>PSI Order</label>
-            <span>@Model.PsiOrder</span>
-        </div>
-    </div>
+<div class="row">
+    <div class="section">
 
-    <div class="column">
-        <div class="trait dot">
-            <label>Origin Path</label>
-            <span>@Model.OriginPath.Name</span>
-            <Dots @bind-Value="@Model.OriginPath.Dots" ReadOnly="true" />
+        <div class="column">
+            <div class="trait">
+                <label>Name</label>
+                <span>@Model.Name</span>
+            </div>
+            <div class="trait">
+                <label>Player</label>
+                <span>@Model.Player</span>
+            </div>
+            <div class="trait">
+                <label>Concept</label>
+                <span>@Model.Concept</span>
+            </div>
+            <div class="trait">
+                <label>PSI Order</label>
+                <span>@Model.PsiOrder</span>
+            </div>
         </div>
-        <div class="trait dot">
-            <label>Role Path</label>
-            <span>@Model.RolePath.Name</span>
-            <Dots @bind-Value="@Model.RolePath.Dots" ReadOnly="true" />
-        </div>
-        <div class="trait dot">
-            <label>Society Path</label>
-            <span>@Model.SocietyPath.Name</span>
-            <Dots @bind-Value="@Model.SocietyPath.Dots" ReadOnly="true" />
+
+        <div class="column">
+            <div class="trait dot">
+                <label>Origin Path</label>
+                <span>@Model.OriginPath.Name</span>
+                <Dots @bind-Value="@Model.OriginPath.Dots" ReadOnly="true" />
+            </div>
+            <div class="trait dot">
+                <label>Role Path</label>
+                <span>@Model.RolePath.Name</span>
+                <Dots @bind-Value="@Model.RolePath.Dots" ReadOnly="true" />
+            </div>
+            <div class="trait dot">
+                <label>Society Path</label>
+                <span>@Model.SocietyPath.Name</span>
+                <Dots @bind-Value="@Model.SocietyPath.Dots" ReadOnly="true" />
+            </div>
         </div>
     </div>
 </div>

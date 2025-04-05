@@ -1,0 +1,17 @@
+﻿@using TrinityContinuum.WebApp.Components.Components
+@inherits AspirationsSectionBase
+
+<div class="col container">
+
+    <SectionHeading>Aspirations</SectionHeading>
+
+    <div class="column aspirations">
+        @foreach (var asp in Model.Aspirations)
+        {
+            <div>
+                <span>@(asp.IsLongTerm ? "(Long)" : "(Short)") @asp.Description</span>
+            </div>
+        }
+    </div>
+
+</div>

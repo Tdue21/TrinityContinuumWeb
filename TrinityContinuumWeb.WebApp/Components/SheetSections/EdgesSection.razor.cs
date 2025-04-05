@@ -2,7 +2,6 @@
 using TrinityContinuumWeb.Models;
 
 namespace TrinityContinuum.WebApp.Components.SheetSections;
-public partial class EdgesSectionBase : ComponentBase
+public partial class EdgesSectionBase : AbstractSectionBase
 {
-    [Parameter]public Character Model { get; set; }
 }

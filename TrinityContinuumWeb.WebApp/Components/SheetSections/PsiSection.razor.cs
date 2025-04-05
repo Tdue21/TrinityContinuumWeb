@@ -2,10 +2,8 @@
 using TrinityContinuumWeb.Models;
 
 namespace TrinityContinuum.WebApp.Components.SheetSections;
-public partial class PsiSectionBase : ComponentBase
+public partial class PsiSectionBase : AbstractSectionBase
 {
-    [Parameter]
-    public Character Model { get; set; }
 
     protected int PsiPoints { get; set; }
 
@@ -16,7 +14,7 @@ public partial class PsiSectionBase : ComponentBase
         int[] points = [0, 1, 5, 10, 15, 20, 30, 40];
         PsiPoints = points[Model.Psi.Trait];
 
-        MaxTolerance = Model.Attributes.Physical.First(x => x.Name == "Stamina").Dots +
+        MaxTolerance = (Model.Attributes.Physical.TryGetValue("Stamina", out int result) ? result : 0) +
                        Model.Psi.Trait;
 
         return base.OnInitializedAsync();

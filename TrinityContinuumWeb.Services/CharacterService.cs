@@ -1,4 +1,4 @@
-﻿using System.Text.Json;
+﻿using Newtonsoft.Json;
 using TrinityContinuumWeb.Models;
 
 namespace TrinityContinuumWeb.Services;
@@ -32,12 +32,9 @@ public class CharacterService(IDataProviderService dataProvider) : ICharacterSer
         
     public async Task<Character?> GetCharacterFromId(int id)
     {
-        var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
-        options.PropertyNameCaseInsensitive = true;
-        options.AllowTrailingCommas = true;
-        options.ReadCommentHandling = JsonCommentHandling.Skip;
         var data = await _dataProvider.ReadFile(id);
-        var character = JsonSerializer.Deserialize<Character>(data, options);
+        var character = JsonConvert.DeserializeObject<Character>(data)!;
+
         return character;
     }
 
@@ -45,7 +42,7 @@ public class CharacterService(IDataProviderService dataProvider) : ICharacterSer
     {
         var data = await _dataProvider.ReadFiles();
         var result = data.Where(x => !string.IsNullOrWhiteSpace(x))
-                         .Select(x => JsonSerializer.Deserialize<Character>(x))
+                         .Select(JsonConvert.DeserializeObject<Character>)
                          .ToArray();
         return result;
     }

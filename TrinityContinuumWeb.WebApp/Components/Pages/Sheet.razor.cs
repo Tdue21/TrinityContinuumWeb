@@ -6,14 +6,38 @@ namespace TrinityContinuum.WebApp.Components.Pages;
 
 public class SheetComponent : ComponentBase
 {
+    [Inject]
+    public IHttpClientFactory HttpClientFactory { get; set; } = null!;
+
     public Character Model { get; set; }
 
-    protected override Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-        var data = File.ReadAllText(@"C:\Development\Projects\TrinityContinuumWeb\Data\1.json");
-        Model = JsonConvert.DeserializeObject<Character>(data)!;
+        try
+        {
+            var client = HttpClientFactory.CreateClient("API");
+            var response = client.GetAsync("api/character/2").Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var data = response.Content.ReadAsStringAsync().Result;
+                Model = JsonConvert.DeserializeObject<Character>(data)!;
+            }
+            else
+            {
+                // Handle error
+                Console.WriteLine($"Error: {response.StatusCode}");
+            }
 
-        return base.OnInitializedAsync();
+            //var data = File.ReadAllText(@"C:\Development\Projects\TrinityContinuumWeb\Data\1.json");
+            //Model = JsonConvert.DeserializeObject<Character>(data)!;
+
+            base.OnInitialized();
+
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
     }
 
     /*

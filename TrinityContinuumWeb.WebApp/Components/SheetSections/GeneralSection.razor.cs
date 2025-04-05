@@ -2,8 +2,7 @@
 using TrinityContinuumWeb.Models;
 
 namespace TrinityContinuum.WebApp.Components.SheetSections;
-public partial class GeneralSectionBase : ComponentBase
+public partial class GeneralSectionBase : AbstractSectionBase
 {
-    [Parameter] public Character Model { get; set; }
 }
 

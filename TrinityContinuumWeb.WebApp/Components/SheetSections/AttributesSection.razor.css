@@ -2,7 +2,6 @@
     display: grid;
     grid-template-columns: 0.5fr 1fr 1fr 1fr;
     gap: 5px;
-    font-family: Philosopher;
 }
 
 .approach {

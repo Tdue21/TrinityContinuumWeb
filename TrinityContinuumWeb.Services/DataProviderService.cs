@@ -31,6 +31,7 @@ public class FileProviderService(IEnvironmentService environment) : IDataProvide
     public async Task<string> ReadFile(int id, CancellationToken cancellationToken = default)
     {
         var path = Path.Combine(_environment.RootPath, $"{id}.json");
+        path = Path.GetFullPath( path );
         return await File.ReadAllTextAsync(path, cancellationToken);
     }
 
@@ -40,6 +41,7 @@ public class FileProviderService(IEnvironmentService environment) : IDataProvide
         var data = new List<Task<string>>();
         foreach(var file in files)
         {
+            var id = int.Parse(Path.GetFileNameWithoutExtension(file));
             data.Add(File.ReadAllTextAsync(file, cancellationToken));
         }
 

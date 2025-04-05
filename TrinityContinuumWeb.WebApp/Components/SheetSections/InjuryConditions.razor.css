@@ -23,9 +23,12 @@
 .injury-line {
     padding-left: 20px;
     padding-right: 20px;
-    display: grid;
-    grid-template-columns: 24px 1fr 24px;
+    display: flex;
     gap: 5px;
+}
+
+.injury-line > span:last-child {
+    margin-left: auto;
 }
 
 .takenout {
@@ -38,6 +41,7 @@
     background-color: transparent;
     border: 2px solid var(--header-bg);
     border-radius: 3px;
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
+    box-shadow: 1px 1px 3px #888;
 }

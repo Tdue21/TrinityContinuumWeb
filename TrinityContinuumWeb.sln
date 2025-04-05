@@ -21,6 +21,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{7F9DC0A5-0178-4AC4-8534-7C246B8A9ED5}"
 	ProjectSection(SolutionItems) = preProject
 		Data\1.json = Data\1.json
+		Data\2.json = Data\2.json
 	EndProjectSection
 EndProject
 Global
