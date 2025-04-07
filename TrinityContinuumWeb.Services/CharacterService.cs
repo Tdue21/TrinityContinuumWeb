@@ -19,7 +19,7 @@ public interface ICharacterService
     /// 
     /// </summary>
     /// <returns></returns>
-    Task<IEnumerable<Character?>?> GetCharacterList();
+    Task<IEnumerable<CharacterSummary?>?> GetCharacterList();
 }
 
 /// <summary>
@@ -32,18 +32,16 @@ public class CharacterService(IDataProviderService dataProvider) : ICharacterSer
         
     public async Task<Character?> GetCharacterFromId(int id)
     {
-        var data = await _dataProvider.ReadFile(id);
+        var data = await _dataProvider.ReadFile($"Characters/{id}");
         var character = JsonConvert.DeserializeObject<Character>(data)!;
 
         return character;
     }
 
-    public async Task<IEnumerable<Character?>?> GetCharacterList()
+    public async Task<IEnumerable<CharacterSummary?>?> GetCharacterList()
     {
-        var data = await _dataProvider.ReadFiles();
-        var result = data.Where(x => !string.IsNullOrWhiteSpace(x))
-                         .Select(JsonConvert.DeserializeObject<Character>)
-                         .ToArray();
+        var data = await _dataProvider.ReadFile("characters");
+        var result = JsonConvert.DeserializeObject<IEnumerable<CharacterSummary>>(data);
         return result;
     }
 }

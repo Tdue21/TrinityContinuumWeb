@@ -7,6 +7,8 @@ public partial class CharacterSelectorBase : ComponentBase
 {
     [Inject] public IHttpClientFactory HttpClientFactory { get; set; } = null!;
 
+    [Parameter] public int SelectedCharacter { get; set; } = 0;
+    protected List<Character> Characters { get; set; } = new();
     protected override async Task OnInitializedAsync()
     {
         var client = HttpClientFactory.CreateClient("API");

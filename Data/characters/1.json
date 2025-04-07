@@ -1,15 +1,16 @@
 {
-	"name": "Aziel \"Dog\" Octavius",
-	"player": "Lina",
-	"concept": "Soldier",
-	"psiOrder": "The Legions",
+	"id": 1,
+	"name": "Connor McCormick",
+	"player": "Thomas",
+	"concept": "Private Investigator",
+	"psiOrder": "ISRA",
 
 	"originPath": {
-		"name": "Military Brat",
+		"name": "Street Rat",
 		"dots": 1
 	},
 	"rolePath": {
-		"name": "Pilot",
+		"name": "Detective",
 		"dots": 1
 	},
 	"societyPath": {
@@ -52,10 +53,12 @@
 			"dots": 0
 		},
 		"Enigmas": {
-			"dots": 1
+			"dots": 3,
+			"specialties": [ "Riddles" ],
+			"tricks": [ "Connecting the Dots" ]
 		},
 		"Humanities": {
-			"dots": 0
+			"dots": 1
 		},
 		"Integrity": {
 			"dots": 2
@@ -67,83 +70,81 @@
 			"dots": 0
 		},
 		"Persuasion": {
-			"dots": 1
+			"dots": 2
 		},
 		"Pilot": {
-			"dots": 3,
-			"specialties": [ "Helicopter" ],
-			"tricks": [ "Fighter Pilot" ]
+			"dots": 0
 		},
 		"Science": {
 			"dots": 0
 		},
 		"Survival": {
-			"dots": 1
+			"dots": 0
 		},
 		"Technology": {
-			"dots": 2
+			"dots": 3,
+			"specialties": [ "Electronic Locks" ],
+			"tricks": [ "Engineer's Eye" ]
 		}
 	},
 
 	"attributes": {
 		"preferredApproach": "finesse",
 		"mental": {
-			"Intellect": 2,
-			"Cunning": 3,
-			"Resolve": 2
+			"Intellect": 3,
+			"Cunning": 4,
+			"Resolve": 3
 		},
 		"physical": {
-			"Might": 3,
-			"Dexterity": 4,
+			"Might": 2,
+			"Dexterity": 3,
 			"Stamina": 3
 		},
 		"social": {
 			"Presence": 2,
-			"Manipulation": 3,
-			"Composure": 3
+			"Manipulation": 2,
+			"Composure": 2
 		}
 	},
 
 	"psi": {
-		"aptitude": "Psychokinesis",
+		"aptitude": "Clairsentience",
 		"trait": 3,
 		"tolerance": 0,
-		"basicPowers": [ "Distance Touch", "Nudge" ],
+		"basicPowers": [ "Extended Attunement", "The Sight" ],
 		"modes": [
 			{
-				"name": "Thermokinesis",
+				"name": "Psychometry",
+				"dots": 3
+			},
+			{
+				"name": "Psycholocation",
 				"dots": 1
 			},
 			{
-				"name": "Telekinesis",
-				"dots": 1
-			},
-			{
-				"name": "Perikinesis",
-				"dots": 2
+				"name": "Psychocognition",
+				"dots": 0
 			}
 		]
 	},
+
 	"edges": [
 		{
-			"name": "Patron",
-			"dots": 2
-		},
-		{
-			"name": "Iron Will",
-			"dots": 3
-		},
-		{
-			"name": "Ms. Fix It",
-			"dots": 2
-		},
-		{
-			"name": "Direction Sense",
+			"name": "Danger Sense",
 			"dots": 1
 		},
 		{
-			"name": "Far-Reaching Influence",
+			"name": "Adrenaline Spike",
+			"dots": 1
+		},
+		{
+			"name": "Photographic Memory",
 			"dots": 2
+		},
+		{
+			"name": "Favored Mode",
+			"dots": 2,
+			"note": "Psychometry"
 		}
 	],
 

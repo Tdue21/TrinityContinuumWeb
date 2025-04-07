@@ -1,0 +1,30 @@
+{
+	"roles": [
+		{
+			"id": "A1B2C3D4-E5F6-7890-ABCD-EF1234567890",
+			"name": "Admin"
+		},
+		{
+			"id": "B2C3D4E5-F6G7-H8I9-J0K1-L2M3N4O5P6Q7",
+			"name": "Player"
+		}
+	],
+
+	"players": [
+		{
+			"id": "BC10CE7B-6E6E-4891-94BF-2135C0685F17",
+			"name": "Thomas",
+			"roles": [
+				"A1B2C3D4-E5F6-7890-ABCD-EF1234567890",
+				"B2C3D4E5-F6G7-H8I9-J0K1-L2M3N4O5P6Q7"
+			]
+		},
+		{
+			"id": "A1B2C3D4-E5F6-7890-ABCD-EF1234567890",
+			"name": "Lina",
+			"roles": [
+				"B2C3D4E5-F6G7-H8I9-J0K1-L2M3N4O5P6Q7"
+			]
+		}
+	]
+}

@@ -11,7 +11,7 @@ public interface IDataProviderService
     /// <param name="id"></param>
     /// <param name="cancellationToken"></param>
     /// <returns>A string containing the file data</returns>
-    Task<string> ReadFile(int id, CancellationToken cancellationToken = default);
+    Task<string> ReadFile(string id, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Read the data for all files.
@@ -28,7 +28,7 @@ public class FileProviderService(IEnvironmentService environment) : IDataProvide
 {
     private readonly IEnvironmentService _environment = environment ?? throw new ArgumentNullException(nameof(environment));
 
-    public async Task<string> ReadFile(int id, CancellationToken cancellationToken = default)
+    public async Task<string> ReadFile(string id, CancellationToken cancellationToken = default)
     {
         var path = Path.Combine(_environment.RootPath, $"{id}.json");
         path = Path.GetFullPath( path );

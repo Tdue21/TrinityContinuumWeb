@@ -1,0 +1,22 @@
+<Solution>
+  <Folder Name="/.Data/" Id="015fe221-96b2-289b-a0e8-6e7354784a75">
+    <File Path="Data/characters.json" />
+    <File Path="Data/permissions.json" />
+    <File Path="Data/weapons.json" />
+  </Folder>
+  <Folder Name="/.Data/Characters/" Id="02ea681e-c7d8-13c7-8484-4ac65e1b71e8">
+    <File Path="Data/characters/1.json" />
+    <File Path="Data/characters/2.json" />
+  </Folder>
+  <Folder Name="/Backend/">
+    <Project Path="TrinityContinuum.Server/TrinityContinuum.Server.csproj" />
+    <Project Path="TrinityContinuumWeb.Models/TrinityContinuum.Models.csproj" />
+    <Project Path="TrinityContinuumWeb.Services/TrinityContinuum.Services.csproj" />
+  </Folder>
+  <Folder Name="/Frontend/">
+    <Project Path="TrinityContinuumWeb.WebApp/TrinityContinuum.WebApp.csproj" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="TrinityContinuumWeb.Tests/TrinityContinuum.Tests.csproj" />
+  </Folder>
+</Solution>

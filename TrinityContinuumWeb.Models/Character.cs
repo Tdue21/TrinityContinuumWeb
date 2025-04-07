@@ -1,5 +1,12 @@
 ﻿namespace TrinityContinuumWeb.Models;
 
+public class CharacterSummary
+{
+    public int Id { get; set; }
+    public required string Name { get; set; }
+    public string? Player { get; set; }
+}
+
 public class Character
 {
     public int Id { get; set; }
