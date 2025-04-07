@@ -31,10 +31,10 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal --logger:"xunit;LogFilePath=../test_results/test_result.xml"
+      run: dotnet test --no-build --verbosity normal --logger:"xunit;LogFilePath=/home/runner/work/TrinityContinuumWeb/TrinityContinuumWeb/test_results/test_result.xml"
     - name: Publish Test Results
-      uses: EnricoMi/publish-unit-test-result-action@v2
+      uses: EnricoMi/publish-unit-test-result-action/linux@v2
       if: always()
       with:
         files: |
-          ./test-results/*.xml
+          /home/runner/work/TrinityContinuumWeb/TrinityContinuumWeb/test-results/*.xml
