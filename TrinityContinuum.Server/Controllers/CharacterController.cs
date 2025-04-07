@@ -36,11 +36,18 @@ public class CharacterController(ICharacterService characterService) : Controlle
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> ListCharacters()
     {
-        var result = await _characterService.GetCharacterList();
-        if (result == null)
+        try
         {
-            return NotFound();
+            var result = await _characterService.GetCharacterList();
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
         }
-        return Ok(result);
+        catch (Exception ex)
+        {
+            return BadRequest(ex);
+        }
     }
 }

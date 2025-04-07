@@ -8,15 +8,16 @@ namespace TrinityContinuumWeb.Services;
 public interface IDataProviderService
 {
     /// <summary>
-    /// Read the data for a file identified by <paramref name="id"/>.
+    /// Read the data blob identified by <paramref name="id"/> in the catalog <paramref name="catalog"/>.
     /// </summary>
-    /// <param name="id"></param>
+    /// <param name="catalog">Name of the catalog of the data blob</param>
+    /// <param name="id">Id of the data blob</param>
     /// <param name="cancellationToken"></param>
     /// <returns>A string containing the file data</returns>
     Task<string> ReadData(string catalog, string id, CancellationToken cancellationToken = default);
-    
+
     /// <summary>
-    /// 
+    /// Write the data blob <paramref name="content"/> identified by <paramref name="id"/> to the catalog <paramref name="catalog"/>.
     /// </summary>
     /// <param name="id"></param>
     /// <param name="content"></param>
@@ -25,10 +26,11 @@ public interface IDataProviderService
     Task WriteData(string catalog, string id, string content, CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// Read the data for all files.
+    /// Return a list of all blobs in the catalog defined.
     /// </summary>
+    /// <param name="catalog">Name of the catalog of the data blob</param>
     /// <param name="cancellationToken"></param>
-    /// <returns>An <seealso cref="IEnumerable{T}"/> of strings containing the data of all files.</returns>
+    /// <returns>An <seealso cref="IEnumerable{T}"/> of strings containing the ids of all blobs in the catalog.</returns>
     Task<IEnumerable<string>> GetDataList(string catalog, CancellationToken cancellationToken = default);
 }
 

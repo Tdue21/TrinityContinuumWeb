@@ -2,14 +2,14 @@
 using Newtonsoft.Json;
 using TrinityContinuumWeb.Models;
 
-namespace TrinityContinuumWeb.Tests;
+namespace TrinityContinuum.Tests.Models;
 
 public class CharacterSerializationTests
 {
     [Fact]
     public void ObjectToJson()
     {
-        var c2 = JsonConvert.DeserializeObject<Character>(File.ReadAllText("character.json"));
+        var c2 = JsonConvert.DeserializeObject<Character>(File.ReadAllText("Models/character.json"));
         var character1 = JsonConvert.SerializeObject(c2, Formatting.Indented);
         var character2 = JsonConvert.SerializeObject(_character, Formatting.Indented);
 
@@ -19,7 +19,7 @@ public class CharacterSerializationTests
     [Fact]
     public void JsonToObject()
     {
-        var character1 = JsonConvert.DeserializeObject<Character>(File.ReadAllText("character.json"));
+        var character1 = JsonConvert.DeserializeObject<Character>(File.ReadAllText("Models/character.json"));
         var character2 = _character;
 
         character1.Should().BeEquivalentTo(character2);

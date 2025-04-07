@@ -30,7 +30,6 @@ public class CharacterService(IDataProviderService dataProvider) : ICharacterSer
     private readonly IDataProviderService _dataProvider = dataProvider ?? throw new ArgumentNullException(nameof(dataProvider));
     private const string _catalog = "Characters";
 
-
     public async Task<Character?> GetCharacterFromId(int id)
     {
         var data = await _dataProvider.ReadData(_catalog, $"{id}.json");

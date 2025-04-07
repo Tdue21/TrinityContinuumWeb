@@ -1,0 +1,19 @@
+{
+	"id": 1,
+	"name": "Connor McCormick",
+	"player": "Thomas",
+	"concept": "Private Investigator",
+
+	"originPath": {
+		"name": "Street Rat",
+		"dots": 1
+	},
+	"rolePath": {
+		"name": "Detective",
+		"dots": 1
+	},
+	"societyPath": {
+		"name": "Æon Trinity",
+		"dots": 1
+	}
+}
