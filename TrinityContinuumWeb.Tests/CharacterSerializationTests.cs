@@ -43,7 +43,7 @@ public class CharacterSerializationTests
         SocietyPath = new() { Name = "Test Society", Dots = 1 },
         Attributes =
         {
-            PreferredApproach = PreferredApproach.Force,
+            PreferredApproach = PreferredApproach.Finesse,
             Physical =
             {
                 { "Might", 1 },
