@@ -36,6 +36,9 @@ jobs:
       run: |
         pwd
         ls -la ./
+        ls -la ./TrinityContinuumWeb.Tests/
+        ls -la ./TrinityContinuumWeb.Tests/test-results/
+        ls -la ./TrinityContinuumWeb.Tests/test_results/
     - name: Publish Test Results
       uses: EnricoMi/publish-unit-test-result-action@v2
       if: always()
