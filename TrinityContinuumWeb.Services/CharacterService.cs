@@ -28,11 +28,12 @@ public interface ICharacterService
 public class CharacterService(IDataProviderService dataProvider) : ICharacterService
 {
     private readonly IDataProviderService _dataProvider = dataProvider ?? throw new ArgumentNullException(nameof(dataProvider));
-    
-        
+    private const string _catalog = "Characters";
+
+
     public async Task<Character?> GetCharacterFromId(int id)
     {
-        var data = await _dataProvider.ReadFile($"Characters/{id}");
+        var data = await _dataProvider.ReadData(_catalog, $"{id}.json");
         var character = JsonConvert.DeserializeObject<Character>(data)!;
 
         return character;
@@ -40,8 +41,14 @@ public class CharacterService(IDataProviderService dataProvider) : ICharacterSer
 
     public async Task<IEnumerable<CharacterSummary?>?> GetCharacterList()
     {
-        var data = await _dataProvider.ReadFile("characters");
-        var result = JsonConvert.DeserializeObject<IEnumerable<CharacterSummary>>(data);
+        var list = await _dataProvider.GetDataList(_catalog);
+        var result = new List<CharacterSummary?>();
+        foreach (var item in list)
+        {
+            var data = await _dataProvider.ReadData(_catalog, item);
+            var character = JsonConvert.DeserializeObject<CharacterSummary>(data);
+            result.Add(character);
+        }
         return result;
     }
 }

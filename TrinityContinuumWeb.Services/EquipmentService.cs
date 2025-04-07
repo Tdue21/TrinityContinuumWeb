@@ -30,7 +30,7 @@ public class EquipmentService(IDataProviderService dataProvider) : IEquipmentSer
 
     public async Task<IEnumerable<Weapon>?> GetWeaponsList()
     {
-        var data = await _dataProvider.ReadFile("weapons");
+        var data = await _dataProvider.ReadData("", "weapons.json");
         var result = JsonConvert.DeserializeObject<IEnumerable<Weapon>>(data);
         return result;
     }
