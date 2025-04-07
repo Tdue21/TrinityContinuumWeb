@@ -31,7 +31,7 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal --logger:"xunit;LogFilePath=test_result.xml"
+      run: dotnet test --no-build --verbosity normal --logger:"xunit;LogFilePath=test-results.xml"
     - name: Print Directory
       run: |
         pwd
@@ -44,4 +44,4 @@ jobs:
       if: always()
       with:
         files: |
-          test-results/**/*.xml
+          ./TrinityContinuumWeb.Tests/test-results.xml
