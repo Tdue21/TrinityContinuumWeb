@@ -8,7 +8,7 @@ public partial class CharacterSelectorBase : ComponentBase
     [Inject] public IHttpClientFactory HttpClientFactory { get; set; } = null!;
 
     [Parameter] public int SelectedCharacter { get; set; } = 0;
-    protected List<Character> Characters { get; set; } = new();
+    protected List<CharacterSummary> Characters { get; set; } = new();
     protected override async Task OnInitializedAsync()
     {
         var client = HttpClientFactory.CreateClient("API");
@@ -16,8 +16,8 @@ public partial class CharacterSelectorBase : ComponentBase
         if (response.IsSuccessStatusCode)
         {
             var data = await response.Content.ReadAsStringAsync();
-            var list = JsonConvert.DeserializeObject<List<Character>>(data)!;
-            
+            var list = JsonConvert.DeserializeObject<List<CharacterSummary>>(data)!;
+            Characters = [.. list];
         }
         else
         {

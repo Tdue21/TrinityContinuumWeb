@@ -5,7 +5,7 @@
         <option value="">Select a character</option>
         @foreach (var character in Characters)
         {
-            <option value="@character.Id">@character.Name</option>
+            <option value="@character.Id">@character.Name (@character.Player)</option>
         }
         </InputSelect>
 </div>

@@ -17,6 +17,7 @@
     <Project Path="TrinityContinuumWeb.WebApp/TrinityContinuum.WebApp.csproj" />
   </Folder>
   <Folder Name="/Tests/">
+    <Project Path="TrinityContinuum.UITests/TrinityContinuum.UITests.csproj" Id="9e6f0478-ed6d-4a19-ae8c-fdfa9e234c81" />
     <Project Path="TrinityContinuumWeb.Tests/TrinityContinuum.Tests.csproj" />
   </Folder>
 </Solution>
