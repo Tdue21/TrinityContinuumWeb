@@ -2,7 +2,7 @@ using FluentAssertions;
 using System.Linq;
 using TrinityContinuum.WebApp.Components.Components;
 
-namespace TrinityContinuum.UITests;
+namespace TrinityContinuum.UITests.Components;
 
 /// <summary>
 /// These tests are written entirely in C#.

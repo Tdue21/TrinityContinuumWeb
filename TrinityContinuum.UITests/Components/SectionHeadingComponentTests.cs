@@ -1,6 +1,6 @@
 using TrinityContinuum.WebApp.Components.Components;
 
-namespace TrinityContinuum.UITests;
+namespace TrinityContinuum.UITests.Components;
 
 public class SectionHeadingComponentTests : TestContext
 {

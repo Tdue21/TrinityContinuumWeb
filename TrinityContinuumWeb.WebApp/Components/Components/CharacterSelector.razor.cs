@@ -12,7 +12,7 @@ public partial class CharacterSelectorBase : ComponentBase
     protected override async Task OnInitializedAsync()
     {
         var client = HttpClientFactory.CreateClient("API");
-        var response = await client.GetAsync("character/list");
+        var response = await client.GetAsync("api/character/list");
         if (response.IsSuccessStatusCode)
         {
             var data = await response.Content.ReadAsStringAsync();
@@ -24,7 +24,5 @@ public partial class CharacterSelectorBase : ComponentBase
             // Handle error
             Console.WriteLine($"Error: {response.StatusCode}");
         }
-
     }
-
 }
