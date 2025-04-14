@@ -14,12 +14,13 @@ namespace TrinityContinuum.Tests.Server;
 
 public class EnvironmentServiceTests
 {
+    private readonly string _contentRoot = Path.Combine("C:", "Test", "ContentRoot");
     [Fact]
     public void TestRootPath_HasApplicationSettings_Success()
     {
         // Arrange
         var environment = Substitute.For<IWebHostEnvironment>();
-        environment.ContentRootPath.Returns("C:\\Test\\ContentRoot");
+        environment.ContentRootPath.Returns(_contentRoot);
 
         var settings = Substitute.For<IOptions<ApplicationSettings>>();
         settings.Value.Returns(new ApplicationSettings { DataFolder = "TestData" });
@@ -29,14 +30,14 @@ public class EnvironmentServiceTests
         var rootPath = service.RootPath;
         // Assert
         rootPath.Should().NotBeNullOrEmpty()
-                .And.BeEquivalentTo("C:\\Test\\ContentRoot\\TestData");
+                .And.BeEquivalentTo(Path.Combine(_contentRoot, "TestData"));
     }
     [Fact]
     public void TestRootPath_NoApplicationSettings_Success()
     {
         // Arrange
         var environment = Substitute.For<IWebHostEnvironment>();
-        environment.ContentRootPath.Returns("C:\\Test\\ContentRoot");
+        environment.ContentRootPath.Returns(_contentRoot);
 
         var settings = Substitute.For<IOptions<ApplicationSettings>>();
         settings.Value.Returns(new ApplicationSettings { DataFolder = null });
@@ -46,6 +47,6 @@ public class EnvironmentServiceTests
         var rootPath = service.RootPath;
         // Assert
         rootPath.Should().NotBeNullOrEmpty()
-                .And.BeEquivalentTo("C:\\Test\\ContentRoot\\Data");
+                .And.BeEquivalentTo(Path.Combine(_contentRoot, "Data"));
     }
 }
