@@ -1,11 +1,36 @@
 ﻿@inherits CharacterSelectorBase
 
 <div>
-    <InputSelect @bind-Value="SelectedCharacter">
-        <option value="">Select a character</option>
-        @foreach (var character in Characters)
-        {
-            <option value="@character.Id">@character.Name (@character.Player)</option>
-        }
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+            Select a Character
+        </button>
+        <ul class="dropdown-menu">
+            @foreach (var character in Characters)
+            {
+                <li>
+                    <a class="dropdown-item" href="@($"sheet/{character.Id}")">@character.Name (@character.Player)</a>
+                </li>
+            }
+        </ul>
+    </div>
+
+
+
+@*     <EditForm Model="SelectedCharacter" OnSubmit="HandleValidSubmit" FormName="SelectCharacter">
+
+        <label>Select Character</label>
+
+        <InputSelect @bind-Value="SelectedCharacter" class="form-select mb-3">
+
+            <option value="0">Select a character</option>
+            @foreach (var character in Characters)
+            {
+                <option value="@character.Id">@character.Name (@character.Player)</option>
+            }
         </InputSelect>
-</div>
+
+        <button type="submit" class="btn btn-primary">Switch</button>
+
+    </EditForm>
+ *@</div>

@@ -11,6 +11,11 @@ public partial class PsiSectionBase : AbstractSectionBase
 
     protected override Task OnInitializedAsync()
     {
+        if (Model == null)
+        {
+            return Task.CompletedTask;
+        }
+
         int[] points = [0, 1, 5, 10, 15, 20, 30, 40];
         PsiPoints = points[Model.Psi.Trait];
 

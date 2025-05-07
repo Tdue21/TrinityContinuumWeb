@@ -1,14 +1,18 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
 using Newtonsoft.Json;
 using TrinityContinuumWeb.Models;
 
 namespace TrinityContinuum.WebApp.Components.Components;
 public partial class CharacterSelectorBase : ComponentBase
 {
+    [Inject] public NavigationManager NavigationManager { get; set; } = null!;
     [Inject] public IHttpClientFactory HttpClientFactory { get; set; } = null!;
 
-    [Parameter] public int SelectedCharacter { get; set; } = 0;
+    [SupplyParameterFromForm] public int SelectedCharacter { get; set; } = 0;
+
     protected List<CharacterSummary> Characters { get; set; } = new();
+
     protected override async Task OnInitializedAsync()
     {
         var client = HttpClientFactory.CreateClient("API");
@@ -25,4 +29,14 @@ public partial class CharacterSelectorBase : ComponentBase
             Console.WriteLine($"Error: {response.StatusCode}");
         }
     }
+
+    public void HandleValidSubmit(EditContext args)
+    {
+        if(SelectedCharacter == 0)
+        {
+            return;
+        }
+        NavigationManager.NavigateTo($"/sheet/{SelectedCharacter}");
+    }
+
 }

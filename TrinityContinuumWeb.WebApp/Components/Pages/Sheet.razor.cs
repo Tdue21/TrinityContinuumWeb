@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Newtonsoft.Json;
+using System.Threading.Tasks;
+using TrinityContinuum.WebApp.Clients;
 using TrinityContinuumWeb.Models;
 
 namespace TrinityContinuum.WebApp.Components.Pages;
@@ -7,37 +9,70 @@ namespace TrinityContinuum.WebApp.Components.Pages;
 public class SheetComponent : ComponentBase
 {
     [Inject]
-    public IHttpClientFactory HttpClientFactory { get; set; } = null!;
+    public IApiClient ApiClient { get; set; }
+
+    [Inject]
+    public IHttpClientFactory HttpClientFactory { get; set; }
+
+    [Parameter]
+    public int CharacterId { get; set; }
 
     public Character Model { get; set; }
 
+
     protected override void OnInitialized()
+    {
+        var client = HttpClientFactory.CreateClient("API");
+        var response = client.GetAsync($"api/character/{CharacterId}").Result;
+        if (response.IsSuccessStatusCode)
+        {
+            var data = response.Content.ReadAsStringAsync().Result;
+            Model = JsonConvert.DeserializeObject<Character>(data)!;
+        }
+        else
+        {
+            // Handle error
+            Console.WriteLine($"Error: {response.StatusCode}");
+        }
+
+
+
+
+        //var data = ApiClient.GetCharacter(2);
+        //data.Wait();
+        //Model = data.Result;    
+        base.OnInitialized();
+    }
+    protected override async Task OnInitializedAsync()
     {
         try
         {
-            var client = HttpClientFactory.CreateClient("API");
-            var response = client.GetAsync("api/character/2").Result;
-            if (response.IsSuccessStatusCode)
-            {
-                var data = response.Content.ReadAsStringAsync().Result;
-                Model = JsonConvert.DeserializeObject<Character>(data)!;
-            }
-            else
-            {
-                // Handle error
-                Console.WriteLine($"Error: {response.StatusCode}");
-            }
+            //Model = await ApiClient.GetCharacter(2);
+            //StateHasChanged();
+
+            //var client = HttpClientFactory.CreateClient("API");
+            //var response = client.GetAsync("api/character/2").Result;
+            //if (response.IsSuccessStatusCode)
+            //{
+            //    var data = response.Content.ReadAsStringAsync().Result;
+            //    Model = JsonConvert.DeserializeObject<Character>(data)!;
+            //}
+            //else
+            //{
+            //    // Handle error
+            //    Console.WriteLine($"Error: {response.StatusCode}");
+            //}
 
             //var data = File.ReadAllText(@"C:\Development\Projects\TrinityContinuumWeb\Data\1.json");
             //Model = JsonConvert.DeserializeObject<Character>(data)!;
 
-            base.OnInitialized();
 
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             throw;
         }
+        await base.OnInitializedAsync();
     }
 
     /*

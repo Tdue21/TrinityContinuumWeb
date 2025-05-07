@@ -2,40 +2,37 @@
 @inherits GeneralSectionBase
 
 
-<div class="row">
-    <div class="section">
+<div class="col-12 container">
+    <div class="row">
 
-        <div class="column">
-            <div class="trait">
+        <div class="col-12 column">
+            <div>
                 <label>Name</label>
                 <span>@Model.Name</span>
             </div>
-            <div class="trait">
+            <div>
                 <label>Player</label>
                 <span>@Model.Player</span>
             </div>
-            <div class="trait">
+            <div>
                 <label>Concept</label>
                 <span>@Model.Concept</span>
             </div>
-            <div class="trait">
+            <div>
                 <label>PSI Order</label>
                 <span>@Model.PsiOrder</span>
             </div>
-        </div>
-
-        <div class="column">
-            <div class="trait dot">
+            <div>
                 <label>Origin Path</label>
                 <span>@Model.OriginPath.Name</span>
                 <Dots @bind-Value="@Model.OriginPath.Dots" ReadOnly="true" />
             </div>
-            <div class="trait dot">
+            <div>
                 <label>Role Path</label>
                 <span>@Model.RolePath.Name</span>
                 <Dots @bind-Value="@Model.RolePath.Dots" ReadOnly="true" />
             </div>
-            <div class="trait dot">
+            <div>
                 <label>Society Path</label>
                 <span>@Model.SocietyPath.Name</span>
                 <Dots @bind-Value="@Model.SocietyPath.Dots" ReadOnly="true" />

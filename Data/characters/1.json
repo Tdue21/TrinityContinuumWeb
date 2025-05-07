@@ -7,15 +7,35 @@
 
 	"originPath": {
 		"name": "Street Rat",
-		"dots": 1
+		"dots": 1,
+		"Contacts": [
+			{
+				"name": "Elderly kind shopkeeper",
+				"dots": 1,
+				"Tags": ["Informant"]
+			}]
 	},
 	"rolePath": {
 		"name": "Detective",
-		"dots": 1
+		"dots": 1,
+		"Contacts": [
+			{
+				"name": "Police officer",
+				"dots": 1,
+				"tags": ["Well Connected"]
+			}
+		]
 	},
 	"societyPath": {
 		"name": "Æon Trinity",
-		"dots": 1
+		"dots": 1,
+		"Contacts": [
+			{
+				"name": "Scientist in Triton Division",
+				"dots": 1,
+				"tags": ["Teek Geek"]
+			}
+		]
 	},
 
 	"aspirations": [
@@ -40,7 +60,7 @@
 		"Athletics": {
 			"dots": 1
 		},
-		"CloseCombat": {
+		"Close Combat": {
 			"dots": 1
 		},
 		"Command": {
@@ -124,6 +144,12 @@
 			{
 				"name": "Psychocognition",
 				"dots": 0
+			}
+		],
+		"auxillaryModes": [
+			{
+				"name": "Energetics",
+				"dots": 1
 			}
 		]
 	},

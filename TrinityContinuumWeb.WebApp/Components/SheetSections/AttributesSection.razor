@@ -2,50 +2,40 @@
 @using TrinityContinuumWeb.Models
 @inherits AttributesSectionBase
 
-<div class="row">
+<div class="col-12 container">
     <SectionHeading>Attributes</SectionHeading>
 
-    <div class="section">
+    <div class="approach">
+        <label>Preferred Approach:</label>
+        <span>@Model.Attributes.PreferredApproach</span>
+    </div>
 
-        <div class="approach">
-            <div>
-                <div class="@(Model.Attributes.PreferredApproach == PreferredApproach.Force ? "filled" : "empty")"></div>
-                <span>Force</span>
-            </div>
-            <div>
-                <div class="@(Model.Attributes.PreferredApproach == PreferredApproach.Finesse ? "filled" : "empty")"></div>
-                <span>Finesse</span>
-            </div>
-            <div>
-                <div class="@(Model.Attributes.PreferredApproach == PreferredApproach.Resilience ? "filled" : "empty")"></div>
-                <span>Resilience</span>
-            </div>
-        </div>
+    <div class="row gx-1 attributes">
 
-        <div class="arena">
+        <div class="col card p-2 shadow-sm m-1 altrow">
             @foreach (var attr in Model.Attributes.Mental)
             {
-                <div class="attribute">
+                <div class="d-flex">
                     <label>@attr.Key</label>
                     <Dots Value="@attr.Value" ReadOnly="true" />
                 </div>
             }
         </div>
 
-        <div class="arena">
+        <div class="col card p-2 shadow-sm m-1 altrow">
             @foreach (var attr in Model.Attributes.Physical)
             {
-                <div class="attribute">
+                <div class="d-flex">
                     <label>@attr.Key</label>
                     <Dots Value="@attr.Value" ReadOnly="true" />
                 </div>
             }
         </div>
 
-        <div class="arena">
+        <div class="col card p-2 shadow-sm m-1 altrow">
             @foreach (var attr in Model.Attributes.Social)
             {
-                <div class="attribute">
+                <div class="d-flex">
                     <label>@attr.Key</label>
                     <Dots Value="@attr.Value" ReadOnly="true" />
                 </div>

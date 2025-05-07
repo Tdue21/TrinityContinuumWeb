@@ -11,6 +11,12 @@ public partial class InjuryConditionsBase : AbstractSectionBase
 
     protected override async Task OnInitializedAsync()
     {
+        if(Model == null)
+        {
+            return;
+        }   
+
+        await base.OnInitializedAsync();
         try
         {
             var levels = new List<(int Order, string Name, string Diff)> {
@@ -42,6 +48,5 @@ public partial class InjuryConditionsBase : AbstractSectionBase
         {
             throw;
         }
-        await base.OnInitializedAsync();
     }
 }

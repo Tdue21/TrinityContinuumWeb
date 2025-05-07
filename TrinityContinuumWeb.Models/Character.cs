@@ -120,5 +120,5 @@ public class Psi
     public int Tolerance { get; set; }
     public List<string> BasicPowers { get; } = new List<string>();
     public List<Trait> Modes { get;  } = new List<Trait>();
-    public List<Trait> AuxilliaryModes { get;  } = new List<Trait>();
+    public List<Trait> AuxillaryModes { get;  } = new List<Trait>();
 }

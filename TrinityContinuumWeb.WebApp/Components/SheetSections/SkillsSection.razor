@@ -1,46 +1,18 @@
 ﻿@using TrinityContinuum.WebApp.Components.Components
 @inherits SkillsSectionBase
 
-<div class="row">
+<div class="col-12 container">
     <SectionHeading>Skills</SectionHeading>
 
-    <div class="section">
-        <div class="col column">
+    <div class="row justify-content-evenly">
+
+        <div class="col-12 column altrow">
             @{
-                foreach (var skill in Model.Skills.Take(8))
+                foreach (var skill in Model.Skills)
                 {
                     <div class="skill">
                         <label>@skill.Key</label>
                         @if (skill.Value.Specialties != null && skill.Value.Specialties.Count() > 0)
-                        {
-                            <span class="chips">
-                                @foreach (var spec in skill.Value.Specialties)
-                                {
-                                    <span class="chip specialty">@spec</span>
-                                }
-                                @foreach (var trick in skill.Value.Tricks)
-                                {
-                                    <span class="chip trick">@trick</span>
-                                }
-                            </span>
-                        }
-                        else
-                        {
-                            <span></span>
-                        }
-                        <Dots @bind-Value="@skill.Value.Dots" ReadOnly="true" />
-                    </div>
-                }
-            }
-        </div>
-
-        <div class="col column">
-            @{
-                foreach (var skill in Model.Skills.Skip(8))
-                {
-                    <div class="skill">
-                        <label>@skill.Key</label>
-                        @if (skill.Value.Tricks != null && skill.Value.Tricks.Count() > 0)
                         {
                             <span class="chips">
                                 @foreach (var spec in skill.Value.Specialties)

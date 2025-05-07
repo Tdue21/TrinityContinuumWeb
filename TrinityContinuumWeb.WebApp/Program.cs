@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Options;
+using TrinityContinuum.WebApp.Clients;
 using TrinityContinuum.WebApp.Components;
 using TrinityContinuum.WebApp.Models;
 
@@ -18,6 +19,8 @@ builder.Services.AddHttpClient("API", (provider, config) =>
     }
     config.BaseAddress = new Uri(configuration.Value.ApiBaseUrl);
 });
+
+builder.Services.AddScoped<IApiClient, ApiClient>();
 
 var app = builder.Build();
 

@@ -1,0 +1,29 @@
+﻿@using TrinityContinuum.WebApp.Components.Components
+@inherits PathContactsSectionBase
+
+<div class="col-6 container">
+    <SectionHeading>Path Contacts</SectionHeading>
+    <div class="column">
+        @foreach (var contact in Contacts)
+        {
+            <div class="contact">
+                <label>@contact.Name</label>
+                @if (contact.Tags != null && contact.Tags.Count() > 0)
+                {
+                    <span class="chips">
+                        @foreach (var tag in contact.Tags)
+                        {
+                            <span>@tag</span>
+                        }
+                    </span>
+                }
+                else
+                {
+                    <span></span>
+                }
+                <Dots @bind-Value="@contact.Dots" ReadOnly="true" />
+            </div>
+        }
+    </div>
+
+</div>
