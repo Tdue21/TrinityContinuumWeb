@@ -6,9 +6,9 @@ using System;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using TrinityContinuum.Models;
 using TrinityContinuum.UITests.Utils;
 using TrinityContinuum.WebApp.Components.Components;
-using TrinityContinuumWeb.Models;
 using Xunit;
 
 namespace TrinityContinuum.UITests.Components;
@@ -42,21 +42,20 @@ public class CharacterSelectorTests : TestContext
     public void CharacterSelector_Initializes_And_Renders_Characters_Success_Test()
     {
         var cut = RenderComponent<CharacterSelector>();
-        var options = cut.FindAll("option");
+        var options = cut.FindAll("li");
        
-        options.Count.Should().Be(4);
-        var option = options.First(options => options.TextContent == "Select a character");
-        
+        options.Count.Should().Be(3);
+
+        var option = options.First(); 
         option.Should().NotBeNull();
-        option.Should().BeAssignableTo<IHtmlOptionElement>();
-        option.As<IHtmlOptionElement>().Value.Should().Be("");
+        option.Should().BeAssignableTo<IHtmlListItemElement>();
     }
 
     [Fact]
     public void CharacterSelector_Select_Third_Option_Test()
     {
         var cut = RenderComponent<CharacterSelector>();
-        cut.Find("select").Change(2);
+        cut.Find("ul").Change(2);
         cut.Instance.SelectedCharacter.Should().Be(2);
     }
 }
