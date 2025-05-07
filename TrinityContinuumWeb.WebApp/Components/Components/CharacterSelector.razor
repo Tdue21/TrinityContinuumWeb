@@ -9,7 +9,7 @@
             @foreach (var character in Characters)
             {
                 <li>
-                    <a class="dropdown-item" href="@($"sheet/{character.Id}")">@character.Name (@character.Player)</a>
+                    <a id="char-anchor-@character.Id" class="dropdown-item" href="@($"sheet/{character.Id}")">@character.Name (@character.Player)</a>
                 </li>
             }
         </ul>

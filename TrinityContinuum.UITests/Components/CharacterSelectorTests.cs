@@ -55,7 +55,8 @@ public class CharacterSelectorTests : TestContext
     public void CharacterSelector_Select_Third_Option_Test()
     {
         var cut = RenderComponent<CharacterSelector>();
-        cut.Find("ul").Change(2);
-        cut.Instance.SelectedCharacter.Should().Be(2);
+        var anchor = (cut.Find("#char-anchor-3") as IHtmlAnchorElement);
+        anchor.Should().NotBeNull();
+        anchor.PathName.Should().Be("/sheet/3");
     }
 }
