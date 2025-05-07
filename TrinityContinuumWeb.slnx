@@ -14,6 +14,10 @@
     <Project Path="TrinityContinuumWeb.Services/TrinityContinuum.Services.csproj" />
   </Folder>
   <Folder Name="/Frontend/">
+    <Project Path="trinitycontinuumweb.client/trinitycontinuumweb.client.esproj">
+      <Build />
+      <Deploy />
+    </Project>
     <Project Path="TrinityContinuumWeb.WebApp/TrinityContinuum.WebApp.csproj" />
   </Folder>
   <Folder Name="/Tests/">

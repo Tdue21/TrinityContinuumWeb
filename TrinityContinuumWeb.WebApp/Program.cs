@@ -2,43 +2,61 @@ using Microsoft.Extensions.Options;
 using TrinityContinuum.WebApp.Clients;
 using TrinityContinuum.WebApp.Components;
 using TrinityContinuum.WebApp.Models;
+using Serilog;
 
-var builder = WebApplication.CreateBuilder(args);
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.File("Logs/log-.txt", Serilog.Events.LogEventLevel.Debug, rollingInterval: RollingInterval.Day)
+    .CreateLogger();
 
-// Add services to the container.
-builder.Services.Configure<ApplicationSettings>(builder.Configuration.GetSection(ApplicationSettings.SectionName));
-builder.Services.AddRazorComponents()
-    .AddInteractiveServerComponents();
-
-builder.Services.AddHttpClient("API", (provider, config) =>
+try
 {
-    var configuration = provider.GetRequiredService<IOptions<ApplicationSettings>>();
-    if (configuration?.Value?.ApiBaseUrl is null)
+    var builder = WebApplication.CreateBuilder(args);
+    builder.Services.AddSerilog();
+
+    // Add services to the container.
+    builder.Services.Configure<ApplicationSettings>(builder.Configuration.GetSection(ApplicationSettings.SectionName));
+    builder.Services.AddRazorComponents()
+        .AddInteractiveServerComponents();
+
+    builder.Services.AddHttpClient("API", (provider, config) =>
     {
-        throw new ArgumentNullException(nameof(configuration.Value.ApiBaseUrl), "API base URL is not configured.");
+        var configuration = provider.GetRequiredService<IOptions<ApplicationSettings>>();
+        if (configuration?.Value?.ApiBaseUrl is null)
+        {
+            throw new ArgumentNullException(nameof(configuration.Value.ApiBaseUrl), "API base URL is not configured.");
+        }
+        config.BaseAddress = new Uri(configuration.Value.ApiBaseUrl);
+    });
+
+    builder.Services.AddScoped<IApiClient, ApiClient>();
+
+    var app = builder.Build();
+
+    // Configure the HTTP request pipeline.
+    if (!app.Environment.IsDevelopment())
+    {
+        app.UseExceptionHandler("/Error", createScopeForErrors: true);
+        // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+        app.UseHsts();
     }
-    config.BaseAddress = new Uri(configuration.Value.ApiBaseUrl);
-});
 
-builder.Services.AddScoped<IApiClient, ApiClient>();
+    app.UseHttpsRedirection();
 
-var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Error", createScopeForErrors: true);
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+    app.UseAntiforgery();
+
+    app.MapStaticAssets();
+    app.MapRazorComponents<App>()
+       .AddInteractiveServerRenderMode();
+
+    app.Run();
 }
-
-app.UseHttpsRedirection();
-
-
-app.UseAntiforgery();
-
-app.MapStaticAssets();
-app.MapRazorComponents<App>()
-    .AddInteractiveServerRenderMode();
-
-app.Run();
+catch (Exception ex)
+{
+    Log.Fatal(ex, "Application terminated unexpectedly");
+}
+finally
+{
+    Log.CloseAndFlush();
+}
