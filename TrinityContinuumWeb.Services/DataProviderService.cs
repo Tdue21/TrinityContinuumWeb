@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace TrinityContinuumWeb.Services;
+namespace TrinityContinuum.Services;
 
 /// <summary>
 /// This interface describes the methods that a data provider service should implement.

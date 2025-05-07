@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using NSubstitute;
-using TrinityContinuumWeb.Services;
+using TrinityContinuum.Services;
 
 namespace TrinityContinuum.Tests.Services
 {

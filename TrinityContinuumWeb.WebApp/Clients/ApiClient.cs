@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Net.Http;
 using System.Reflection;
-using TrinityContinuumWeb.Models;
+using TrinityContinuum.Models;
 
 namespace TrinityContinuum.WebApp.Clients;
 

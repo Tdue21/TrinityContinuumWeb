@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Components;
-using TrinityContinuumWeb.Models;
-using System.Linq;
-
-namespace TrinityContinuum.WebApp.Components.SheetSections;
+﻿namespace TrinityContinuum.WebApp.Components.SheetSections;
 
 public partial class InjuryConditionsBase : AbstractSectionBase
 {

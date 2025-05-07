@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TrinityContinuumWeb.Models;
-using TrinityContinuumWeb.Services;
+using TrinityContinuum.Models;
+using TrinityContinuum.Services;
 
 namespace TrinityContinuum.Server.Controllers;
 [Route("api/[controller]")]

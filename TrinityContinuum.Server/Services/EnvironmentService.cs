@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
 using TrinityContinuum.Server.Models;
-using TrinityContinuumWeb.Services;
+using TrinityContinuum.Services;
 
 namespace TrinityContinuum.Server.Services;
 

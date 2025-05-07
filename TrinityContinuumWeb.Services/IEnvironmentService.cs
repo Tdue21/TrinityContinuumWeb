@@ -1,4 +1,4 @@
-﻿namespace TrinityContinuumWeb.Services;
+﻿namespace TrinityContinuum.Services;
 
 public interface IEnvironmentService
 {

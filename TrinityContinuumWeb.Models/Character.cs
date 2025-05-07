@@ -1,4 +1,4 @@
-﻿namespace TrinityContinuumWeb.Models;
+﻿namespace TrinityContinuum.Models;
 
 public class CharacterSummary
 {

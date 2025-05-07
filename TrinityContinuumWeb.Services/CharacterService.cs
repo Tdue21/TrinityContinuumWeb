@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
-using TrinityContinuumWeb.Models;
+using TrinityContinuum.Models;
 
-namespace TrinityContinuumWeb.Services;
+namespace TrinityContinuum.Services;
 
 /// <summary>
 /// 

@@ -2,8 +2,8 @@
 using NSubstitute;
 using System;
 using System.Collections.Generic;
+using TrinityContinuum.Models;
 using TrinityContinuum.WebApp.Components.SheetSections;
-using TrinityContinuumWeb.Models;
 using Xunit;
 
 namespace TrinityContinuum.UITests.SheetSections

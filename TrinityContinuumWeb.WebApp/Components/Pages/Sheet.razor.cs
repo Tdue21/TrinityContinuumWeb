@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
+using TrinityContinuum.Models;
 using TrinityContinuum.WebApp.Clients;
-using TrinityContinuumWeb.Models;
 
 namespace TrinityContinuum.WebApp.Components.Pages;
 

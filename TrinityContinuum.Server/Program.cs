@@ -1,7 +1,7 @@
 using TrinityContinuum.Server.Models;
 using TrinityContinuum.Server.Services;
-using TrinityContinuumWeb.Services;
 using Serilog;
+using TrinityContinuum.Services;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()

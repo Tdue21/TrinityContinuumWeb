@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Newtonsoft.Json;
-using TrinityContinuumWeb.Models;
+using TrinityContinuum.Models;
 
 namespace TrinityContinuum.WebApp.Components.Components;
 public partial class CharacterSelectorBase : ComponentBase

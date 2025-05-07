@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using NSubstitute;
-using TrinityContinuumWeb.Models;
-using TrinityContinuumWeb.Services;
+using TrinityContinuum.Models;
+using TrinityContinuum.Services;
 
 namespace TrinityContinuum.Tests.Services
 {

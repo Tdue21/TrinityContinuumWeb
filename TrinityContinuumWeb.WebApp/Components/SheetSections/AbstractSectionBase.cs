@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
-using TrinityContinuumWeb.Models;
+using TrinityContinuum.Models;
 
 namespace TrinityContinuum.WebApp.Components.SheetSections;
 
