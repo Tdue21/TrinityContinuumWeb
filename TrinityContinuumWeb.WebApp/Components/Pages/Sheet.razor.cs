@@ -15,26 +15,28 @@ public class SheetComponent : ComponentBase
     public IHttpClientFactory HttpClientFactory { get; set; }
 
     [Parameter]
-    public int CharacterId { get; set; }
+    public int CharacterId { get; set; } = 0;
 
     public Character Model { get; set; }
 
 
     protected override void OnInitialized()
     {
-        var client = HttpClientFactory.CreateClient("API");
-        var response = client.GetAsync($"api/character/{CharacterId}").Result;
-        if (response.IsSuccessStatusCode)
+        if (CharacterId != 0)
         {
-            var data = response.Content.ReadAsStringAsync().Result;
-            Model = JsonConvert.DeserializeObject<Character>(data)!;
+            var client = HttpClientFactory.CreateClient("API");
+            var response = client.GetAsync($"api/character/{CharacterId}").Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var data = response.Content.ReadAsStringAsync().Result;
+                Model = JsonConvert.DeserializeObject<Character>(data)!;
+            }
+            else
+            {
+                // Handle error
+                Console.WriteLine($"Error: {response.StatusCode}");
+            }
         }
-        else
-        {
-            // Handle error
-            Console.WriteLine($"Error: {response.StatusCode}");
-        }
-
 
 
 

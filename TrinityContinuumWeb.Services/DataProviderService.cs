@@ -8,6 +8,15 @@ namespace TrinityContinuum.Services;
 public interface IDataProviderService
 {
     /// <summary>
+    /// Read the binary data blob identified by <paramref name="fileName"/> in the catalog <paramref name="category"/>
+    /// </summary>
+    /// <param name="catalog"></param>
+    /// <param name="fileName"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    Task<byte[]> ReadBinaryData(string catalog, string fileName, CancellationToken cancellationToken = default);
+
+    /// <summary>
     /// Read the data blob identified by <paramref name="id"/> in the catalog <paramref name="catalog"/>.
     /// </summary>
     /// <param name="catalog">Name of the catalog of the data blob</param>
@@ -61,5 +70,12 @@ public class FileProviderService(IEnvironmentService environment) : IDataProvide
         var files = Directory.EnumerateFiles(path, "*.*", SearchOption.TopDirectoryOnly).Select(x => Path.GetFileName(x)) ?? [];
 
         return Task.FromResult(files);
+    }
+
+    public async Task<byte[]> ReadBinaryData(string catalog, string fileName, CancellationToken cancellationToken = default)
+    {
+        var path = Path.Combine(_environment.RootPath, catalog, fileName);
+        path = Path.GetFullPath(path);
+        return await File.ReadAllBytesAsync(path, cancellationToken);
     }
 }

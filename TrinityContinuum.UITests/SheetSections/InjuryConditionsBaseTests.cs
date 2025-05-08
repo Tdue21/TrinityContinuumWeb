@@ -25,7 +25,7 @@ namespace TrinityContinuum.UITests.SheetSections
             });
 
             // Act
-            var lines = cut.FindAll(".injury-line");
+            var lines = cut.FindAll("input[type='checkbox']");
 
             // Assert
             cut.Markup.Should().NotBeNullOrEmpty();

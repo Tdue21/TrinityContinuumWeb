@@ -15,17 +15,20 @@
 }
 else
 {
-    <main class="container row justify-content-evenly">
-        <LogoSection />
+    <main class="container-fluid">
+        <LogoSection Model="Model" />
         <GeneralSection Model="Model" />
-        <SkillsSection Model="Model" />
-        <AttributesSection Model="Model" />
-        <InjuryConditions Model="Model" />
+        <div class="row">
+            <AttributesSection Model="Model" />
+            <SkillsSection Model="Model" />
+            <InjuryConditions Model="Model" />
+            <PsiSection Model="Model" />
+            <EdgesSection Model="Model" />
+            <SpecialtiesTricksSection Model="Model" />
+            <AspirationsSection Model="Model" />
+            <PathContactsSection Model="Model" />
+        </div>
         @*
-        <PsiSection Model="Model" />
-        <EdgesSection Model="Model" />
-        <AspirationsSection Model="Model" />
-        <PathContactsSection Model="Model" />
  *@    
     </main>
 } 

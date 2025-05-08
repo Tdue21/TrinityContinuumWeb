@@ -7,6 +7,8 @@
   <Folder Name="/.Data/Characters/" Id="02ea681e-c7d8-13c7-8484-4ac65e1b71e8">
     <File Path="Data/characters/1.json" />
     <File Path="Data/characters/2.json" />
+    <File Path="Data/characters/Aziel Octavian Token.webp" />
+    <File Path="Data/characters/Connor McCormick Token.webp" />
   </Folder>
   <Folder Name="/Backend/">
     <Project Path="TrinityContinuum.Server/TrinityContinuum.Server.csproj" />

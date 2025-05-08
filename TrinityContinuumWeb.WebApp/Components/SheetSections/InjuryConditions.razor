@@ -1,35 +1,46 @@
 ﻿@using TrinityContinuum.WebApp.Components.Components
 @inherits InjuryConditionsBase
 
-<div class="col-6 container">
-    <SectionHeading>Health</SectionHeading>
-    <div class="column">
-        @foreach(var level in Levels)
-        {
-            <div class="injury-line">
-                <span class="square"></span>
-                <span>@level.Name</span>
-                <span>@level.Diff</span>
+<section id="health" class="col-12 col-lg-6">
+
+    <SectionHeader>Health</SectionHeader>
+
+    <div class="card mb-2">
+        <h5 class="card-title">Injury Conditions</h5>
+        <div class="card-body">
+            @foreach (var level in Levels)
+            {
+                <div class="d-flex mb-1 justify-content-between">
+                    <span class="d-flex align-items-center gap-2 form-check">
+                        <input type="checkbox" class="form-check-input border-dark border-2 rounded-2 shadow-sm" style="width: 20px; height: 20px" autocomplete="off">
+                        <label class="form-check-label">@level.Name</label>
+                    </span>
+                    <span>@level.Diff</span>
+                </div>
+            }
+        </div>
+
+        <div class="text-center fw-bolder fs-5 fv-sc">Taken Out</div>
+    </div>
+
+    <div class="card">
+        <h5 class="card-title">Defenses</h5>
+        <div class="card-body">
+            <div class="d-flex gap-2">
+                <label>Defense</label>
+                <span>@Model.Defense or Appropriate Resilence Attribute</span>
             </div>
-        }
-        <div class="takenout"><span>Taken Out</span></div>
 
-        <hr />
+            <div class="d-flex gap-2">
+                <label>Armor</label>
+                <span>@Model.Armor.Soft / @Model.Armor.Hard</span>
+            </div>
 
-        <div class="misc">
-            <label>Defense</label>
-            <span>@Model.Defense or Appropriate Resilence Attribute</span>
-        </div>
-
-        <div class="misc">
-            <label>Armor</label>
-            <span>@Model.Armor.Soft / @Model.Armor.Hard</span>            
-        </div>
-
-        <div class="misc">
-            <label>Experience</label>
-            <span>Total: @Model.Experience.Total<br />Remaining: @(Model.Experience.Total - Model.Experience.Spent)</span>
+            <div class="d-flex gap-2">
+                <label>Experience</label>
+                <span>Total: @Model.Experience.Total<br />Remaining: @(Model.Experience.Total - Model.Experience.Spent)</span>
+            </div>
         </div>
     </div>
 
-</div>
+</section>

@@ -4,7 +4,7 @@ namespace TrinityContinuum.WebApp.Components.SheetSections;
 
 public partial class PathContactsSectionBase : AbstractSectionBase
 {
-    protected Contact[]? Contacts { get; set; }
+    protected Contact[] Contacts { get; set; } = [];
 
     protected override async Task OnInitializedAsync()
     {

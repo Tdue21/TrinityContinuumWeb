@@ -22,6 +22,7 @@
     --row-color: var(--row-color-aeon);
     --specialty-color: #DBF9DB;
     --trick-color: #C2EDED;
+    --tag-color: #DBF9DB;
     /* Aeon fonts */
     --header-font: Blinddate;
     --body-font: Philosopher;
@@ -31,188 +32,82 @@
     font-family: var(--body-font);
 }
 
-/* Logo */
-.logo {
-    margin: auto;
+.header {
+    margin-top: 10px;
+    padding: 5px;
+    background-color: var(--header-bg);
+    color: var(--header-fg);
     text-align: center;
-    margin-bottom: 20px;
-    width: 600px;
+    width: 100%;
+    margin-bottom: 10px;
+    box-shadow: 1px 1px 3px #888;
+    font-family: var(--header-font);
 }
 
-/* General */
-.column {
-    column-count: 1;
+.subheader {
+    margin-top: 5px;
+    padding: 5px;
+    color: var(--header-bg);
+    text-align: left;
+    width: 100%;
+    margin-bottom: 10px;
+    font-family: var(--header-font);
+    border-bottom: 1px solid var(--header-bg)
 }
 
-@media(min-width:992px) {
-    .column {
-        column-count: 2;
-        column-gap: 1rem;
-    }
-}
-
-.column > div {
-    display: flex;
-    gap: 5px;
-}
-
-    .column > div > label {
-        font-weight: bold;
+    .header > h1, .header > h2, .header > h3, .header > h4, .header > h5, .header > h6,
+    .subheader > h1, .subheader > h2, .subheader > h3, .subheader > h4, .subheader > h5, .subheader > h6 {
+        margin: 0;
+        padding: 0px;
     }
 
-        .column > div > label::after {
-            content: ":";
-        }
-
-/* Skills */
-
-.skill {
-    display: flex;
-    /*gap: 15px;*/
-    padding-left: 5px;
-    align-items: center;
+h1:is(.card-title), h2:is(.card-title), h3:is(.card-title), h4:is(.card-title), h5:is(.card-title), h6:is(.card-title) {
+    font-family: var(--header-font);
+    border-bottom: 1px solid var(--header-bg);
+    color: var(--header-bg);
+    margin: .25rem;
+    margin-bottom: 0;
+    text-align: center;
 }
 
-/*    .skill > label {
-        font-size: 16px;
+.fv-sc {
+    font-variant: small-caps;
+}
+
+#logo img {
+    height: 150px;
+}
+
+.row label {
+    font-weight: bold;
+}
+
+    .row label::after {
+        content: ": ";
     }
-*/
+
+.altrow > div:nth-child(even) {
+    background-color: var(--row-color);
+}
+
+.chip {
+    border: none;
+    border-radius: 3px;
+    font-size: 0.8em;
+    font-weight: normal;
+    padding: 2px 3px;
+    height: 21px;
+    box-shadow: 1px 1px 3px #888;
+}
+
+.tag {
+    background-color: var(--tag-color);
+}
+
 .specialty {
     background-color: var(--specialty-color);
 }
 
 .trick {
     background-color: var(--trick-color);
-}
-
-.altrow > div:nth-child(even) {
-    background-color: var(--row-color);
-}
-
-/* Attributes */
-.attributes {
-    column-count: 1;
-}
-
-@media(min-width:992px) {
-    .attributes {
-        column-count: 3;
-        column-gap: 1rem;
-    }
-}
-
-.approach {
-    display: block;
-    text-align: center;
-}
-
-    .approach > label {
-        font-weight: bold;
-    }
-
-/* Edges */
-.aspirations > div:nth-child(even) {
-    background-color: var(--row-color);
-}
-
-/* Injury Conditions */
-.misc {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    gap: 5px;
-}
-
-    .misc > label {
-        font-weight: bold;
-    }
-
-.injury-line {
-    padding-left: 20px;
-    padding-right: 20px;
-    display: flex;
-    gap: 5px;
-}
-
-    .injury-line > span:last-child {
-        margin-left: auto;
-    }
-
-.takenout {
-    text-align: center;
-    font-weight: bold;
-    font-size: 1.2rem;
-}
-
-.square {
-    background-color: transparent;
-    border: 2px solid var(--header-bg);
-    border-radius: 3px;
-    width: 18px;
-    height: 18px;
-    box-shadow: 1px 1px 3px #888;
-}
-
-
-/* Path Contacts */
-
-.contact {
-    display: flex;
-    gap: 15px;
-    padding-left: 5px;
-}
-
-    .contact > label {
-        font-size: 16px;
-    }
-
-.chips {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 5px;
-    align-items: center;
-}
-
-    .chips > span {
-        border: none;
-        border-radius: 3px;
-        font-size: 0.8em;
-        font-weight: normal;
-        padding: 2px 3px;
-        height: 21px;
-        box-shadow: 1px 1px 3px #888;
-        background-color: var(--specialty-color);
-    }
-
-/* Psi Section */
-
-.modes {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.mode {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5px;
-}
-
-.psiPoints {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    gap: 2px;
-    margin-left: auto;
-}
-
-.square {
-    background-color: transparent;
-    border: 2px solid var(--header-bg);
-    border-radius: 3px;
-    width: 18px;
-    height: 18px;
-    margin: 0px;
-    padding: 0px;
-    box-shadow: 1px 1px 3px #888;
 }

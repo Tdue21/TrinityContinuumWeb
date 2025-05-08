@@ -1,17 +1,17 @@
 ﻿@using TrinityContinuum.WebApp.Components.Components
 @inherits EdgesSectionBase
 
-<div class="col-6 container">
-    <SectionHeading>Edges</SectionHeading>
+<section id="edges" class="col-12 col-lg-6">
+    <SectionHeader>Edges</SectionHeader>
 
-    <div class="column">
+    <div class="altrow">
         @foreach (var edge in Model.Edges)
         {
-            <div>
+            <div class="d-flex">
                 <label>@edge.Name @(!string.IsNullOrEmpty(edge.Note) ? "(" + edge.Note + ")" : "")</label>
                 <Dots Value="@edge.Dots" ReadOnly="true" />
             </div>
         }
     </div>
 
-</div>
+</section>

@@ -1,5 +1,14 @@
 ﻿@inherits LogoSectionBase
 
-<div class="row logo">
-    <img alt="Trinity Continuum: Æon" src="@Assets["assets/aeon-logo.webp"]" />
-</div>
+<section id="logo" class="row justify-content-between">
+    <div class="col-3">
+        <img alt="Trinity Continuum: Æon" src="@Assets["assets/aeon-logo.webp"]" />
+    </div>
+
+    @if (Model?.Token != null)
+    {
+        <div class="col-3" style="text-align: right">
+            <img alt="@Model.Name" src="@Model.Token" />
+        </div>
+    }
+</section>

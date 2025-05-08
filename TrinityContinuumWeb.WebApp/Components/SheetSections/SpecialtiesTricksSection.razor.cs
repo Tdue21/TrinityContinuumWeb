@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 
 namespace TrinityContinuum.WebApp.Components.SheetSections;
-
-public partial class LogoSectionBase : AbstractSectionBase
+public partial class SpecialtiesTricksSectionBase : AbstractSectionBase
 {
 
 }

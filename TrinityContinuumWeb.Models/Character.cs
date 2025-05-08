@@ -15,6 +15,7 @@ public class Character
     public string? Concept { get; set; }
     public string? Description { get; set; }
     public string? Background { get; set; }
+    public string? Token { get; set; }
     public List<Aspiration> Aspirations { get; } = new();
     public string? PsiOrder { get; set; }
     public required PathTrait OriginPath { get; set; }

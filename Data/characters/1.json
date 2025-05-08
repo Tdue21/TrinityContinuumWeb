@@ -4,6 +4,7 @@
 	"player": "Thomas",
 	"concept": "Private Investigator",
 	"psiOrder": "ISRA",
+	"token": "Connor McCormick Token.webp",
 
 	"originPath": {
 		"name": "Street Rat",
@@ -12,8 +13,9 @@
 			{
 				"name": "Elderly kind shopkeeper",
 				"dots": 1,
-				"Tags": ["Informant"]
-			}]
+				"Tags": [ "Informant" ]
+			}
+		]
 	},
 	"rolePath": {
 		"name": "Detective",
@@ -22,7 +24,7 @@
 			{
 				"name": "Police officer",
 				"dots": 1,
-				"tags": ["Well Connected"]
+				"tags": [ "Well Connected" ]
 			}
 		]
 	},
@@ -33,7 +35,7 @@
 			{
 				"name": "Scientist in Triton Division",
 				"dots": 1,
-				"tags": ["Teek Geek"]
+				"tags": [ "Teek Geek" ]
 			}
 		]
 	},

@@ -1,0 +1,34 @@
+﻿@using TrinityContinuum.WebApp.Components.Components
+@inherits SpecialtiesTricksSectionBase
+
+<section id="skillSpecialties" class="col-12 col-lg-6">
+
+    <SectionHeader>Skill Tricks / Specialties</SectionHeader>
+
+    <div class="card mb-2">
+        <h5 class="card-title">Specialties</h5>
+        <div class="card-body">
+            @foreach (var skill in Model.Skills.Where(x => x.Value.Specialties.Any()))
+            {
+                <div>
+                    <label>@skill.Key</label>
+                    <span>@(string.Join(", ", skill.Value.Specialties))</span>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="card">
+        <h5 class="card-title">Specialties</h5>
+        <div class="card-body">
+            @foreach (var skill in Model.Skills.Where(x => x.Value.Tricks.Any()))
+            {
+                <div>
+                    <label>@skill.Key</label>
+                    <span>@(string.Join(", ", skill.Value.Tricks))</span>
+                </div>
+            }
+        </div>
+    </div>
+
+</section>

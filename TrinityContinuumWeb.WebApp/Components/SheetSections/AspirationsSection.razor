@@ -1,11 +1,11 @@
 ﻿@using TrinityContinuum.WebApp.Components.Components
 @inherits AspirationsSectionBase
 
-<div class="col-6 container">
+<section class="col-12 col-lg-6">
 
-    <SectionHeading>Aspirations</SectionHeading>
+    <SectionHeader>Aspirations</SectionHeader>
 
-    <div class="column aspirations">
+    <div class="d-flex-column altrow">
         @foreach (var asp in Model.Aspirations)
         {
             <div>
@@ -14,4 +14,4 @@
         }
     </div>
 
-</div>
+</section>

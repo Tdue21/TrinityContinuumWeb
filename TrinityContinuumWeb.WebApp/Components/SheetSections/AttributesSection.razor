@@ -2,44 +2,53 @@
 @using TrinityContinuum.Models
 @inherits AttributesSectionBase
 
-<div class="col-12 container">
-    <SectionHeading>Attributes</SectionHeading>
+<section id="attributes" class="col-12 col-lg-6">
+    <SectionHeader>Attributes</SectionHeader>
 
-    <div class="approach">
-        <label>Preferred Approach:</label>
-        <span>@Model.Attributes.PreferredApproach</span>
+    <div class="">
+
+        <div class="text-center mb-1">
+            <label>Preferred Approach</label>
+            <span>@Model.Attributes.PreferredApproach</span>
+        </div>
+
+        <div class="card mb-2">
+            <h5 class="card-title">Mental</h5>
+            <div class="card-body altrow p-2 pt-0">
+                @foreach (var attr in Model.Attributes.Mental)
+                {
+                    <div class="d-flex">
+                        <label>@attr.Key</label>
+                        <Dots Value="@attr.Value" ReadOnly="true" />
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="card mb-2">
+            <h5 class="card-title">Physical</h5>
+            <div class="card-body altrow p-2 pt-0">
+                @foreach (var attr in Model.Attributes.Physical)
+                {
+                    <div class="d-flex">
+                        <label>@attr.Key</label>
+                        <Dots Value="@attr.Value" ReadOnly="true" />
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="card">
+            <h5 class="card-title">Social</h5>
+            <div class="card-body altrow p-2 pt-0">
+                @foreach (var attr in Model.Attributes.Social)
+            {
+                <div class="d-flex">
+                    <label>@attr.Key</label>
+                    <Dots Value="@attr.Value" ReadOnly="true" />
+                </div>
+            }
+            </div>
+        </div>
     </div>
-
-    <div class="row gx-1 attributes">
-
-        <div class="col card p-2 shadow-sm m-1 altrow">
-            @foreach (var attr in Model.Attributes.Mental)
-            {
-                <div class="d-flex">
-                    <label>@attr.Key</label>
-                    <Dots Value="@attr.Value" ReadOnly="true" />
-                </div>
-            }
-        </div>
-
-        <div class="col card p-2 shadow-sm m-1 altrow">
-            @foreach (var attr in Model.Attributes.Physical)
-            {
-                <div class="d-flex">
-                    <label>@attr.Key</label>
-                    <Dots Value="@attr.Value" ReadOnly="true" />
-                </div>
-            }
-        </div>
-
-        <div class="col card p-2 shadow-sm m-1 altrow">
-            @foreach (var attr in Model.Attributes.Social)
-            {
-                <div class="d-flex">
-                    <label>@attr.Key</label>
-                    <Dots Value="@attr.Value" ReadOnly="true" />
-                </div>
-            }
-        </div>
-    </div>
-</div>
+</section>
