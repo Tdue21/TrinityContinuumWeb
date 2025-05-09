@@ -116,10 +116,10 @@ public class Attributes
 
 public class Psi
 {
-    public string Aptitude { get; set; } = string.Empty;
+    public string[] Aptitudes { get; set; } = [];
     public int Trait { get; set; }
     public int Tolerance { get; set; }
-    public List<string> BasicPowers { get; } = new List<string>();
-    public List<Trait> Modes { get;  } = new List<Trait>();
-    public List<Trait> AuxillaryModes { get;  } = new List<Trait>();
+    public List<string> BasicPowers { get; } = [];
+    public List<Trait> Modes { get; } = [];
+    public List<Trait> AuxillaryModes { get;  } = [];
 }

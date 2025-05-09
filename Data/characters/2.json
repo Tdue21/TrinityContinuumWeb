@@ -8,15 +8,36 @@
 
 	"originPath": {
 		"name": "Military Brat",
-		"dots": 1
+		"dots": 1,
+		"Contacts": [
+			{
+				"name": "FSM Officer",
+				"dots": 1,
+				"Tags": [ "Well-Connected" ]
+			}
+		]
 	},
 	"rolePath": {
 		"name": "Pilot",
-		"dots": 1
+		"dots": 1,
+		"Contacts": [
+			{
+				"name": "Airfield Mechanic",
+				"dots": 1,
+				"Tags": [ "Tech Geek" ]
+			}
+		]
 	},
 	"societyPath": {
 		"name": "Æon Trinity",
-		"dots": 1
+		"dots": 1,
+		"Contacts": [
+			{
+				"name": "Special Agent Hector Ramirez",
+				"dots": 1,
+				"Tags": [ "Investigator" ]
+			}
+		]
 	},
 
 	"aspirations": [
@@ -107,23 +128,55 @@
 	},
 
 	"psi": {
-		"aptitude": "Psychokinesis",
+		"aptitudes": [ "Clairsentience", "Telepathy", "Quantakinesis" ],
 		"trait": 3,
 		"tolerance": 0,
-		"basicPowers": [ "Distance Touch", "Nudge" ],
+		"basicPowers": [
+			"Extended Attunement",
+			"The Sight",
+			"Mindscan",
+			"Mindspeak",
+			"Psi Cloak",
+			"Subquantum Sense"
+		],
 		"modes": [
 			{
-				"name": "Thermokinesis",
-				"dots": 1
+				"name": "Psychometry",
+				"dots": 0
 			},
 			{
-				"name": "Telekinesis",
-				"dots": 1
+				"name": "Psycholocation",
+				"dots": 0
 			},
 			{
-				"name": "Perikinesis",
+				"name": "Psychocognition",
 				"dots": 2
+			},
+			{
+				"name": "Rapport",
+				"dots": 0
+			},
+			{
+				"name": "Mindshare",
+				"dots": 0
+			},
+			{
+				"name": "Psychbending",
+				"dots": 1
+			},
+			{
+				"name": "Energetics",
+				"dots": 0
+			},
+			{
+				"name": "Fundamentals",
+				"dots": 0
+			},
+			{
+				"name": "Transmutation",
+				"dots": 0
 			}
+
 		]
 	},
 	"edges": [
@@ -155,7 +208,7 @@
 		"hard": 1
 	},
 	"experience": {
-		"total": 12,
-		"spent": 0
+		"total": 15,
+		"spent": 15
 	}
 }

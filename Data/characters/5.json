@@ -1,0 +1,190 @@
+{
+	"id": 5,
+	"name": "Gordon McCready",
+	"player": "Jesper",
+	"concept": "Private Eye",
+	"psiOrder": "Upeo wa Macho",
+	"token": "Gordon McCready Token.webp",
+
+	"originPath": {
+		"name": "Orphan",
+		"dots": 1,
+		"Contacts": [
+			{
+				"name": "Fellow Orphan",
+				"dots": 1,
+				"Tags": [ "" ]
+			}
+		]
+	},
+	"rolePath": {
+		"name": "Detective",
+		"dots": 1,
+		"Contacts": [
+			{
+				"name": "News Reporter",
+				"dots": 1,
+				"Tags": [ "" ]
+			}
+		]
+	},
+	"societyPath": {
+		"name": "Upeo wa Macho",
+		"dots": 1,
+		"Contacts": [
+			{
+				"name": "Interstellar Explorer",
+				"dots": 1,
+				"Tags": [ "" ]
+			}
+		]
+	},
+
+	"aspirations": [
+		{
+			"isLongTerm": true,
+			"description": "Defeat Injustice."
+		},
+		{
+			"isLongTerm": false,
+			"description": "You are stronger than you think."
+		},
+		{
+			"isLongTerm": false,
+			"description": "Insert Order."
+		}
+	],
+
+	"skills": {
+		"Aim": {
+			"dots": 1
+		},
+		"Athletics": {
+			"dots": 1
+		},
+		"Close Combat": {
+			"dots": 1
+		},
+		"Command": {
+			"dots": 0
+		},
+		"Culture": {
+			"dots": 1
+		},
+		"Empathy": {
+			"dots": 1
+		},
+		"Enigmas": {
+			"dots": 3,
+			"specialties": [ "Cryptography" ],
+			"tricks": [ "" ]
+		},
+		"Humanities": {
+			"dots": 0
+		},
+		"Integrity": {
+			"dots": 2
+		},
+		"Larceny": {
+			"dots": 0
+		},
+		"Medicine": {
+			"dots": 0
+		},
+		"Persuasion": {
+			"dots": 2
+		},
+		"Pilot": {
+			"dots": 1
+		},
+		"Science": {
+			"dots": 0
+		},
+		"Survival": {
+			"dots": 1
+		},
+		"Technology": {
+			"dots": 1
+		}
+	},
+
+	"attributes": {
+		"preferredApproach": "Resilience",
+		"mental": {
+			"Intellect": 4,
+			"Cunning": 3,
+			"Resolve": 3
+		},
+		"physical": {
+			"Might": 2,
+			"Dexterity": 3,
+			"Stamina": 3
+		},
+		"social": {
+			"Presence": 2,
+			"Manipulation": 3,
+			"Composure": 3
+		}
+	},
+
+	"psi": {
+		"aptitudes": [ "Teleportation" ],
+		"trait": 3,
+		"tolerance": 0,
+		"basicPowers": [
+			"Spatial Sense",
+			"Spatial Integrity"
+		],
+		"modes": [
+			{
+				"name": "Translocation",
+				"dots": 1
+			},
+			{
+				"name": "Transmassion",
+				"dots": 2
+			},
+			{
+				"name": "Transportal",
+				"dots": 3
+			}
+
+		]
+	},
+	"edges": [
+		{
+			"name": "Always Prepared",
+			"dots": 1
+		},
+		{
+			"name": "Library",
+			"dots": 2
+		},
+		{
+			"name": "Tough Cookie",
+			"dots": 2
+		},
+		{
+			"name": "Direction Sense",
+			"dots": 1
+		},
+		{
+			"name": "Enhanced Attunement",
+			"dots": 1
+		},
+		{
+			"name": "Iron Will",
+			"dots": 3
+		}
+	],
+
+	"defense": 1,
+	"armor": {
+		"soft": 1,
+		"hard": 1
+	},
+	"experience": {
+		"total": 15,
+		"spent": 12
+	}
+}

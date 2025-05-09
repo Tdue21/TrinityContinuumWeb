@@ -1,0 +1,196 @@
+{
+	"id": 4,
+	"name": "Elias \"Eli\" Ward",
+	"player": "Marcus",
+	"concept": "Bitter/Resentful",
+	"psiOrder": "Norça",
+	"token": "Elias Ward Token.webp",
+
+	"originPath": {
+		"name": "Street Rat",
+		"dots": 1,
+		"Contacts": [
+			{
+				"name": "A Street Mentor",
+				"dots": 1,
+				"Tags": [ "" ]
+			}
+		]
+	},
+	"rolePath": {
+		"name": "The Sneak",
+		"dots": 1,
+		"Contacts": [
+			{
+				"name": "Best Friend",
+				"dots": 1,
+				"Tags": [ "" ]
+			}
+		]
+	},
+	"societyPath": {
+		"name": "Freelance Psion",
+		"dots": 1,
+		"Contacts": [
+			{
+				"name": "A Street Social Worker from Æon Trinity",
+				"dots": 1,
+				"Tags": [ "" ]
+			}
+		]
+	},
+
+	"aspirations": [
+		{
+			"isLongTerm": true,
+			"description": "Hunt down your family's killers."
+		},
+		{
+			"isLongTerm": false,
+			"description": "Use your words for once."
+		},
+		{
+			"isLongTerm": false,
+			"description": "Keep your composure."
+		}
+	],
+
+	"skills": {
+		"Aim": {
+			"dots": 0
+		},
+		"Athletics": {
+			"dots": 3,
+			"specialties": [ "Parkour" ],
+			"tricks": [ "No Barrier" ]
+		},
+		"Close Combat": {
+			"dots": 2
+		},
+		"Command": {
+			"dots": 0
+		},
+		"Culture": {
+			"dots": 0
+		},
+		"Empathy": {
+			"dots": 2
+		},
+		"Enigmas": {
+			"dots": 2
+		},
+		"Humanities": {
+			"dots": 0
+		},
+		"Integrity": {
+			"dots": 2
+		},
+		"Larceny": {
+			"dots": 3,
+			"specialties": [ "Palm Object" ],
+			"tricks": [ "That was already Mine" ]
+		},
+		"Medicine": {
+			"dots": 0
+		},
+		"Persuasion": {
+			"dots": 1
+		},
+		"Pilot": {
+			"dots": 0
+		},
+		"Science": {
+			"dots": 0
+		},
+		"Survival": {
+			"dots": 0
+		},
+		"Technology": {
+			"dots": 0
+		}
+	},
+
+	"attributes": {
+		"preferredApproach": "finesse",
+		"mental": {
+			"Intellect": 2,
+			"Cunning": 4,
+			"Resolve": 2
+		},
+		"physical": {
+			"Might": 3,
+			"Dexterity": 5,
+			"Stamina": 4
+		},
+		"social": {
+			"Presence": 2,
+			"Manipulation": 3,
+			"Composure": 1
+		}
+	},
+
+	"psi": {
+		"aptitudes": [ "Biokinesis" ],
+		"trait": 2,
+		"tolerance": 0,
+		"basicPowers": [
+			"Biosense",
+			"Form Mastery"
+		],
+		"modes": [
+			{
+				"name": "Adaptation",
+				"dots": 2
+			},
+			{
+				"name": "Psychomorphing",
+				"dots": 0
+			},
+			{
+				"name": "Transmogrify",
+				"dots": 3
+			}
+
+		]
+	},
+	"edges": [
+		{
+			"name": "Always Prepared",
+			"dots": 1
+		},
+		{
+			"name": "Hardy",
+			"dots": 1
+		},
+		{
+			"name": "Free Running",
+			"dots": 3
+		},
+		{
+			"name": "Enhanced Attunement",
+			"dots": 1
+		},
+		{
+			"name": "Favored Mode: Transmogrify",
+			"dots": 2
+		},
+		{
+			"name": "Ambidextrous",
+			"dots": 1
+		},
+		{
+			"name": "Swift",
+			"dots": 1
+		}
+	],
+
+	"defense": 1,
+	"armor": {
+		"soft": 1,
+		"hard": 1
+	},
+	"experience": {
+		"total": 15,
+		"spent": 11
+	}
+}

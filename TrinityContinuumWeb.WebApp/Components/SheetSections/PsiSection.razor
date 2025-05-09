@@ -8,8 +8,8 @@
         <h5 class="card-title">Psi General</h5>
         <div class="card-body">
             <div>
-                <label>Aptitude</label>
-                <span>@Model.Psi.Aptitude</span>
+                <label>Aptitude(s)</label>
+                <span>@String.Join(", ", Model.Psi.Aptitudes)</span>
             </div>
 
             <div>
