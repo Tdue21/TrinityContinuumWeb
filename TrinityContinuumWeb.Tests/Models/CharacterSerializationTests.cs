@@ -34,12 +34,12 @@ public class CharacterSerializationTests
         Background = "Test Background",
         Aspirations =
         {
-            new() { IsLongTerm = true, Description = "Test Long Term Aspiration" },
+            new() { IsLongTerm = true,  Description = "Test Long Term Aspiration"  },
             new() { IsLongTerm = false, Description = "Test Short Term Aspiration" },
             new() { IsLongTerm = false, Description = "Test Short Term Aspiration" }
         },
-        OriginPath = new() { Name = "Test Origin", Dots = 1 },
-        RolePath = new() { Name = "Test Role", Dots = 1 },
+        OriginPath  = new() { Name = "Test Origin",  Dots = 1 },
+        RolePath    = new() { Name = "Test Role",    Dots = 1 },
         SocietyPath = new() { Name = "Test Society", Dots = 1 },
         Attributes =
         {
@@ -84,7 +84,7 @@ public class CharacterSerializationTests
         },
         Armor = { Soft = 0, Hard = 0 },
         Defense = 0,
-        Experience = { Total = 0, Spent = 0},
+        Experience = { Total = 0, Spent = 0 },
         Statblock = false,
         Source = "Test Source",
         Edges =
@@ -93,7 +93,7 @@ public class CharacterSerializationTests
         },
         Psi =
         {
-            Aptitude = "Test Aptitude",
+            Aptitudes = ["Test Aptitude"],
             Trait = 1,
             Tolerance = 0,
             BasicPowers = { "Basic Power 1", "Basic Power 2" },

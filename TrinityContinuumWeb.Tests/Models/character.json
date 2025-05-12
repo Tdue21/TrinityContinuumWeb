@@ -118,7 +118,7 @@
 		}
 	],
 	"Psi": {
-		"Aptitude": "Test Aptitude",
+		"Aptitudes": [ "Test Aptitude" ],
 		"Trait": 1,
 		"Tolerance": 0,
 		"BasicPowers": [ "Basic Power 1", "Basic Power 2" ],
