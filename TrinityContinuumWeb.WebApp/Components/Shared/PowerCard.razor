@@ -1,0 +1,43 @@
+﻿@using TrinityContinuum.Models
+
+<div class="col-3 card m-2 p-0" style="width: 31%">
+
+    <div class="card-header">
+        <h5 class="text-center">@Power.Name</h5>
+        <div class="d-flex justify-content-between">
+            <h6>@Power.Aptitude</h6>
+            <h6>@Power.Mode</h6>
+        </div>
+    </div>
+
+    <div class="class-body p-2" style="height:100%">
+
+        <div class="row my-2 mx-auto">
+
+            <div class="col-5">
+                <span class="fw-bold">Level:</span>
+                <Dots Value="@Power.Dots" MaxValue="7" />
+            </div>
+
+            <div class="col-5">
+                <span class="fw-bold">Dice Pool:</span>
+                <span>12</span>
+            </div>
+        </div>
+
+
+        <div>
+            <p>@(new String(Power.Description.Take(250).ToArray()))</p>
+
+            <p><b>System: </b>@(new String(Power.System.Take(250).ToArray()))</p>
+        </div>
+    </div>
+    <div class="card-footer text-center">
+        <span>Trinity Continuum: Æon, page. @Power.Page</span>
+    </div>
+</div>
+
+
+@code {
+    [Parameter] public PsiPower Power { get; set; }
+}

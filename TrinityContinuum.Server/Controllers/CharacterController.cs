@@ -3,6 +3,7 @@ using TrinityContinuum.Models;
 using TrinityContinuum.Services;
 
 namespace TrinityContinuum.Server.Controllers;
+
 [Route("api/[controller]")]
 [ApiController]
 public class CharacterController(ICharacterService characterService) : ControllerBase

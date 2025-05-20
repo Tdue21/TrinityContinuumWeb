@@ -30,6 +30,13 @@ public interface IApiClient
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<IEnumerable<CharacterSummary>?> GetCharacters(CancellationToken cancellationToken);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    Task<IEnumerable<PsiPower>?> GetPowers(CancellationToken cancellationToken);
 }
 
 /// <summary>
@@ -84,6 +91,21 @@ public class ApiClient(ILogger<ApiClient> logger, IHttpClientFactory clientFacto
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error fetching character list.");
+            throw;
+        }
+    }
+
+    public async Task<IEnumerable<PsiPower>?> GetPowers(CancellationToken cancellationToken)
+    {
+        try
+        {
+            var response = await GetAsync($"api/powers/list", cancellationToken);
+            var result = JsonConvert.DeserializeObject<IEnumerable<PsiPower>>(response);
+            return result;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error fetching powers list.");
             throw;
         }
     }

@@ -19,6 +19,7 @@ try
     builder.Services.AddSingleton<IEnvironmentService, EnvironmentService>();
     builder.Services.AddScoped<IDataProviderService, FileProviderService>();
     builder.Services.AddScoped<ICharacterService, CharacterService>();
+    builder.Services.AddScoped<IPowersService, PowersService>();
 
     builder.Services.AddControllers();
     // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi

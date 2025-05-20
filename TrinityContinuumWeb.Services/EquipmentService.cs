@@ -1,9 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TrinityContinuum.Models;
 
 namespace TrinityContinuum.Services;
@@ -17,7 +12,7 @@ public interface IEquipmentService
     /// 
     /// </summary>
     /// <returns></returns>
-    Task<IEnumerable<Weapon>?> GetWeaponsList();
+    Task<IEnumerable<Weapon>?> GetWeaponsList(CancellationToken cancellationToken = default);
 }
 
 /// <summary>
@@ -27,9 +22,9 @@ public class EquipmentService(IDataProviderService dataProvider) : IEquipmentSer
 {
     private readonly IDataProviderService _dataProvider = dataProvider ?? throw new ArgumentNullException(nameof(dataProvider));
 
-    public async Task<IEnumerable<Weapon>?> GetWeaponsList()
+    public async Task<IEnumerable<Weapon>?> GetWeaponsList(CancellationToken cancellationToken = default)
     {
-        var data = await _dataProvider.ReadData("", "weapons.json");
+        var data = await _dataProvider.ReadData("", "weapons.json", cancellationToken);
         var result = JsonConvert.DeserializeObject<IEnumerable<Weapon>>(data);
         return result;
     }

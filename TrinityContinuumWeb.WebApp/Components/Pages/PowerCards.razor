@@ -9,39 +9,61 @@
 
 <main class="container border border-black shadow-sm p-4 mx-auto rounded" style="width:1200px">
 
-    <div class="row">
-        @for (var idx = 0; idx < 9; idx++)
-        {
-            <div class="col-3 card m-2 p-0" style="width: 31%">
-                <div class="card-header">
-                    <h5 class="text-center">Power Name</h5>
-                    <div class="d-flex justify-content-between">
-                        <h6>Aptitude</h6>
-                        <h6>Mode</h6>
-                    </div>
-                </div>
-                <div class="class-body p-2" style="height:100%">
-                    <div class="row my-2 mx-auto">
-                        <div class="col-5 d-flex justify-content-center">
-                            <span class="fw-bold">Level: </span>
-                            <Dots Value="0" />
-                        </div>
-                        <div class="col-5 d-flex justify-content-center">
-                            <span class="fw-bold">Dice Pool: </span>
-                            <span>xx</span>
-                        </div>
-                    </div>
-                    <div>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec mauris nisl. Fusce eu tempor erat. Vestibulum metus arcu, dictum sed ornare at, lobortis nec lacus. Morbi elit sem, iaculis eget hendrerit in, rutrum vel est. Nulla volutpat, neque nec fringilla mollis, urna arcu condimentum leo, vitae aliquet metus augue gravida erat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tempor eros eget ullamcorper laoreet. Nam feugiat egestas interdum.
-                        </p>
-                    </div>
-                </div>
-                <div class="card-footer text-center">
-                    <span>Trinity Continuum: Æon, page. xxx</span>
+    @if (Powers == null)
+    {
+        <div>Loading...</div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-5">
+                <div class="dropdown">
+
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        Select an Aptitude: @SelectedAptitude
+                    </button>
+
+                    <ul class="dropdown-menu">
+                        @foreach (var aptitude in Aptitudes)
+                        {
+                            <li>
+                                <button class="dropdown-item" type="button" @onclick="() => SetSelectedAptitude(aptitude)">@aptitude</button>
+                            </li>
+                        }
+                    </ul>
                 </div>
             </div>
 
-        }
-    </div>
+            <div class="col-5">
+                @if (Modes != null && Modes.Any())
+                {
+                    <div class="dropdown">
+
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                            Select a Mode: @SelectedMode
+                        </button>
+
+                        <ul class="dropdown-menu">
+                            @foreach (var mode in Modes)
+                            {
+                                <li>
+                                    <button class="dropdown-item" type="button" @onclick="() => SelectedMode = mode">@mode</button>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="row">
+            @if (Powers != null && Powers.Any())
+            {
+                @foreach (var power in GetSelectedPowers())
+                {
+                    <PowerCard Power="power" />
+                }
+            }
+        </div>
+    }
 </main>
