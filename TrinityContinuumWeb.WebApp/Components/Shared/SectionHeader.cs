@@ -9,7 +9,7 @@ public partial class SectionHeader : ComponentBase
 
     [Parameter] public int Level { get; set; } = 3;
 
-    [Parameter] public RenderFragment ChildContent { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
 
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
