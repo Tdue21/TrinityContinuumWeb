@@ -1,6 +1,6 @@
 using FluentAssertions;
 using System.Linq;
-using TrinityContinuum.WebApp.Components.Components;
+using TrinityContinuum.WebApp.Components.Shared;
 
 namespace TrinityContinuum.UITests.Components;
 

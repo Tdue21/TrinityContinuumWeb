@@ -2,7 +2,7 @@
 @page "/sheet"
 @page "/sheet/{CharacterId:int}"
 @using TrinityContinuum.WebApp.Components.SheetSections
-@using TrinityContinuum.WebApp.Components.Components
+@using TrinityContinuum.WebApp.Components.Shared
 
 @rendermode InteractiveServer
 
@@ -16,19 +16,20 @@
 else
 {
     <main class="container-fluid">
-        <LogoSection Model="Model" />
-        <GeneralSection Model="Model" />
-        <div class="row">
-            <AttributesSection Model="Model" />
-            <SkillsSection Model="Model" />
-            <InjuryConditions Model="Model" />
-            <PsiSection Model="Model" />
-            <EdgesSection Model="Model" />
-            <SpecialtiesTricksSection Model="Model" />
-            <AspirationsSection Model="Model" />
-            <PathContactsSection Model="Model" />
-        </div>
-        @*
- *@    
+        @if (Model != null)
+        {
+            <LogoSection Model="Model" />
+            <GeneralSection Model="Model" />
+            <div class="row">
+                <AttributesSection Model="Model" />
+                <SkillsSection Model="Model" />
+                <InjuryConditions Model="Model" />
+                <PsiSection Model="Model" />
+                <EdgesSection Model="Model" />
+                <SpecialtiesTricksSection Model="Model" />
+                <AspirationsSection Model="Model" />
+                <PathContactsSection Model="Model" />
+            </div>
+        }
     </main>
 } 

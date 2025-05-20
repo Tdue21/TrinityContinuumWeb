@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
-using Newtonsoft.Json;
 using TrinityContinuum.Models;
+using TrinityContinuum.WebApp.Services;
 
-namespace TrinityContinuum.WebApp.Components.Components;
+namespace TrinityContinuum.WebApp.Components.Shared;
 public partial class CharacterSelectorBase : ComponentBase
 {
     [Inject] public NavigationManager NavigationManager { get; set; } = null!;
-    [Inject] public IHttpClientFactory HttpClientFactory { get; set; } = null!;
+    [Inject] public ICharacterService CharacterService { get; set; } = null!;
 
     [SupplyParameterFromForm] public int SelectedCharacter { get; set; } = 0;
 
@@ -15,19 +15,7 @@ public partial class CharacterSelectorBase : ComponentBase
 
     protected override async Task OnInitializedAsync()
     {
-        var client = HttpClientFactory.CreateClient("API");
-        var response = await client.GetAsync("api/character/list");
-        if (response.IsSuccessStatusCode)
-        {
-            var data = await response.Content.ReadAsStringAsync();
-            var list = JsonConvert.DeserializeObject<List<CharacterSummary>>(data)!;
-            Characters = [.. list];
-        }
-        else
-        {
-            // Handle error
-            Console.WriteLine($"Error: {response.StatusCode}");
-        }
+        Characters = await CharacterService.GetCharactersAsync(CancellationToken.None);
     }
 
     public void HandleValidSubmit(EditContext args)

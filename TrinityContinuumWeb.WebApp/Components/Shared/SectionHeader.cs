@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 
-namespace TrinityContinuum.WebApp.Components.Components;
+namespace TrinityContinuum.WebApp.Components.Shared;
 
 public partial class SectionHeader : ComponentBase
 {

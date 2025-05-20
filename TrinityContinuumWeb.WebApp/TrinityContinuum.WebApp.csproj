@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Components\Components\SectionHeading.razor" />
+    <Content Remove="Components\Shared\SectionHeading.razor" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Components\Components\SectionHeading.razor.css" />
+    <None Remove="Components\Shared\SectionHeading.razor.css" />
   </ItemGroup>
 
   <ItemGroup>

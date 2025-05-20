@@ -3,6 +3,7 @@ using TrinityContinuum.WebApp.Clients;
 using TrinityContinuum.WebApp.Components;
 using TrinityContinuum.WebApp.Models;
 using Serilog;
+using TrinityContinuum.WebApp.Services;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
@@ -30,6 +31,8 @@ try
     });
 
     builder.Services.AddScoped<IApiClient, ApiClient>();
+    builder.Services.AddScoped<ICharacterService, CharacterService>();
+    builder.Services.AddSingleton<ToastService>();
 
     var app = builder.Build();
 
@@ -42,10 +45,7 @@ try
     }
 
     app.UseHttpsRedirection();
-
-
     app.UseAntiforgery();
-
     app.MapStaticAssets();
     app.MapRazorComponents<App>()
        .AddInteractiveServerRenderMode();

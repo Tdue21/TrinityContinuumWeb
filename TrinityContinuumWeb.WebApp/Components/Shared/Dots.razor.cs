@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace TrinityContinuum.WebApp.Components.Components;
+namespace TrinityContinuum.WebApp.Components.Shared;
 
 public partial class DotsBase : ComponentBase
 {
