@@ -7,7 +7,7 @@
 
 <PageTitle>Power Cards</PageTitle>
 
-<main class="container border border-black shadow-sm p-4 mx-auto rounded" style="width:1200px">
+<main class="container border border-black shadow-sm p-4 mx-auto rounded">
 
     @if (Powers == null)
     {
@@ -15,55 +15,61 @@
     }
     else
     {
-        <div class="row">
-            <div class="col-5">
-                <div class="dropdown">
-
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                        Select an Aptitude: @SelectedAptitude
-                    </button>
-
-                    <ul class="dropdown-menu">
-                        @foreach (var aptitude in Aptitudes)
-                        {
-                            <li>
-                                <button class="dropdown-item" type="button" @onclick="() => SetSelectedAptitude(aptitude)">@aptitude</button>
-                            </li>
-                        }
-                    </ul>
-                </div>
-            </div>
-
-            <div class="col-5">
-                @if (Modes != null && Modes.Any())
-                {
+        <div class="container">
+            <!-- Filters -->
+            <div class="row mb-3">
+                <div class="col-lg-6">
                     <div class="dropdown">
 
                         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                            Select a Mode: @SelectedMode
+                            Select an Aptitude: @SelectedAptitude
                         </button>
 
                         <ul class="dropdown-menu">
-                            @foreach (var mode in Modes)
+                            @foreach (var aptitude in Aptitudes)
                             {
                                 <li>
-                                    <button class="dropdown-item" type="button" @onclick="() => SelectedMode = mode">@mode</button>
+                                    <button class="dropdown-item" type="button" @onclick="() => SetSelectedAptitude(aptitude)">@aptitude</button>
                                 </li>
                             }
                         </ul>
                     </div>
+                </div>
+
+                <div class="col-lg-6">
+                    @if (Modes != null && Modes.Any())
+                    {
+                        <div class="dropdown">
+
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                Select a Mode: @SelectedMode
+                            </button>
+
+                            <ul class="dropdown-menu">
+                                @foreach (var mode in Modes)
+                                {
+                                    <li>
+                                        <button class="dropdown-item" type="button" @onclick="() => SelectedMode = mode">@mode</button>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- Power Cards -->
+            <div class="row">
+                @if (Powers != null && Powers.Any())
+                {
+                    @foreach (var power in GetSelectedPowers())
+                    {
+                        <div class="col-md-6 col-lg-4 mb-1 p-1 d-flex align-items-stretch">
+                            <PowerCard Power="power" />
+                        </div>
+                    }
                 }
             </div>
-        </div>
-
-        <div class="row">
-            @if (Powers != null && Powers.Any())
-            {
-                @foreach (var power in GetSelectedPowers())
-                {
-                    <PowerCard Power="power" />
-                }
-            }
         </div>
     }
 </main>

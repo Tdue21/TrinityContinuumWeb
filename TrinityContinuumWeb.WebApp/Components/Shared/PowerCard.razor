@@ -1,6 +1,8 @@
 ﻿@using TrinityContinuum.Models
+@using TrinityContinuum.WebApp.Services
 
-<div class="col-3 card m-2 p-0" style="width: 31%">
+@inject IMarkdownRenderService MarkDownService
+<div class="card p-0">
 
     <div class="card-header">
         <h5 class="text-center">@Power.Name</h5>
@@ -27,9 +29,9 @@
 
 
         <div>
-            <p>@(new String(Power.Description.Take(250).ToArray()))</p>
+            <p>@(MarkDownService.Render(Power.Description))</p>
 
-            <p><b>System: </b>@(new String(Power.System.Take(250).ToArray()))</p>
+            <p>@(MarkDownService.Render("**System:**  " + Power.System))</p>
         </div>
     </div>
     <div class="card-footer text-center">

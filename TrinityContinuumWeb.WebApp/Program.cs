@@ -33,6 +33,7 @@ try
     builder.Services.AddScoped<IApiClient, ApiClient>();
     builder.Services.AddScoped<ICharacterService, CharacterService>();
     builder.Services.AddScoped<IPowersService, PowersService>();
+    builder.Services.AddScoped<IMarkdownRenderService, MarkdownRenderService>();
     builder.Services.AddSingleton<ToastService>();
 
     var app = builder.Build();

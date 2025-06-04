@@ -12,7 +12,7 @@ public partial class PowerCardsBase : ComponentBase
     public IEnumerable<string>? Modes { get; private set; }
     public string? SelectedAptitude { get; set; }
     public string? SelectedMode { get; set; }
-
+    
     protected override async Task OnInitializedAsync()
     {
         Powers = await PowersService.GetPowers(CancellationToken.None);
@@ -41,7 +41,8 @@ public partial class PowerCardsBase : ComponentBase
         var result = Powers.Where(x => (string.IsNullOrEmpty(SelectedAptitude) || x.Aptitude == SelectedAptitude)
                                     && (string.IsNullOrEmpty(SelectedMode) || x.Mode == SelectedMode))
                            .DistinctBy(x => x.Name)
-                           .OrderBy(x => x.Mode)
+                           .OrderBy(x => x.Aptitude)
+                           .ThenBy(x => x.Mode)
                            .ThenBy(x => x.Dots)
                            .ThenBy(x => x.Name);
 

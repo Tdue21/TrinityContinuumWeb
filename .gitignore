@@ -362,6 +362,7 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
-// My ignore settings
+# My ignore settings
 /test_results
 /Data/*.json
+/publish-arm64
