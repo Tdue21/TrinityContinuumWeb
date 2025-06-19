@@ -366,3 +366,4 @@ FodyWeavers.xsd
 /test_results
 /Data/*.json
 /publish-arm64
+/TrinityContinuum.Server/publish-arm64
