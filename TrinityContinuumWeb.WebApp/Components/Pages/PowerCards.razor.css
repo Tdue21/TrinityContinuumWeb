@@ -1,1 +1,42 @@
-﻿
+﻿body {
+    margin: 0;
+    padding: 0;
+    background-color: #FAFAFA;
+    font: 12pt "Tahoma";
+}
+
+* {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.pcard-page {
+    width: 21cm;
+    min-height: 29.7cm;
+    padding: 0.5cm;
+    margin: 0.5cm auto;
+    border: 1px #D3D3D3 solid;
+    background: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3mm;
+}
+
+@page {
+    size: A4;
+    margin: 0;
+}
+
+@media print {
+    .pcard-page {
+        margin: 0;
+        border: initial;
+        border-radius: initial;
+        width: initial;
+        min-height: initial;
+        box-shadow: initial;
+        background: initial;
+        page-break-after: always;
+    }
+}

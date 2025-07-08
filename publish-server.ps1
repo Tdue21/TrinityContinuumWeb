@@ -1,0 +1,1 @@
+& docker buildx build --file TrinityContinuum.Server/Dockerfile --platform linux/arm64/v3 --tag trinitycontinuumserver:latest-arm64 . --load

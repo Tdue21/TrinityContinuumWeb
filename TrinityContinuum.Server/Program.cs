@@ -30,6 +30,11 @@ try
         logging.CombineLogs = true;
     });
 
+    builder.WebHost.ConfigureKestrel((context, options) => 
+    { 
+        options.Configure(context.Configuration.GetSection("Kestrel"));
+    });
+
     var app = builder.Build();
     app.UseHttpLogging();
 

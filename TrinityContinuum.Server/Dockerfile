@@ -6,6 +6,6 @@ WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
 
-COPY ../publish-arm64/ .
+COPY ./publish-arm64/ .
 
 ENTRYPOINT ["dotnet", "TrinityContinuum.Server.dll"]

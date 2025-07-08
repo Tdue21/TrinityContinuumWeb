@@ -1,0 +1,49 @@
+﻿
+.pcard {
+    background-color: var(--header-bg);
+    display: grid;
+    grid-template-rows: 0.8fr 5fr 0.3fr;
+    border: 0.5mm solid black;
+    border-radius: 10px;
+    padding: 2mm;
+    max-height: 90mm;
+    font-size: x-small;
+}
+
+.pcard-header {
+    color: var(--header-fg);
+    padding-bottom: 2mm;
+}
+
+    .pcard-header h5 {
+        font-size: 1.2rem;
+        text-align: center;
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .pcard-header div {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+
+        .pcard-header div h6 {
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 0px;
+            margin: 0px;
+        }
+
+.pcard-body {
+    padding: 1mm;
+    background-color: white;
+    border: 1px solid black;
+    max-height: 70mm;
+    overflow: hidden;
+}
+
+.pcard-footer {
+    color: var(--header-fg);
+    padding-top: 1mm;
+}

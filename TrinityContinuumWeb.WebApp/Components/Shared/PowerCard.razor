@@ -2,22 +2,21 @@
 @using TrinityContinuum.WebApp.Services
 
 @inject IMarkdownRenderService MarkDownService
-<div class="card p-0">
 
-    <div class="card-header">
-        <h5 class="text-center">@Power.Name</h5>
-        <div class="d-flex justify-content-between">
+<div class="pcard">
+
+    <div class="pcard-header">
+        <h5>@Power.Name</h5>
+        <div>
             <h6>@Power.Aptitude</h6>
             <h6>@Power.Mode</h6>
         </div>
     </div>
 
-    <div class="class-body p-2" style="height:100%">
-
-        <div class="row my-2 mx-auto">
-
-            <div class="col-5">
-                <span class="fw-bold">Level:</span>
+    <div class="pcard-body">
+        <div>
+            <div>
+                <span>Level:</span>
                 <Dots Value="@Power.Dots" MaxValue="7" />
             </div>
 
@@ -34,7 +33,7 @@
             <p>@(MarkDownService.Render("**System:**  " + Power.System))</p>
         </div>
     </div>
-    <div class="card-footer text-center">
+    <div class="pcard-footer">
         <span>Trinity Continuum: Æon, page. @Power.Page</span>
     </div>
 </div>

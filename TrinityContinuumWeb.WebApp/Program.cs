@@ -36,6 +36,10 @@ try
     builder.Services.AddScoped<IMarkdownRenderService, MarkdownRenderService>();
     builder.Services.AddSingleton<ToastService>();
 
+    builder.WebHost.ConfigureKestrel((context, options) =>
+    {
+        options.Configure(context.Configuration.GetSection("Kestrel"));
+    });
     var app = builder.Build();
 
     // Configure the HTTP request pipeline.

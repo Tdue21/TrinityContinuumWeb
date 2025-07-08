@@ -1,15 +1,35 @@
-﻿@page "/"
-@inject NavigationManager NavManager
+﻿@inherits HomeBase
+@page "/"
+@rendermode InteractiveServer
 
-<PageTitle>Home</PageTitle>
+<PageTitle>Character Manager</PageTitle>
 
-<h1>Hello, world!</h1>
+<div class="container">
+    <h1>Trinity Continuum: Æon</h1>
+    <h3>Character Manager</h3>
 
-Welcome to your new app.
-
-@code {
-    override protected void OnInitialized()
+    @if (Characters == null)
     {
-        NavManager.NavigateTo("/sheet");
+        <div>Loading...</div>
     }
-}
+    else
+    {
+        <div class="d-flex flex-column gap-3">
+            <h5>Select your character</h5>
+
+            <InputSelect @bind-Value="SelectedCharacterId" class="form-select">
+                <option value="">-- Select Character --</option>
+                @foreach (var character in Characters)
+                {
+                    <option value="@character.Id">@character.Name</option>
+                }
+            </InputSelect>
+
+            <h5½>Select Action</h5½>
+
+            <button type="button" class="btn btn-primary" @onclick="OpenCharacterSheet">Character Sheet</button>
+
+            <button type="button" class="btn btn-primary" @onclick="OpenPowerCards">Power Cards</button>
+        </div>
+    }
+</div>
