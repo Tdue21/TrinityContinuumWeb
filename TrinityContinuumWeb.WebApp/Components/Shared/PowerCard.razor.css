@@ -1,12 +1,22 @@
-﻿
-.pcard {
-    background-color: var(--header-bg);
+﻿.pcard {
+    /*    
+    --aeon-bg
+    --biokinesis-bg
+    --clairsentience-bg
+    --electrokinesis-bg
+    --psychokinesis-bg
+    --quantakinesis-bg
+    --telepathy-bg
+    --teleportation-bg
+    --vitakinesis-bg
+    */
+    background-color: var(--vitakinesis-bg);
     display: grid;
     grid-template-rows: 0.8fr 5fr 0.3fr;
     border: 0.5mm solid black;
     border-radius: 10px;
     padding: 2mm;
-    max-height: 90mm;
+    /*max-height: 90mm;*/
     font-size: x-small;
 }
 
@@ -27,7 +37,6 @@
         grid-template-columns: 1fr 1fr;
     }
 
-
         .pcard-header div h6 {
             font-size: 0.9rem;
             text-align: center;
@@ -47,3 +56,33 @@
     color: var(--header-fg);
     padding-top: 1mm;
 }
+
+
+.circle {
+    width: 3mm;
+    height: 3mm;
+    border-radius: 50%;
+    display: inline-block;
+    border: 0.3mm solid #666;
+    padding: 0px;
+    background-color: black;
+    vertical-align: middle;
+}
+
+.dot-value {
+    display: inline-flex;
+    margin: 0px;
+    padding: 0px;
+    gap: 0.3mm;
+    margin-left: auto;
+}
+
+.dot {
+    cursor: pointer;
+    margin: 0px;
+    padding: 0px;
+}
+
+    .dot:nth-of-type(5) {
+        margin-right: 2mm;
+    } 

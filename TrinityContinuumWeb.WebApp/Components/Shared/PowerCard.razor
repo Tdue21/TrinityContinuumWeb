@@ -15,30 +15,119 @@
 
     <div class="pcard-body">
         <div>
+            @if (Power.Mode != "Basic Power")
+            {
+                <div>
+
+                    <span class="fw-bold">Level:</span>
+
+
+                    <div class="dot-value">
+                        @for (var idx = 1; idx <= Power.Dots; idx++)
+                        {
+                            <span class="dot">
+                                <span class="circle filled">&nbsp;</span>
+                            </span>
+                        }
+                    </div>
+                </div>
+            }
             <div>
-                <span>Level:</span>
-                <Dots Value="@Power.Dots" MaxValue="7" />
+                <span class="fw-bold">Dice Pool:</span>
+                <span>@CalculateDicePool()</span>
             </div>
 
-            <div class="col-5">
-                <span class="fw-bold">Dice Pool:</span>
-                <span>12</span>
+            <div>
+                <span class="fw-bold">Cost:</span>
+                <span>@CalculateCost()</span>
+            </div>
+
+            <div>
+                <span class="fw-bold">Enh / Diff:</span>
+                <span>@CalculateEnhDiff()</span>
             </div>
         </div>
 
 
         <div>
-            <p>@(MarkDownService.Render(Power.Description))</p>
+            <p>@(MarkDownService.Render(Power?.Description ?? ""))</p>
 
-            <p>@(MarkDownService.Render("**System:**  " + Power.System))</p>
+            <p>@(MarkDownService.Render("**System:**  " + Power?.System))</p>
         </div>
     </div>
     <div class="pcard-footer">
-        <span>Trinity Continuum: Æon, page. @Power.Page</span>
+        <span>Trinity Continuum: Æon, page. @(Power?.Page ?? 0)</span>
     </div>
 </div>
 
 
 @code {
-    [Parameter] public PsiPower Power { get; set; }
+    [Parameter] public PsiPower Power { get; set; } = null!;
+
+    [Parameter] public int PsiTrait { get; set; }
+
+    [Parameter] public List<Trait> Modes { get; set; } = null!;
+
+
+    private int ModeDots()
+    {
+        if (Power == null || Modes == null || !Modes.Any())
+        {
+            return 0;
+        }
+
+        var mode = Power.Mode;
+        var dots = (mode == "Basic Power")
+        ? Modes.Max(x => x.Dots)
+        : Modes.FirstOrDefault(x => x.Name == mode)?.Dots ?? 0;
+
+        return dots;
+    }
+
+    private int CalculateDicePool() => PsiTrait + ModeDots();
+
+    private string? CalculateCost()
+    {
+        if (Power == null || Modes == null || !Modes.Any())
+        {
+            return "";
+        }
+
+        var dots = ModeDots();
+        var cost = int.TryParse(Power.Cost, out var parsedCost) ? parsedCost : int.MinValue;
+        if (cost == int.MinValue)
+        {
+            return Power.Cost;
+        }
+
+        var diff = Math.Max(0, Power.Dots - dots);
+        return (cost + diff).ToString();
+    }
+
+    private string? CalculateEnhDiff()
+    {
+        if (Power == null || Modes == null || !Modes.Any())
+        {
+            return "";
+        }
+
+        var dots = ModeDots();
+        var cost = int.TryParse(Power.Cost, out var parsedCost) ? parsedCost : int.MinValue;
+        
+        if (cost == int.MinValue)
+        {
+            return "";
+        }
+
+        var diff = Power.Dots - dots;
+        if (diff < 0)
+        {
+            return $"+{Math.Abs(diff)} Enh";
+        }
+        else if (diff > 0)
+        {
+            return $"+{Math.Abs(diff)} Diff";
+        }
+        return "";
+    }
 }

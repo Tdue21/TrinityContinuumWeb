@@ -41,6 +41,15 @@ public partial class PowerCardsBase : ComponentBase
                            .ThenBy(x => x.Dots)
                            .ThenBy(x => x.Name);
 
+            if (Character.Psi.Trait < 7)
+            {
+                Powers = Powers.Where(x => x.Dots < 7);
+            }
+            if (Character.Psi.Trait < 6)
+            {
+                Powers = Powers.Where(x => x.Dots < 6);
+            }
+
             PageTotal = (int)Math.Ceiling((double)Powers.Count() / PageCount);
         }
 

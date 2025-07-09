@@ -26,6 +26,16 @@
     /* Aeon fonts */
     --header-font: Blinddate;
     --body-font: Philosopher;
+    /* Aptitude Colors - Primarily used for Power Cards */
+    --aeon-bg: var(--header-bg-aeon);
+    --biokinesis-bg: #283F69;
+    --clairsentience-bg: #579556;
+    --electrokinesis-bg: #657BAD;
+    --psychokinesis-bg: #034DBA;
+    --quantakinesis-bg: #8C45AD;
+    --telepathy-bg: #E3E083;
+    --teleportation-bg: #FFD165;
+    --vitakinesis-bg: #D0272A;
     /* Common Settings*/
     background-color: var(--background-color);
     color: var(--foreground-color);

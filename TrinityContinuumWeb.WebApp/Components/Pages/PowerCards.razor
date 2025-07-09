@@ -21,7 +21,7 @@ else
 
                 @foreach (var power in GetSelectedPowers(idx))
                 {
-                    <PowerCard Power="power" />
+                    <PowerCard Power="power" PsiTrait="@(Character?.Psi?.Trait ?? 0)" Modes="@(Character?.Psi?.Modes)" />
                 }
             </div>
         }
