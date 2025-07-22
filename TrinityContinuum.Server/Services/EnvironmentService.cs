@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Options;
 using TrinityContinuum.Server.Models;
 using TrinityContinuum.Services;
 

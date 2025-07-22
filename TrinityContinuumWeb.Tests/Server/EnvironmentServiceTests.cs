@@ -12,6 +12,7 @@ using TrinityContinuum.Server.Services;
 
 namespace TrinityContinuum.Tests.Server;
 
+[Trait("Category", "Unit")]
 public class EnvironmentServiceTests
 {
     private readonly string _contentRoot = Path.Combine("C:", "Test", "ContentRoot");

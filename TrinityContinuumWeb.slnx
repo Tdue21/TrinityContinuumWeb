@@ -17,12 +17,16 @@
     <File Path="Data/characters/Elias Ward Token.webp" />
     <File Path="Data/characters/Gordon McCready Token.webp" />
   </Folder>
-  <Folder Name="/Backend/">
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+  </Folder>
+  <Folder Name="/Source/" />
+  <Folder Name="/Source/Backend/">
     <Project Path="TrinityContinuum.Server/TrinityContinuum.Server.csproj" />
     <Project Path="TrinityContinuumWeb.Models/TrinityContinuum.Models.csproj" />
     <Project Path="TrinityContinuumWeb.Services/TrinityContinuum.Services.csproj" />
   </Folder>
-  <Folder Name="/Frontend/">
+  <Folder Name="/Source/Frontend/">
     <Project Path="TrinityContinuumWeb.WebApp/TrinityContinuum.WebApp.csproj" />
   </Folder>
   <Folder Name="/Tests/">

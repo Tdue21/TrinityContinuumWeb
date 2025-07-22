@@ -1,6 +1,5 @@
-﻿using Newtonsoft.Json;
-using System.Text;
 using TrinityContinuum.Models;
+using TrinityContinuum.Services.Repositories;
 
 namespace TrinityContinuum.Services;
 
@@ -26,37 +25,35 @@ public interface ICharacterService
 /// <summary>
 /// 
 /// </summary>
-public class CharacterService(IDataProviderService dataProvider) : ICharacterService
+public class CharacterService(IRepositoryFactory factory) : ICharacterService
 {
-    private readonly IDataProviderService _dataProvider = dataProvider ?? throw new ArgumentNullException(nameof(dataProvider));
-    private const string _catalog = "Characters";
+    private readonly IRepositoryFactory _factory = factory ?? throw new ArgumentNullException(nameof(factory));
 
     public async Task<Character?> GetCharacterFromId(int id, CancellationToken cancellationToken = default)
     {
-        var data = await _dataProvider.ReadData(_catalog, $"{id}.json", cancellationToken);
-        var character = JsonConvert.DeserializeObject<Character>(data)!;
-
-        var token = !string.IsNullOrWhiteSpace(character.Token) 
-            ? await _dataProvider.ReadBinaryData(_catalog, character.Token, cancellationToken) 
-            : null;
-
-        character.Token = (token != null)
-            ? "data:image/webp;base64," + Convert.ToBase64String(token)
-            : null;
-
-        return character;
+        var repository = CreateRepository();
+        return await repository.GetAsync(id, cancellationToken);
     }
 
     public async Task<IEnumerable<CharacterSummary?>?> GetCharacterList(CancellationToken cancellationToken = default)
     {
-        var list = await _dataProvider.GetDataList(_catalog, cancellationToken);
-        var result = new List<CharacterSummary?>();
-        foreach (var item in list.Where(x => x.EndsWith(".json")))
+        var repository = CreateRepository();
+        var list = await repository.GetAllAsync(cancellationToken);
+        if (list == null || !list.Any())
         {
-            var data = await _dataProvider.ReadData(_catalog, item, cancellationToken);
-            var character = JsonConvert.DeserializeObject<CharacterSummary>(data);
-            result.Add(character);
+            return null;
         }
+
+        var result = list.Select(x => new CharacterSummary
+        {
+            Id = x.Id,
+            Name = x.Name,
+            Player = x.Player,
+        });
+
         return result;
     }
+    private IRepository<Character> CreateRepository() => _factory.CreateRepository<Character>()
+            ?? throw new InvalidOperationException("Repository for Character not found.");
+
 }

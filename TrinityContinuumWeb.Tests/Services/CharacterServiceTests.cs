@@ -2,28 +2,38 @@
 using NSubstitute;
 using TrinityContinuum.Models;
 using TrinityContinuum.Services;
+using TrinityContinuum.Services.Repositories;
 
 namespace TrinityContinuum.Tests.Services
 {
+    [Trait("Category", "Unit")]
     public class CharacterServiceTests
     {
-        private IDataProviderService _dataProviderService;
+        private readonly IDataProviderService _dataProvider;
+        private readonly IRepository<Character> _characterRepository;
+        private readonly IRepositoryFactory _factory;
 
         public CharacterServiceTests()
         {
-            _dataProviderService = Substitute.For<IDataProviderService>();
-        }
+            _dataProvider = Substitute.For<IDataProviderService>();
+            
+            _dataProvider.GetDataList(Arg.Any<string>(), Arg.Any<CancellationToken>())
+                        .Returns(Task.FromResult<IEnumerable<string>>(new List<string> { "1.json" }));
+            
+            _dataProvider.ReadData(Arg.Is<string>(x => x == "Character"), Arg.Is<string>(x => x == "1.json"))
+                .Returns(File.ReadAllText("Data/Characters/1.json"));
 
-        private CharacterService CreateService() => new CharacterService(_dataProviderService);
+            _characterRepository = new CharacterRepository(_dataProvider);
+            _characterRepository.Initialize(CancellationToken.None).GetAwaiter().GetResult();
+
+            _factory = Substitute.For<IRepositoryFactory>();
+            _factory.CreateRepository<Character>().Returns(_characterRepository);
+        }
 
         [Fact]
         public async Task GetCharacterFromId_StateUnderTest_ExpectedBehavior()
         {
             // Arrange
-            _dataProviderService.ReadData(Arg.Is<string>(x => x == "Characters"), Arg.Is<string>(x => x == "1.json"))
-                .Returns(File.ReadAllText("Data/Characters/1.json"));
-
-            var service = CreateService();
             var expected = new Character
             {
                 Id = 1,
@@ -36,30 +46,25 @@ namespace TrinityContinuum.Tests.Services
             };
 
             // Act
+            var service = new CharacterService(_factory);
             var result = await service.GetCharacterFromId(1);
 
             // Assert
             result.Should().NotBeNull().And.BeEquivalentTo(expected, config =>
                 config.Including(x => x.Id)
                       .Including(x => x.Name)
-                        .Including(x => x.Player)
-                        .Including(x => x.Concept)
-                        .Including(x => x.OriginPath)
-                        .Including(x => x.RolePath)
-                        .Including(x => x.SocietyPath)
-            );
+                      .Including(x => x.Player)
+                      .Including(x => x.Concept)
+                      .Including(x => x.OriginPath)
+                      .Including(x => x.RolePath)
+                      .Including(x => x.SocietyPath)
+                );
         }
 
         [Fact]
         public async Task GetCharacterList_Success()
         {
-            _dataProviderService.GetDataList(Arg.Is<string>(x => x == "Characters"))
-                .Returns(["1.json"]);
-            _dataProviderService.ReadData(Arg.Is<string>(x => x == "Characters"), Arg.Is<string>(x => x == "1.json"))
-                .Returns(File.ReadAllText("Data/Characters/1.json"));
-
             // Arrange
-            var service = CreateService();
             var expected = new[] { new CharacterSummary
                 {
                     Id = 1,
@@ -69,6 +74,7 @@ namespace TrinityContinuum.Tests.Services
             };
 
             // Act
+            var service = new CharacterService(_factory);
             var result = await service.GetCharacterList();
 
             // Assert

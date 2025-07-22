@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using TrinityContinuum.Models;
 
 namespace TrinityContinuum.Services;

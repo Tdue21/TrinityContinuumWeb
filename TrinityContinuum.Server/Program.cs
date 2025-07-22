@@ -2,6 +2,8 @@ using TrinityContinuum.Server.Models;
 using TrinityContinuum.Server.Services;
 using Serilog;
 using TrinityContinuum.Services;
+using TrinityContinuum.Models;
+using TrinityContinuum.Services.Repositories;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
@@ -20,6 +22,8 @@ try
     builder.Services.AddScoped<IDataProviderService, FileProviderService>();
     builder.Services.AddScoped<ICharacterService, CharacterService>();
     builder.Services.AddScoped<IPowersService, PowersService>();
+
+    builder.Services.AddRepositories();
 
     builder.Services.AddControllers();
     // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi

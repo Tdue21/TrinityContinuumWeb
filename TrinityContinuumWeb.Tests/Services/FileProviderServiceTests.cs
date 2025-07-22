@@ -4,27 +4,31 @@ using TrinityContinuum.Services;
 
 namespace TrinityContinuum.Tests.Services
 {
+    [Trait("Category", "Unit")]
+    [Trait("Dependency", "File System")]
     public class FileProviderServiceTests
     {
-        private const string OneJson = @"{
-	""id"": 1,
-	""name"": ""Connor McCormick"",
-	""player"": ""Thomas"",
-	""concept"": ""Private Investigator"",
+        private const string OneJson = """
+            {
+            	"id": 1,
+            	"name": "Connor McCormick",
+            	"player": "Thomas",
+            	"concept": "Private Investigator",
 
-	""originPath"": {
-		""name"": ""Street Rat"",
-		""dots"": 1
-	},
-	""rolePath"": {
-		""name"": ""Detective"",
-		""dots"": 1
-	},
-	""societyPath"": {
-		""name"": ""Æon Trinity"",
-		""dots"": 1
-	}
-}";
+            	"originPath": {
+            		"name": "Street Rat",
+            		"dots": 1
+            	},
+            	"rolePath": {
+            		"name": "Detective",
+            		"dots": 1
+            	},
+            	"societyPath": {
+            		"name": "Æon Trinity",
+            		"dots": 1
+            	}
+            }
+            """;
 
 
         private IEnvironmentService _environmentService;

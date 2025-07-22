@@ -7,9 +7,9 @@ public class CharacterSummary
     public string? Player { get; set; }
 }
 
-public class Character
+public class Character : BaseEntity
 {
-    public int Id { get; set; }
+    //public int Id { get; set; }
     public required string Name { get; set; }
     public string? Player { get; set; }
     public string? Concept { get; set; }
