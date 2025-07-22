@@ -32,13 +32,13 @@ public class CharacterService(IRepositoryFactory factory) : ICharacterService
 
     public async Task<Character?> GetCharacterFromId(int id, CancellationToken cancellationToken = default)
     {
-        var repository = CreateRepository();
+        var repository = await CreateRepositoryAsync();
         return await repository.GetAsync(id, cancellationToken);
     }
 
     public async Task<IEnumerable<CharacterSummary?>?> GetCharacterList(CancellationToken cancellationToken = default)
     {
-        var repository = CreateRepository();
+        var repository = await CreateRepositoryAsync();
         var list = await repository.GetAllAsync(cancellationToken);
         if (list == null || !list.Any())
         {
@@ -54,7 +54,7 @@ public class CharacterService(IRepositoryFactory factory) : ICharacterService
 
         return result;
     }
-    private IRepository<Character> CreateRepository() => _factory.CreateRepository<Character>()
+    private async Task<IRepository<Character>> CreateRepositoryAsync() => await _factory.CreateRepository<Character>()
             ?? throw new InvalidOperationException("Repository for Character not found.");
 
 }

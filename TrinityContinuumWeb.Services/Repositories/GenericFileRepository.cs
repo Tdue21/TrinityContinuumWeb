@@ -1,5 +1,5 @@
-using Newtonsoft.Json;
 using System.Collections.Concurrent;
+using Newtonsoft.Json;
 using TrinityContinuum.Models.Entities;
 
 namespace TrinityContinuum.Services.Repositories;
@@ -9,7 +9,7 @@ public class GenericFileRepository<TEntity>(IDataProviderService dataProvider) :
     protected readonly IDataProviderService _dataProvider = dataProvider ?? throw new ArgumentNullException(nameof(dataProvider));
 
     protected readonly ConcurrentDictionary<int, TEntity> _entities = new();
-    protected readonly string _catalogName = typeof(TEntity).Name;
+    protected readonly string _catalogName = RepositoryUtilities.GetCatalogName<TEntity>();
 
     /// <summary>
     /// 
@@ -18,22 +18,16 @@ public class GenericFileRepository<TEntity>(IDataProviderService dataProvider) :
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public virtual async Task<TEntity?> GetAsync(int id, CancellationToken cancellationToken = default)
+    public virtual Task<TEntity?> GetAsync(int id, CancellationToken cancellationToken = default)
     {
-        // If the id is less than or equal to zero, throw an exception.
         if (id <= 0)
         {
             throw new ArgumentOutOfRangeException(nameof(id), "Id must be greater than zero.");
         }
 
-        // Try to get the entity with the specified id from the dictionary.
-        if (_entities.TryGetValue(id, out var entity))
-        {
-            return entity;
-        }
-
-        // If the entity is not found, return null.
-        return null;
+        return _entities.TryGetValue(id, out var entity)
+            ? Task.FromResult<TEntity?>(entity)
+            : Task.FromResult<TEntity?>(null);
     }
 
     /// <summary>
@@ -41,7 +35,7 @@ public class GenericFileRepository<TEntity>(IDataProviderService dataProvider) :
     /// </summary>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public virtual Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken cancellationToken = default) 
+    public virtual Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken cancellationToken = default)
         => Task.FromResult<IEnumerable<TEntity>>([.. _entities.Values]);
 
     /// <summary>
@@ -57,7 +51,7 @@ public class GenericFileRepository<TEntity>(IDataProviderService dataProvider) :
         // Check if the entity is null and throw an exception if it is.
         ArgumentNullException.ThrowIfNull(entity);
 
-        if(entity.Id == 0)
+        if (entity.Id == 0)
         {
             // If the entity Id is zero, assign a new Id.
             entity.Id = !_entities.IsEmpty ? _entities.Keys.Max() + 1 : 1;
@@ -157,7 +151,7 @@ public class GenericFileRepository<TEntity>(IDataProviderService dataProvider) :
     /// <returns></returns>
     public virtual Task<bool> ExistsAsync(int id, CancellationToken cancellationToken = default)
     {
-        if(id <= 0)
+        if (id <= 0)
         {
             throw new ArgumentOutOfRangeException(nameof(id), "Entity Id must be greater than zero.");
         }
@@ -174,29 +168,22 @@ public class GenericFileRepository<TEntity>(IDataProviderService dataProvider) :
 
     public virtual async Task Initialize(CancellationToken cancellationToken)
     {
-        await _dataProvider
-            .GetDataList(_catalogName, cancellationToken)
-            .ContinueWith(task =>
+        var dataList = await _dataProvider.GetDataList(_catalogName, cancellationToken);
+
+        foreach (var item in dataList)
+        {
+            if (item.EndsWith(".json"))
             {
-                if (task.IsCompletedSuccessfully)
+                var entityData = await _dataProvider.ReadData(_catalogName, item, cancellationToken);
+                var entity = JsonConvert.DeserializeObject<TEntity>(entityData);
+                if (entity != null)
                 {
-                    var dataList = task.Result;
-                    foreach (var item in dataList)
+                    if (!_entities.TryAdd(entity.Id, entity))
                     {
-                        if (item.EndsWith(".json"))
-                        {
-                            var entityData = _dataProvider.ReadData(_catalogName, item, cancellationToken).Result;
-                            var entity = JsonConvert.DeserializeObject<TEntity>(entityData);
-                            if (entity != null)
-                            {
-                                if (!_entities.TryAdd(entity.Id, entity))
-                                {
-                                    _entities[entity.Id] = entity; // Update if already exists
-                                }
-                            }
-                        }
+                        _entities[entity.Id] = entity; // Update if already exists
                     }
                 }
-            }, cancellationToken);
+            }
+        }
     }
 }

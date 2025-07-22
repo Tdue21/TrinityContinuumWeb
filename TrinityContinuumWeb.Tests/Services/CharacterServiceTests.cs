@@ -21,7 +21,7 @@ namespace TrinityContinuum.Tests.Services
             _dataProvider.GetDataList(Arg.Any<string>(), Arg.Any<CancellationToken>())
                         .Returns(Task.FromResult<IEnumerable<string>>(new List<string> { "1.json" }));
             
-            _dataProvider.ReadData(Arg.Is<string>(x => x == "Character"), Arg.Is<string>(x => x == "1.json"))
+            _dataProvider.ReadData(Arg.Is<string>(x => x == "characters"), Arg.Is<string>(x => x == "1.json"))
                 .Returns(File.ReadAllText("Data/Characters/1.json"));
 
             _characterRepository = new CharacterRepository(_dataProvider);

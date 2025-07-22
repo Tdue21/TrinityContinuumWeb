@@ -17,13 +17,13 @@ try
     builder.Services.Configure<ApplicationSettings>(builder.Configuration.GetSection(ApplicationSettings.SectionName));
 
 
+    builder.Services.AddRepositories();
+
     // Add services to the container.
     builder.Services.AddSingleton<IEnvironmentService, EnvironmentService>();
     builder.Services.AddScoped<IDataProviderService, FileProviderService>();
     builder.Services.AddScoped<ICharacterService, CharacterService>();
     builder.Services.AddScoped<IPowersService, PowersService>();
-
-    builder.Services.AddRepositories();
 
     builder.Services.AddControllers();
     // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi

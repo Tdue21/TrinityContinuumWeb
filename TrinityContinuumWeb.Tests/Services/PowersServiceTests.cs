@@ -1,12 +1,8 @@
 using FluentAssertions;
 using NSubstitute;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using TrinityContinuum.Models.Entities;
 using TrinityContinuum.Services;
-using Xunit;
+using TrinityContinuum.Services.Repositories;
 
 namespace TrinityContinuum.Tests.Services;
 
@@ -24,10 +20,12 @@ public class PowersServiceTests
                                 Arg.Is<string>(x => x == "psi-powers.json"), 
                                 default)
                             .Returns(Task.FromResult(TestData));
+        var repository = new SingleFileRepository<PsiPower>(_dataProviderService);
+        repository.Initialize(default).GetAwaiter().GetResult();
 
-        _powersService = new PowersService(_dataProviderService);
+        _powersService = new PowersService(repository);
+
     }
-
 
     [Fact]
     public async Task GetPsiPowers_Success_Test()

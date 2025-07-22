@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using TrinityContinuum.Models.Entities;
+using TrinityContinuum.Services.Repositories;
 
 namespace TrinityContinuum.Services;
 
@@ -20,14 +21,13 @@ public interface IPowersService
 /// 
 /// </summary>
 /// <param name="dataProvider"></param>
-public class PowersService(IDataProviderService dataProvider) : IPowersService
+public class PowersService(ISingleFileRepository<PsiPower> repository) : IPowersService
 {
-    private readonly IDataProviderService _dataProvider = dataProvider ?? throw new ArgumentNullException(nameof(dataProvider));
+    private readonly ISingleFileRepository<PsiPower> _repository = repository ?? throw new ArgumentNullException(nameof(repository));
 
     public async Task<IEnumerable<PsiPower>> GetPsiPowers(CancellationToken cancellationToken = default)
     {
-        var data = await _dataProvider.ReadData("", "psi-powers.json", cancellationToken);
-        var result = JsonConvert.DeserializeObject<IEnumerable<PsiPower>>(data);
+        var result = await _repository.GetAllAsync(cancellationToken);
         return result ?? [];
     }
 }

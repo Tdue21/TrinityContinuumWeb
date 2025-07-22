@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using TrinityContinuum.Models.Entities;
 
 namespace TrinityContinuum.Tests.Repositories;
@@ -9,3 +10,7 @@ internal class TestEntity : BaseEntity
 {
     public string Name { get; set; } = string.Empty;
 }
+
+[Table("test-entities")]
+internal class TestEntityWithTableAttribute : BaseEntity
+{}

@@ -1,8 +1,10 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace TrinityContinuum.Models.Entities;
 
+[Table("characters")]
 public class Character : BaseEntity
 {
-    //public int Id { get; set; }
     public required string Name { get; set; }
     public string? Player { get; set; }
     public string? Concept { get; set; }

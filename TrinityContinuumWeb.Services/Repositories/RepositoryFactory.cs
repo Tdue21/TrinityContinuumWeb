@@ -8,7 +8,7 @@ namespace TrinityContinuum.Services.Repositories;
 /// </summary>
 public interface IRepositoryFactory
 {
-    IRepository<TEntity> CreateRepository<TEntity>() where TEntity : BaseEntity;
+    Task<IRepository<TEntity>> CreateRepository<TEntity>(CancellationToken cancellationToken = default) where TEntity : BaseEntity;
 }
 
 /// <summary>
@@ -19,10 +19,16 @@ public class RepositoryFactory(IServiceProvider serviceProvider) : IRepositoryFa
 {
     private readonly IServiceProvider _serviceProvider = serviceProvider;
 
-    public IRepository<TEntity> CreateRepository<TEntity>() where TEntity : BaseEntity
+    public async Task<IRepository<TEntity>> CreateRepository<TEntity>(CancellationToken cancellationToken = default) where TEntity : BaseEntity
     {
-        var repository = _serviceProvider.GetRequiredService<IRepository<TEntity>>();
-        repository.Initialize(CancellationToken.None).GetAwaiter();
+        var repository = _serviceProvider.GetKeyedService<IRepository<TEntity>>(typeof(TEntity).Name);
+
+        if (repository == null)
+        {
+            repository = _serviceProvider.GetRequiredService<IRepository<TEntity>>();
+        }
+
+        await repository.Initialize(cancellationToken);
 
         return repository;
     }

@@ -27,26 +27,26 @@ public class RepositoryFactoryTests
 	}
 
     [Fact]
-	public void CreateRepository_ShouldReturn_TypedRepository()
+	public async Task CreateRepository_ShouldReturn_TypedRepositoryAsync()
 	{
         // Arrange
         var factory = _serviceProvider.GetRequiredService<IRepositoryFactory>();
 
         // Act
-        var repository = factory.CreateRepository<TestEntity>();
+        var repository = await factory.CreateRepository<TestEntity>();
 		// Assert
 		repository.Should().NotBeNull();
 		repository.Should().BeOfType<TestRepository>();
 	}
 
 	[Fact]
-	public void CreateRepository_ShouldReturn_GenericRepository()
+	public async Task CreateRepository_ShouldReturn_GenericRepositoryAsync()
 	{
         // Arrange
         var factory = _serviceProvider.GetRequiredService<IRepositoryFactory>();
 
         // Act
-        var repository = factory.CreateRepository<GenericEntity>();
+        var repository = await factory.CreateRepository<GenericEntity>();
 
         // Assert
         repository.Should().NotBeNull();

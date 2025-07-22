@@ -1,6 +1,9 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace TrinityContinuum.Models.Entities;
 
-public class PsiPower
+[Table("psi-powers")]
+public class PsiPower : BaseEntity
 {
     public required string Aptitude { get; set; }
     public required string Mode { get; set; }
