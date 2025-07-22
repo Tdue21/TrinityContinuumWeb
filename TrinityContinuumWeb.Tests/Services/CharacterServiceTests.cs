@@ -1,6 +1,7 @@
-﻿using FluentAssertions;
+using FluentAssertions;
 using NSubstitute;
-using TrinityContinuum.Models;
+using TrinityContinuum.Models.Dtos;
+using TrinityContinuum.Models.Entities;
 using TrinityContinuum.Services;
 using TrinityContinuum.Services.Repositories;
 

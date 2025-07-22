@@ -1,4 +1,4 @@
-using TrinityContinuum.Models;
+using TrinityContinuum.Models.Entities;
 
 namespace TrinityContinuum.Services.Repositories;
 

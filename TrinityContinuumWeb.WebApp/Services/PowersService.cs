@@ -1,4 +1,4 @@
-﻿using TrinityContinuum.Models;
+using TrinityContinuum.Models.Entities;
 using TrinityContinuum.WebApp.Clients;
 
 namespace TrinityContinuum.WebApp.Services;

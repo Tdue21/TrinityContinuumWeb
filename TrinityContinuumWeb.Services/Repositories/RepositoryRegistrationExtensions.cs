@@ -1,5 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
-using TrinityContinuum.Models;
+using TrinityContinuum.Models.Entities;
 
 namespace TrinityContinuum.Services.Repositories;
 

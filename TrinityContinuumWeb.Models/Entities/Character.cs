@@ -1,11 +1,4 @@
-﻿namespace TrinityContinuum.Models;
-
-public class CharacterSummary
-{
-    public int Id { get; set; }
-    public required string Name { get; set; }
-    public string? Player { get; set; }
-}
+namespace TrinityContinuum.Models.Entities;
 
 public class Character : BaseEntity
 {
@@ -76,27 +69,6 @@ public class Skill : Trait
     public List<string> Specialties { get; set; } = new List<string>();
     public List<string> Tricks { get; set; } = new List<string>();
 }
-
-
-//public class Skills
-//{
-//    public Skill Aim { get; set; } = new();
-//	public Skill Athletics { get; set; } = new();
-//	public Skill CloseCombat { get; set; } = new();
-//	public Skill Command { get; set; } = new();
-//	public Skill Culture { get; set; } = new();
-//	public Skill Empathy { get; set; } = new();
-//	public Skill Enigmas { get; set; } = new();
-//	public Skill Humanities { get; set; } = new();
-//	public Skill Integrity { get; set; } = new();
-//	public Skill Larceny { get; set; } = new();
-//	public Skill Medicine { get; set; } = new();
-//	public Skill Persuasion { get; set; } = new();
-//	public Skill Pilot { get; set; } = new();
-//	public Skill Science { get; set; } = new();
-//	public Skill Survival { get; set; } = new();
-//    public Skill Technology { get; set; } = new();
-//}
 
 public enum PreferredApproach
 {

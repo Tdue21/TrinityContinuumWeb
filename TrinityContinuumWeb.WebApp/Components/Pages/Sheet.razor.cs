@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
-using TrinityContinuum.Models;
+using Microsoft.AspNetCore.Components;
+using TrinityContinuum.Models.Entities;
 using TrinityContinuum.WebApp.Services;
 
 namespace TrinityContinuum.WebApp.Components.Pages;

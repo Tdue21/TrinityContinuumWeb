@@ -1,5 +1,6 @@
-﻿using Newtonsoft.Json;
-using TrinityContinuum.Models;
+using Newtonsoft.Json;
+using TrinityContinuum.Models.Dtos;
+using TrinityContinuum.Models.Entities;
 
 namespace TrinityContinuum.WebApp.Clients;
 

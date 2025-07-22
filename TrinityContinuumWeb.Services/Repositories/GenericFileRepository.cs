@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 using System.Collections.Concurrent;
-using TrinityContinuum.Models;
+using TrinityContinuum.Models.Entities;
 
 namespace TrinityContinuum.Services.Repositories;
 

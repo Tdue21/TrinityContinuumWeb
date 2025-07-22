@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using TrinityContinuum.Models;
+using TrinityContinuum.Models.Entities;
 using TrinityContinuum.Services;
 
 namespace TrinityContinuum.Server.Controllers;

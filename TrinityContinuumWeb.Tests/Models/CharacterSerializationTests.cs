@@ -1,6 +1,6 @@
-﻿using FluentAssertions;
+using FluentAssertions;
 using Newtonsoft.Json;
-using TrinityContinuum.Models;
+using TrinityContinuum.Models.Entities;
 
 namespace TrinityContinuum.Tests.Models;
 

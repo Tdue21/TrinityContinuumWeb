@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components;
 using TrinityContinuum.WebApp.Services;
 
 namespace TrinityContinuum.WebApp.Components.Shared;

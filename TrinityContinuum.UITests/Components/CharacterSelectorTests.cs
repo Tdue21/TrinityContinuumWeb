@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using TrinityContinuum.Models;
+using TrinityContinuum.Models.Dtos;
 using TrinityContinuum.UITests.Utils;
 using TrinityContinuum.WebApp.Components.Shared;
 using TrinityContinuum.WebApp.Services;

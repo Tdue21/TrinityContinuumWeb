@@ -1,4 +1,4 @@
-﻿namespace TrinityContinuum.Models;
+namespace TrinityContinuum.Models.Entities;
 
 public class Weapon
 {

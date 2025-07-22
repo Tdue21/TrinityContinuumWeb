@@ -1,4 +1,4 @@
-﻿namespace TrinityContinuum.WebApp.Services;
+namespace TrinityContinuum.WebApp.Services;
 public class ToastService
 {
     public event Action<string, string, int> OnShow;

@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TrinityContinuum.Models;
+using TrinityContinuum.Models.Dtos;
 using TrinityContinuum.WebApp.Services;
 
 namespace TrinityContinuum.WebApp.Components.Pages;

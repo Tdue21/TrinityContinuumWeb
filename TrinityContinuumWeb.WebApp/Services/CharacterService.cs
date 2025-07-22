@@ -1,4 +1,5 @@
-﻿using TrinityContinuum.Models;
+using TrinityContinuum.Models.Dtos;
+using TrinityContinuum.Models.Entities;
 using TrinityContinuum.WebApp.Clients;
 using TrinityContinuum.WebApp.Models;
 

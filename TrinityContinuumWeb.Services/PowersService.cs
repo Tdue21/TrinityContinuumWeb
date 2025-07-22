@@ -1,5 +1,5 @@
 using Newtonsoft.Json;
-using TrinityContinuum.Models;
+using TrinityContinuum.Models.Entities;
 
 namespace TrinityContinuum.Services;
 

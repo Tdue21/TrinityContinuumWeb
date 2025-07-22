@@ -1,4 +1,4 @@
-﻿using Xunit;
+using Xunit;
 using FluentAssertions;
 using NSubstitute;
 using TrinityContinuum.Services;

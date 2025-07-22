@@ -1,9 +1,10 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using TrinityContinuum.Services;
 using TrinityContinuum.Services.Repositories;
 using FluentAssertions;
 using NSubstitute;
 using TrinityContinuum.Models;
+using TrinityContinuum.Models.Entities;
 
 namespace TrinityContinuum.Tests.Repositories;
 

@@ -1,4 +1,4 @@
-﻿using TrinityContinuum.Services;
+using TrinityContinuum.Services;
 using TrinityContinuum.Services.Repositories;
 
 namespace TrinityContinuum.Tests.Repositories;

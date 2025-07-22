@@ -1,4 +1,4 @@
-﻿@using TrinityContinuum.WebApp.Components.Shared
+@using TrinityContinuum.WebApp.Components.Shared
 @inherits AbstractSectionBase
 
 <section id="skillSpecialties" class="col-12 col-lg-6">
@@ -19,7 +19,7 @@
     </div>
 
     <div class="card">
-        <h5 class="card-title">Specialties</h5>
+        <h5 class="card-title">Skill Tricks</h5>
         <div class="card-body">
             @foreach (var skill in Model.Skills.Where(x => x.Value.Tricks.Any()))
             {

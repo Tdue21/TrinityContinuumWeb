@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+using FluentAssertions;
 using System.Diagnostics.CodeAnalysis;
 
 [assembly: FluentAssertions.Extensibility.AssertionEngineInitializer(

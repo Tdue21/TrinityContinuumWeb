@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using TrinityContinuum.Models;
+using System.Collections.Generic;
+using TrinityContinuum.Models.Entities;
 
 namespace TrinityContinuum.UITests.SheetSections
 {

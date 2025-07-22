@@ -1,4 +1,4 @@
-﻿namespace TrinityContinuum.WebApp.Models;
+namespace TrinityContinuum.WebApp.Models;
 
 public class ApplicationSettings
 {
