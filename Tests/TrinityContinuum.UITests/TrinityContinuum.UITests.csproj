@@ -38,7 +38,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\TrinityContinuumWeb.WebApp\TrinityContinuum.WebApp.csproj" />
+	  <ProjectReference Include="..\..\Source\Frontend\TrinityContinuumWeb.WebApp\TrinityContinuum.WebApp.csproj" />
 	</ItemGroup>
 
 

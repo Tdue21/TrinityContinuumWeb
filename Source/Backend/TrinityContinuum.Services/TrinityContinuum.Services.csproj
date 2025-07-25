@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TrinityContinuumWeb.Models\TrinityContinuum.Models.csproj" />
+    <ProjectReference Include="..\TrinityContinuum.Models\TrinityContinuum.Models.csproj" />
   </ItemGroup>
 
 </Project>

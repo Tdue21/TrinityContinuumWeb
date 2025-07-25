@@ -22,6 +22,7 @@
     <File Path="Docker/App.Dockerfile" />
     <File Path="Docker/arm64.Api.Dockerfile" />
     <File Path="Docker/arm64.App.Dockerfile" />
+    <File Path="Docker/publish-server.ps1" />
   </Folder>
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
@@ -29,8 +30,8 @@
   <Folder Name="/Source/" />
   <Folder Name="/Source/Backend/">
     <Project Path="Source/Backend/TrinityContinuum.Server/TrinityContinuum.Server.csproj" />
-    <Project Path="Source/Backend/TrinityContinuumWeb.Models/TrinityContinuum.Models.csproj" />
-    <Project Path="Source/Backend/TrinityContinuumWeb.Services/TrinityContinuum.Services.csproj" />
+    <Project Path="Source/Backend/TrinityContinuum.Models/TrinityContinuum.Models.csproj" />
+    <Project Path="Source/Backend/TrinityContinuum.Services/TrinityContinuum.Services.csproj" />
   </Folder>
   <Folder Name="/Source/Frontend/">
     <Project Path="Source/Frontend/TrinityContinuumWeb.WebApp/TrinityContinuum.WebApp.csproj" />
