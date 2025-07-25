@@ -15,7 +15,7 @@ public class EnvironmentService(IWebHostEnvironment environment, IOptions<Applic
     {
         get
         {
-            _rootPath ??= Path.Combine(_environment.ContentRootPath, _settings.DataFolder ?? "Data");
+            _rootPath ??= Path.GetFullPath(Path.Combine(_environment.ContentRootPath, _settings.DataFolder ?? "Data"));
             return _rootPath;
         }
     }

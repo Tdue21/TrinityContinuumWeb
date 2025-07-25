@@ -17,6 +17,12 @@
     <File Path="Data/characters/Elias Ward Token.webp" />
     <File Path="Data/characters/Gordon McCready Token.webp" />
   </Folder>
+  <Folder Name="/.Docker/">
+    <File Path="Docker/Api.Dockerfile" />
+    <File Path="Docker/App.Dockerfile" />
+    <File Path="Docker/arm64.Api.Dockerfile" />
+    <File Path="Docker/arm64.App.Dockerfile" />
+  </Folder>
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
   </Folder>
@@ -30,6 +36,8 @@
     <Project Path="TrinityContinuumWeb.WebApp/TrinityContinuum.WebApp.csproj" />
   </Folder>
   <Folder Name="/Tests/">
+    <Project Path="TrinityContinuum.ApiTests/TrinityContinuum.ApiTests.csproj" Id="d97d12a2-3f3c-4193-a79d-f4da2fa19579" />
+    <Project Path="TrinityContinuum.TestData/TrinityContinuum.TestData.csproj" Id="5d4d2357-5a23-49d3-a4da-186bbffa98d3" />
     <Project Path="TrinityContinuum.UITests/TrinityContinuum.UITests.csproj" Id="9e6f0478-ed6d-4a19-ae8c-fdfa9e234c81" />
     <Project Path="TrinityContinuumWeb.Tests/TrinityContinuum.Tests.csproj" />
   </Folder>

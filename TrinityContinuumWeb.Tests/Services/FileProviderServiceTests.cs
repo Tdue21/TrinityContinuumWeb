@@ -1,6 +1,9 @@
+using System.IO.Abstractions;
+using System.IO.Abstractions.TestingHelpers;
 using FluentAssertions;
 using NSubstitute;
 using TrinityContinuum.Services;
+using TrinityContinuum.TestData;
 
 namespace TrinityContinuum.Tests.Services
 {
@@ -8,38 +11,24 @@ namespace TrinityContinuum.Tests.Services
     [Trait("Dependency", "File System")]
     public class FileProviderServiceTests
     {
-        private const string OneJson = """
-            {
-            	"id": 1,
-            	"name": "Connor McCormick",
-            	"player": "Thomas",
-            	"concept": "Private Investigator",
-
-            	"originPath": {
-            		"name": "Street Rat",
-            		"dots": 1
-            	},
-            	"rolePath": {
-            		"name": "Detective",
-            		"dots": 1
-            	},
-            	"societyPath": {
-            		"name": "Æon Trinity",
-            		"dots": 1
-            	}
-            }
-            """;
-
-
-        private IEnvironmentService _environmentService;
+        private readonly IEnvironmentService _environmentService;
+        private readonly MockFileSystem _fileSystem;
 
         public FileProviderServiceTests()
         {
             _environmentService = Substitute.For<IEnvironmentService>();
             _environmentService.RootPath.Returns("Data");
+
+            _fileSystem = new MockFileSystem(new Dictionary<string, MockFileData>
+            {
+                { "Data/Characters/1.json", new MockFileData(CharacterData.OneJson)  },
+                { "Data/Characters/2.json", new MockFileData(CharacterData.TwoJson)  }
+
+            });
         }
 
-        private FileProviderService CreateService() => new FileProviderService(_environmentService);
+        private FileProviderService CreateService(IFileSystem? fileSystem = null) 
+            => new FileProviderService(fileSystem ?? _fileSystem, _environmentService);
 
 
         [Fact]
@@ -52,7 +41,7 @@ namespace TrinityContinuum.Tests.Services
             var result = await service.ReadData("Characters", "1.json");
 
             // Assert
-            result.Should().NotBeNull().And.BeEquivalentTo(OneJson);
+            result.Should().NotBeNull().And.BeEquivalentTo(CharacterData.OneJson);
         }
 
 
@@ -67,26 +56,21 @@ namespace TrinityContinuum.Tests.Services
                 .Should().ThrowAsync<FileNotFoundException>();
         }
 
-        //[Fact]
-        //public async Task WriteData_StateUnderTest_ExpectedBehavior()
-        //{
-        //    // Arrange
-        //    var service = this.CreateService();
-        //    string catalog = null;
-        //    string id = null;
-        //    string content = null;
-        //    CancellationToken cancellationToken = default(global::System.Threading.CancellationToken);
+        [Fact]
+        public async Task WriteData_Success_Saved_Backup_And_File()
+        {
+            // Arrange
+            var service = CreateService();
 
-        //    // Act
-        //    await service.WriteData(
-        //        catalog,
-        //        id,
-        //        content,
-        //        cancellationToken);
+            // Act
+            await service.WriteData("Characters", "1.json", CharacterData.OneJson, default);
 
-        //    // Assert
-        //    Assert.True(false);
-        //}
+            // Assert
+            _fileSystem.AllFiles.Should()
+                .HaveCount(3).And
+                .Contain(@"C:\Data\Characters\1.json").And
+                .ContainMatch(@"C:\Data\Characters\1.json-*.bak");
+        }
 
         [Fact]
         public async Task GetDataList_ListFiles_Success()
@@ -98,7 +82,7 @@ namespace TrinityContinuum.Tests.Services
             var result = await service.GetDataList("Characters");
 
             // Assert
-            result.Should().NotBeNull().And.BeEquivalentTo(["1.json"]);
+            result.Should().NotBeNull().And.HaveCount(2).And.BeEquivalentTo(["1.json", "2.json"]);
         }
     }
 }
