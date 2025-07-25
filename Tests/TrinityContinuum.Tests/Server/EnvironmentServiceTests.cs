@@ -1,12 +1,9 @@
+using System.IO.Abstractions;
+using System.IO.Abstractions.TestingHelpers;
 using FluentAssertions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Options;
 using NSubstitute;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TrinityContinuum.Server.Models;
 using TrinityContinuum.Server.Services;
 
@@ -15,10 +12,20 @@ namespace TrinityContinuum.Tests.Server;
 [Trait("Category", "Unit")]
 public class EnvironmentServiceTests
 {
-    private readonly string _contentRoot = Path.Combine("C:", "Test", "ContentRoot");
+    private readonly string _contentRoot;
+    private readonly IFileSystem _fileSystem;
+
+    public EnvironmentServiceTests()
+    {
+        _fileSystem = new MockFileSystem();
+        _contentRoot = _fileSystem.Path.Combine("C:", "Test", "ContentRoot");
+    }
+
     [Fact]
     public void TestRootPath_HasApplicationSettings_Success()
     {
+
+
         // Arrange
         var environment = Substitute.For<IWebHostEnvironment>();
         environment.ContentRootPath.Returns(_contentRoot);
@@ -31,8 +38,9 @@ public class EnvironmentServiceTests
         var rootPath = service.RootPath;
         // Assert
         rootPath.Should().NotBeNullOrEmpty()
-                .And.BeEquivalentTo(Path.Combine(_contentRoot, "TestData"));
+                .And.BeEquivalentTo(_fileSystem.Path.Combine(_contentRoot, "TestData"));
     }
+
     [Fact]
     public void TestRootPath_NoApplicationSettings_Success()
     {
@@ -48,6 +56,6 @@ public class EnvironmentServiceTests
         var rootPath = service.RootPath;
         // Assert
         rootPath.Should().NotBeNullOrEmpty()
-                .And.BeEquivalentTo(Path.Combine(_contentRoot, "Data"));
+                .And.BeEquivalentTo(_fileSystem.Path.Combine(_contentRoot, "Data"));
     }
 }

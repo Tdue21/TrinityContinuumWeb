@@ -24,6 +24,9 @@ namespace TrinityContinuum.Tests.Services
                 { "Data/Characters/1.json", new MockFileData(CharacterData.OneJson)  },
                 { "Data/Characters/2.json", new MockFileData(CharacterData.TwoJson)  }
 
+            }, new MockFileSystemOptions
+            {
+                CurrentDirectory = "C:\\TestData"
             });
         }
 
@@ -68,8 +71,8 @@ namespace TrinityContinuum.Tests.Services
             // Assert
             _fileSystem.AllFiles.Should()
                 .HaveCount(3).And
-                .Contain(@"C:\Data\Characters\1.json").And
-                .ContainMatch(@"C:\Data\Characters\1.json-*.bak");
+                .Contain(@"C:\TestData\Data\Characters\1.json").And
+                .ContainMatch(@"C:\TestData\Data\Characters\1.json-*.bak");
         }
 
         [Fact]
