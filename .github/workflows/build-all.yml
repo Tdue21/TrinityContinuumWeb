@@ -42,5 +42,6 @@ jobs:
       if: always()
       with:
         files: |
+          ./Tests/TrinityContinuum.ApiTests/test-results.xml
           ./Tests/TrinityContinuum.Tests/test-results.xml
           ./Tests/TrinityContinuum.UITests/test-results.xml
