@@ -22,25 +22,25 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 9.0.x
+
     - name: Restore dependencies
       run: dotnet restore
+
     - name: Build
       run: dotnet build --no-restore
+
     - name: Test
       run: dotnet test --no-build --verbosity normal --logger:"xunit;LogFilePath=test-results.xml"
-#    - name: Print Directory
-#      run: |
-#        pwd
-#        ls -la ./
-#        ls -la ./TrinityContinuumWeb.Tests/
+
     - name: Publish Test Results
       uses: EnricoMi/publish-unit-test-result-action@v2
       if: always()
       with:
         files: |
-          ./TrinityContinuumWeb.Tests/test-results.xml
-          ./TrinityContinuum.UITests/test-results.xml
+          ./Tests/TrinityContinuum.Tests/test-results.xml
+          ./Tests/TrinityContinuum.UITests/test-results.xml
