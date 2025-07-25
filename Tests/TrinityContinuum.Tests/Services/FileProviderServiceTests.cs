@@ -16,23 +16,19 @@ namespace TrinityContinuum.Tests.Services
 
         public FileProviderServiceTests()
         {
-            _environmentService = Substitute.For<IEnvironmentService>();
-            _environmentService.RootPath.Returns("Data");
-
             _fileSystem = new MockFileSystem(new Dictionary<string, MockFileData>
             {
                 { "Data/Characters/1.json", new MockFileData(CharacterData.OneJson)  },
                 { "Data/Characters/2.json", new MockFileData(CharacterData.TwoJson)  }
 
-            }, new MockFileSystemOptions
-            {
-                CurrentDirectory = "C:\\TestData"
             });
+
+            _environmentService = Substitute.For<IEnvironmentService>();
+            _environmentService.RootPath.Returns(_fileSystem.Path.Combine(_fileSystem.Directory.GetCurrentDirectory(), "Data"));
         }
 
         private FileProviderService CreateService(IFileSystem? fileSystem = null) 
             => new FileProviderService(fileSystem ?? _fileSystem, _environmentService);
-
 
         [Fact]
         public async Task ReadData_Success()
@@ -71,8 +67,8 @@ namespace TrinityContinuum.Tests.Services
             // Assert
             _fileSystem.AllFiles.Should()
                 .HaveCount(3).And
-                .Contain(@"C:\TestData\Data\Characters\1.json").And
-                .ContainMatch(@"C:\TestData\Data\Characters\1.json-*.bak");
+                .ContainMatch(@"*\Data\Characters\1.json").And
+                .ContainMatch(@"*\Data\Characters\1.json-*.bak");
         }
 
         [Fact]

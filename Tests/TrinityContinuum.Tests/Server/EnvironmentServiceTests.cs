@@ -18,14 +18,12 @@ public class EnvironmentServiceTests
     public EnvironmentServiceTests()
     {
         _fileSystem = new MockFileSystem();
-        _contentRoot = _fileSystem.Path.Combine("C:", "Test", "ContentRoot");
+        _contentRoot = _fileSystem.Directory.GetCurrentDirectory();
     }
 
     [Fact]
     public void TestRootPath_HasApplicationSettings_Success()
     {
-
-
         // Arrange
         var environment = Substitute.For<IWebHostEnvironment>();
         environment.ContentRootPath.Returns(_contentRoot);
