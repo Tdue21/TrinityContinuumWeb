@@ -2,6 +2,8 @@ using System.IO.Abstractions;
 using System.IO.Abstractions.TestingHelpers;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
+using NSubstitute;
+using TrinityContinuum.Services;
 using TrinityContinuum.TestData;
 
 namespace TrinityContinuum.ApiTests;
@@ -30,6 +32,12 @@ public class BasicControllerTests(WebAppFactory factory) : IClassFixture<WebAppF
                                 { "/Data/psi-powers.json", new("") },
                             });
                 services.AddSingleton<IFileSystem>(fs);
+
+                var env = Substitute.For<IEnvironmentService>();
+                env.RootPath.Returns(fs.Path.Combine(fs.Directory.GetCurrentDirectory(), "Data"));
+
+                services.AddSingleton(env);
+
             });
         })
             .CreateClient();

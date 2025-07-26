@@ -9,6 +9,7 @@ using NSubstitute;
 using NSubstitute.ExceptionExtensions;
 using TrinityContinuum.Models.Dtos;
 using TrinityContinuum.Models.Entities;
+using TrinityContinuum.Services;
 using TrinityContinuum.Services.Repositories;
 using TrinityContinuum.TestData;
 
@@ -35,6 +36,10 @@ public class CharacterControllerTests(WebAppFactory factory) : IClassFixture<Web
                             });
                         services.AddSingleton<IFileSystem>(fs);
 
+                        var env = Substitute.For<IEnvironmentService>();
+                        env.RootPath.Returns(fs.Path.Combine(fs.Directory.GetCurrentDirectory(), "Data"));
+
+                        services.AddSingleton(env);
                     });
                 })
             .CreateClient();
