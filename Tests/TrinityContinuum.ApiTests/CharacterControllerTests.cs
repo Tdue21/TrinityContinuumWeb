@@ -129,7 +129,7 @@ public class CharacterControllerTests(WebAppFactory factory) : IClassFixture<Web
                     builder.ConfigureServices(services =>
                     {
                         var fs = new MockFileSystem(new Dictionary<string, MockFileData>());
-                        fs.AddDirectory("/Data/Characters");
+                        fs.AddDirectory("/data/characters");
                         services.AddSingleton<IFileSystem>(fs);
 
                     });
