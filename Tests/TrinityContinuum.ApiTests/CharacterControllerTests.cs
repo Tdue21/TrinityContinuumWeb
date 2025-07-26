@@ -30,14 +30,14 @@ public class CharacterControllerTests(WebAppFactory factory) : IClassFixture<Web
                     {
                         var fs = new MockFileSystem(new Dictionary<string, MockFileData>
                             {
-                                { "/Data/Characters/1.json", new(CharacterData.OneJson) },
-                                { "/Data/Characters/2.json", new(CharacterData.TwoJson) },
-                                { "/Data/Characters/3.json", new(CharacterData.ThreeJson) },
+                                { "/data/characters/1.json", new(CharacterData.OneJson) },
+                                { "/data/characters/2.json", new(CharacterData.TwoJson) },
+                                { "/data/characters/3.json", new(CharacterData.ThreeJson) },
                             });
                         services.AddSingleton<IFileSystem>(fs);
 
                         var env = Substitute.For<IEnvironmentService>();
-                        env.RootPath.Returns(fs.Path.Combine(fs.Directory.GetCurrentDirectory(), "Data"));
+                        env.RootPath.Returns(fs.Path.Combine(fs.Directory.GetCurrentDirectory(), "data"));
 
                         services.AddSingleton(env);
                     });
@@ -94,7 +94,7 @@ public class CharacterControllerTests(WebAppFactory factory) : IClassFixture<Web
             {
                 var fs = new MockFileSystem(new Dictionary<string, MockFileData>
                             {
-                                { "/Data/Characters/1.json", new(CharacterData.OneJson) },
+                                { "/data/characters/1.json", new(CharacterData.OneJson) },
                             });
                 services.AddSingleton<IFileSystem>(fs);
 

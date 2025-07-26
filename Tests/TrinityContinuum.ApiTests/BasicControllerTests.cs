@@ -26,21 +26,18 @@ public class BasicControllerTests(WebAppFactory factory) : IClassFixture<WebAppF
             {
                 var fs = new MockFileSystem(new Dictionary<string, MockFileData>
                             {
-                                { "/Data/Characters/1.json", new(CharacterData.OneJson) },
-                                { "/Data/Characters/2.json", new(CharacterData.TwoJson) },
-                                { "/Data/Characters/3.json", new(CharacterData.ThreeJson) },
-                                { "/Data/psi-powers.json", new("") },
+                                { "/data/characters/1.json", new(CharacterData.OneJson) },
+                                { "/data/characters/2.json", new(CharacterData.TwoJson) },
+                                { "/data/characters/3.json", new(CharacterData.ThreeJson) },
+                                { "/data/psi-powers.json", new("") },
                             });
-                services.AddSingleton<IFileSystem>(fs);
-
                 var env = Substitute.For<IEnvironmentService>();
-                env.RootPath.Returns(fs.Path.Combine(fs.Directory.GetCurrentDirectory(), "Data"));
+                env.RootPath.Returns(fs.Path.Combine(fs.Directory.GetCurrentDirectory(), "data"));
 
+                services.AddSingleton<IFileSystem>(fs);
                 services.AddSingleton(env);
-
             });
-        })
-            .CreateClient();
+        }).CreateClient();
 
         // Act
         var response = await client.GetAsync(url);
