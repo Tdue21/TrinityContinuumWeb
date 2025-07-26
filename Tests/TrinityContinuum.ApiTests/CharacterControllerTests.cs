@@ -130,8 +130,11 @@ public class CharacterControllerTests(WebAppFactory factory) : IClassFixture<Web
                     {
                         var fs = new MockFileSystem(new Dictionary<string, MockFileData>());
                         fs.AddDirectory("/data/characters");
-                        services.AddSingleton<IFileSystem>(fs);
+                        var env = Substitute.For<IEnvironmentService>();
+                        env.RootPath.Returns(fs.Path.Combine(fs.Directory.GetCurrentDirectory(), "data"));
 
+                        services.AddSingleton<IFileSystem>(fs);
+                        services.AddSingleton(env);
                     });
                 })
             .CreateClient();
