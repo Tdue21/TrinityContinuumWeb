@@ -67,8 +67,8 @@ namespace TrinityContinuum.Tests.Services
             // Assert
             _fileSystem.AllFiles.Should()
                 .HaveCount(3).And
-                .ContainMatch(@"*\Data\Characters\1.json").And
-                .ContainMatch(@"*\Data\Characters\1.json-*.bak");
+                .ContainMatch(@"*Data?Characters?1.json").And
+                .ContainMatch(@"*Data?Characters?1.json-*.bak");
         }
 
         [Fact]
