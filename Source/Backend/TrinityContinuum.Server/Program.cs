@@ -1,10 +1,16 @@
+using System.IO.Abstractions;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Serilog;
+using TrinityContinuum.Identity;
+using TrinityContinuum.Models;
 using TrinityContinuum.Server.Models;
 using TrinityContinuum.Server.Services;
-using Serilog;
 using TrinityContinuum.Services;
-using TrinityContinuum.Models;
 using TrinityContinuum.Services.Repositories;
-using System.IO.Abstractions;
 
 
 Log.Logger = new LoggerConfiguration()
@@ -17,6 +23,44 @@ try
     var builder = WebApplication.CreateBuilder(args);
     builder.Services.AddSerilog();
     builder.Services.Configure<ApplicationSettings>(builder.Configuration.GetSection(ApplicationSettings.SectionName));
+
+
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+    // 1. Configure Entity Framework Core with SQLite
+    builder.Services.AddDbContext<ApplicationDbContext>(options =>
+        options.UseSqlite(connectionString));
+
+    // 2. Configure Identity
+    builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+    {
+        options.Password.RequireDigit = true;
+        options.Password.RequiredLength = 8;
+        options.Password.RequireLowercase = true;
+        options.Password.RequireUppercase = true;
+    })
+        .AddEntityFrameworkStores<ApplicationDbContext>()
+        .AddDefaultTokenProviders();
+
+    // 3. Configure JWT Authentication
+    builder.Services.AddAuthentication(options =>
+    {
+        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
+        .AddJwtBearer(options =>
+        {
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+                ValidIssuer = builder.Configuration["Jwt:Issuer"],
+                ValidAudience = builder.Configuration["Jwt:Audience"],
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+            };
+        });
 
 
     builder.Services.AddRepositories();

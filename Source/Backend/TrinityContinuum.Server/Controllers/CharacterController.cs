@@ -7,7 +7,7 @@ namespace TrinityContinuum.Server.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-//[Authorize]
+[Authorize]
 public class CharacterController(ICharacterService characterService, ILogger<CharacterController> logger) : ControllerBase
 {
     private readonly ICharacterService _characterService = characterService ?? throw new ArgumentNullException(nameof(characterService));

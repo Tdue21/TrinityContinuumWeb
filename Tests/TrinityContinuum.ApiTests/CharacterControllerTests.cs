@@ -1,17 +1,24 @@
+using System;
 using System.IO.Abstractions;
 using System.IO.Abstractions.TestingHelpers;
 using System.Net;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
+using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
+using TrinityContinuum.ApiTests.Infrastructure;
+using TrinityContinuum.Identity;
+using TrinityContinuum.Identity.Models;
 using TrinityContinuum.Models.Dtos;
 using TrinityContinuum.Models.Entities;
 using TrinityContinuum.Services;
 using TrinityContinuum.Services.Repositories;
 using TrinityContinuum.TestData;
+using Xunit;
 
 namespace TrinityContinuum.ApiTests;
 
@@ -24,25 +31,15 @@ public class CharacterControllerTests(WebAppFactory factory) : IClassFixture<Web
     public async Task ListCharacters_Success_Test()
     {
         // Arrange
-        var client = _factory.WithWebHostBuilder(builder =>
-                {
-                    builder.ConfigureServices(services =>
-                    {
-                        var fs = new MockFileSystem(new Dictionary<string, MockFileData>
+        var files = new Dictionary<string, MockFileData>
                             {
-                                { "/data/characters/1.json", new(CharacterData.OneJson) },
-                                { "/data/characters/2.json", new(CharacterData.TwoJson) },
-                                { "/data/characters/3.json", new(CharacterData.ThreeJson) },
-                            });
-                        services.AddSingleton<IFileSystem>(fs);
+                                { "data/characters/1.json", new(CharacterData.OneJson) },
+                                { "data/characters/2.json", new(CharacterData.TwoJson) },
+                                { "data/characters/3.json", new(CharacterData.ThreeJson) },
+                            };
 
-                        var env = Substitute.For<IEnvironmentService>();
-                        env.RootPath.Returns(fs.Path.Combine(fs.Directory.GetCurrentDirectory(), "data"));
-
-                        services.AddSingleton(env);
-                    });
-                })
-            .CreateClient();
+        var client = _factory.WithWebHostBuilder(_ => {}, files, true)
+                             .CreateClient();
 
         // Act
         var response = await client.GetAsync("/api/character/list");
@@ -59,6 +56,53 @@ public class CharacterControllerTests(WebAppFactory factory) : IClassFixture<Web
     }
 
     [Fact]
+    public async Task ListCharacters_Success_With_Authorization_Test()
+    {
+        // Arrange
+        var files = new Dictionary<string, MockFileData>
+                            {
+                                { "data/characters/1.json", new(CharacterData.OneJson) },
+                                { "data/characters/2.json", new(CharacterData.TwoJson) },
+                                { "data/characters/3.json", new(CharacterData.ThreeJson) },
+                            };
+        var factoryt = _factory.WithWebHostBuilder(_ => { }, files);
+        var client = factoryt.CreateClient();
+
+        // Register a new user
+        var response = await client.PostAsJsonAsync("/api/auth/register", new RegisterUserDto("test@login.org", "TestP@ssw0rd"));
+        response.EnsureSuccessStatusCode();
+
+        // Login with the new user
+        response = await client.PostAsJsonAsync("/api/auth/login", new LoginUserDto("test@login.org", "TestP@ssw0rd"));
+        response.EnsureSuccessStatusCode();
+
+        // Act
+        var token = await response.Content.ReadFromJsonAsync<TokenResponse>();
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token?.Token);
+
+        response = await client.GetAsync("/api/character/list");
+
+        // Assert
+        response.EnsureSuccessStatusCode();
+    }
+
+    [Fact]
+    public async Task ListCharacters_Anonymouos_Fails_Test()
+    {
+        // Arrange
+        var client = _factory.WithWebHostBuilder(_ => { })
+                             .CreateClient();
+
+        // Act
+        var response = await client.GetAsync("/api/character/list");
+
+        // Assert
+        response.Should().NotBeNull();
+        response.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
+    }
+
+
+    [Fact]
     public async Task ListCharacters_BadRequest_Directory_Not_Found_Test()
     {
         // Arrange
@@ -69,7 +113,7 @@ public class CharacterControllerTests(WebAppFactory factory) : IClassFixture<Web
                         var fs = new MockFileSystem(new Dictionary<string, MockFileData>());
                         services.AddSingleton<IFileSystem>(fs);
                     });
-                })
+                }, null, true)
             .CreateClient();
 
         // Act
@@ -105,7 +149,7 @@ public class CharacterControllerTests(WebAppFactory factory) : IClassFixture<Web
                 services.AddScoped<IRepositoryFactory>(x => repoFactory);
 
             });
-        })
+        }, null, true)
             .CreateClient();
 
         // Act
@@ -136,7 +180,7 @@ public class CharacterControllerTests(WebAppFactory factory) : IClassFixture<Web
                         services.AddSingleton<IFileSystem>(fs);
                         services.AddSingleton(env);
                     });
-                })
+                }, null, true)
             .CreateClient();
 
         // Act

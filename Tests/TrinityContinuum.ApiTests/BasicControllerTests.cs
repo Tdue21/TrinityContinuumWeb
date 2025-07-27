@@ -3,6 +3,7 @@ using System.IO.Abstractions.TestingHelpers;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using NSubstitute;
+using TrinityContinuum.ApiTests.Infrastructure;
 using TrinityContinuum.Services;
 using TrinityContinuum.TestData;
 
@@ -20,24 +21,15 @@ public class BasicControllerTests(WebAppFactory factory) : IClassFixture<WebAppF
     public async Task Basic_Url_Success_TestsAsync(string url)
     {
         // Arrange
-        var client = _factory.WithWebHostBuilder(builder =>
-        {
-            builder.ConfigureServices(services =>
-            {
-                var fs = new MockFileSystem(new Dictionary<string, MockFileData>
-                            {
-                                { "/data/characters/1.json", new(CharacterData.OneJson) },
-                                { "/data/characters/2.json", new(CharacterData.TwoJson) },
-                                { "/data/characters/3.json", new(CharacterData.ThreeJson) },
-                                { "/data/psi-powers.json", new("") },
-                            });
-                var env = Substitute.For<IEnvironmentService>();
-                env.RootPath.Returns(fs.Path.Combine(fs.Directory.GetCurrentDirectory(), "data"));
+        Dictionary<string, MockFileData> files = new()                             {
+                                { "data/characters/1.json", new(CharacterData.OneJson) },
+                                { "data/characters/2.json", new(CharacterData.TwoJson) },
+                                { "data/characters/3.json", new(CharacterData.ThreeJson) },
+                                { "data/psi-powers.json", new("") },
+                            };
 
-                services.AddSingleton<IFileSystem>(fs);
-                services.AddSingleton(env);
-            });
-        }).CreateClient();
+        var client = _factory.WithWebHostBuilder(_ => {}, files, true)
+                             .CreateClient();
 
         // Act
         var response = await client.GetAsync(url);

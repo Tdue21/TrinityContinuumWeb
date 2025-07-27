@@ -2,20 +2,15 @@
 @TrinityContinuum.Server_HttpAddress = https://localhost:5292
 @TrinityContinuum.Server_HostAddress = {{TrinityContinuum.Server_HttpsAddress}}
 
-@Access_JWT = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InRob21hIiwic3ViIjoidGhvbWEiLCJqdGkiOiJkZDFiM2I2ZSIsImF1ZCI6WyJodHRwOi8vbG9jYWxob3N0OjUyOTIiLCJodHRwczovL2xvY2FsaG9zdDo3MDYyIl0sIm5iZiI6MTc1MzM2OTA3NSwiZXhwIjoxNzYxMzE3ODc1LCJpYXQiOjE3NTMzNjkwNzYsImlzcyI6ImRvdG5ldC11c2VyLWp3dHMifQ.kaBiY9NCSY_TSUqhFXEq-Lw3KGDHAvyoB2BTdjAWArA
-
 GET {{TrinityContinuum.Server_HostAddress}}/api/character/1
 Accept: application/json
-Autorization: Bearer {{Access_JWT}}
 
 ###
 
 GET {{TrinityContinuum.Server_HostAddress}}/api/character/list
 Accept: application/json
-Autorization: Bearer {{Access_JWT}}
 
 ###
 
 GET {{TrinityContinuum.Server_HostAddress}}/api/powers/list
 Accept: application/json
-Autorization: Bearer {{Access_JWT}}
