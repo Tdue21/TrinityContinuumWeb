@@ -5,4 +5,5 @@ public class ApplicationSettings
     public const string SectionName = "Application";
 
     public string? DataFolder { get; set; }
+    public string? ApiKey { get; set; }
 }

@@ -4,4 +4,6 @@ public class ApplicationSettings
 {
     public const string SectionName = "ApplicationSettings";
     public string? ApiBaseUrl { get; set; }
+
+    public string? ApiKey { get; set; }
 }

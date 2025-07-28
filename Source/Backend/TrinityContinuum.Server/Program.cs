@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using Serilog;
 using TrinityContinuum.Identity;
 using TrinityContinuum.Models;
+using TrinityContinuum.Server.Filters;
 using TrinityContinuum.Server.Models;
 using TrinityContinuum.Server.Services;
 using TrinityContinuum.Services;
@@ -39,8 +40,8 @@ try
         options.Password.RequireLowercase = true;
         options.Password.RequireUppercase = true;
     })
-        .AddEntityFrameworkStores<ApplicationDbContext>()
-        .AddDefaultTokenProviders();
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
 
     // 3. Configure JWT Authentication
     builder.Services.AddAuthentication(options =>
@@ -48,20 +49,22 @@ try
         options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
         options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
     })
-        .AddJwtBearer(options =>
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
         {
-            options.TokenValidationParameters = new TokenValidationParameters
-            {
-                ValidateIssuer = true,
-                ValidateAudience = true,
-                ValidateLifetime = true,
-                ValidateIssuerSigningKey = true,
-                ValidIssuer = builder.Configuration["Jwt:Issuer"],
-                ValidAudience = builder.Configuration["Jwt:Audience"],
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
-            };
-        });
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+        };
+    });
 
+    builder.Services.AddSingleton<ApiKeyAuthorizationFilter>();
+    builder.Services.AddSingleton<IApiKeyValidator, ApiKeyValidator>();
 
     builder.Services.AddRepositories();
     //builder.Services.AddAuthentication().AddJwtBearer();

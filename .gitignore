@@ -365,5 +365,6 @@ FodyWeavers.xsd
 # My ignore settings
 /test_results
 /Data/*.json
-/publish-arm64
-/TrinityContinuum.Server/publish-arm64
+**/app.db
+**/app.db-shm
+**/app.db-wal

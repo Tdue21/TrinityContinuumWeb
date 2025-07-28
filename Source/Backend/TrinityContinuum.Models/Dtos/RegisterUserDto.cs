@@ -1,7 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace TrinityContinuum.Identity.Models;
+namespace TrinityContinuum.Models.Dtos;
 
 public record RegisterUserDto([Required] string Email, [Required] string Password);
-public record LoginUserDto([Required] string Email, [Required] string Password);
 

@@ -1,11 +1,7 @@
 using System.Net.Http.Json;
 using FluentAssertions;
-using Microsoft.Data.Sqlite;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using TrinityContinuum.ApiTests.Infrastructure;
-using TrinityContinuum.Identity;
-using TrinityContinuum.Identity.Models;
+using TrinityContinuum.Models.Dtos;
 
 namespace TrinityContinuum.ApiTests;
 

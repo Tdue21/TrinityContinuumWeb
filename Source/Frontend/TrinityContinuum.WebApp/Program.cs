@@ -4,6 +4,7 @@ using TrinityContinuum.WebApp.Components;
 using TrinityContinuum.WebApp.Models;
 using Serilog;
 using TrinityContinuum.WebApp.Services;
+using TrinityContinuum.Models.Dtos;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
@@ -17,6 +18,7 @@ try
 
     // Add services to the container.
     builder.Services.Configure<ApplicationSettings>(builder.Configuration.GetSection(ApplicationSettings.SectionName));
+
     builder.Services.AddRazorComponents()
         .AddInteractiveServerComponents();
 
@@ -55,6 +57,7 @@ try
     app.MapStaticAssets();
     app.MapRazorComponents<App>()
        .AddInteractiveServerRenderMode();
+
 
     app.Run();
 }

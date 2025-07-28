@@ -1,13 +1,14 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TrinityContinuum.Models.Entities;
+using TrinityContinuum.Server.Attributes;
 using TrinityContinuum.Services;
 
 namespace TrinityContinuum.Server.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-[Authorize]
+[ApiKey]
 public class PowersController(IPowersService powersService) : ControllerBase
 {
     private readonly IPowersService _powersService = powersService ?? throw new ArgumentNullException(nameof(powersService));

@@ -1,13 +1,14 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TrinityContinuum.Models.Entities;
+using TrinityContinuum.Server.Attributes;
 using TrinityContinuum.Services;
 
 namespace TrinityContinuum.Server.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-[Authorize]
+[ApiKey]
 public class CharacterController(ICharacterService characterService, ILogger<CharacterController> logger) : ControllerBase
 {
     private readonly ICharacterService _characterService = characterService ?? throw new ArgumentNullException(nameof(characterService));
