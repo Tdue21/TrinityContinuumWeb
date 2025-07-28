@@ -25,7 +25,7 @@ public class BasicControllerTests(WebAppFactory factory) : IClassFixture<WebAppF
                                 { "data/characters/1.json", new(CharacterData.OneJson) },
                                 { "data/characters/2.json", new(CharacterData.TwoJson) },
                                 { "data/characters/3.json", new(CharacterData.ThreeJson) },
-                                { "data/psi-powers.json", new("") },
+                                { "data/psi-powers.json", new(PsiPowerData.PsiPowersJson) },
                             };
 
         var client = _factory.WithWebHostBuilder(_ => {}, files, true)

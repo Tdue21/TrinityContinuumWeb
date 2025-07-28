@@ -1,5 +1,6 @@
 using System.IO.Abstractions;
 using System.IO.Abstractions.TestingHelpers;
+using System.Runtime;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -40,18 +41,9 @@ public class  WebAppFactory : WebApplicationFactory<Server.Program>, IAsyncLifet
         bool allowAnonymous = false)
     {
         _files = files;
-        _allowAnonymous = allowAnonymous;
+        _allowAnonymous = true; // allowAnonymous;
 
         return base.WithWebHostBuilder(configuration);
-    }
-
-    public void RemoveServiceDescriptor<TService>(IServiceCollection services)
-    {
-        var descriptor = services.SingleOrDefault(d => d.ServiceType == typeof(TService));
-        if (descriptor != null)
-        {
-            services.Remove(descriptor);
-        }
     }
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
@@ -66,14 +58,14 @@ public class  WebAppFactory : WebApplicationFactory<Server.Program>, IAsyncLifet
                 options.UseSqlite(_connection);
             });
 
-            if(_allowAnonymous)
-            {
-                // Remove the default authorization policy provider.
-                RemoveServiceDescriptor<IAuthorizationPolicyProvider>(services);
+            //if(_allowAnonymous)
+            //{
+            //    // Remove the default authorization policy provider.
+            //    RemoveServiceDescriptor<IAuthorizationPolicyProvider>(services);
 
-                // Add our fake provider which allows anonymous access to all policies.
-                services.AddSingleton<IAuthorizationPolicyProvider, FakePolicyProvider>();
-            }
+            //    // Add our fake provider which allows anonymous access to all policies.
+            //    services.AddSingleton<IAuthorizationPolicyProvider, FakePolicyProvider>();
+            //}
 
             // Build a temporary service provider to create the database
             var sp = services.BuildServiceProvider();
@@ -85,12 +77,27 @@ public class  WebAppFactory : WebApplicationFactory<Server.Program>, IAsyncLifet
             var fs = new MockFileSystem(_files, scope.ServiceProvider.GetRequiredService<IWebHostEnvironment>().ContentRootPath);
             services.AddSingleton<IFileSystem>(fs);
 
-            IOptions<ApplicationSettings> settings = Substitute.For<IOptions<ApplicationSettings>>();
-            settings.Value.Returns(new ApplicationSettings { DataFolder = "data" });
-            services.AddSingleton<IOptions<ApplicationSettings>>(settings);
+            //IOptions<ApplicationSettings> settings = Substitute.For<IOptions<ApplicationSettings>>();
+            //settings.Value.Returns(new ApplicationSettings { DataFolder = "data", ApiKey = "your-api-key-here" });
+            //services.AddSingleton<IOptions<ApplicationSettings>>(settings);
 
         });
 
         builder.UseEnvironment("Development");
+    }
+
+    protected override void ConfigureClient(HttpClient client)
+    {
+        var settings = Services.GetRequiredService<IOptions<ApplicationSettings>>().Value;
+        client.DefaultRequestHeaders.Add("X-API-Key", settings.ApiKey);
+    }
+
+    private void RemoveServiceDescriptor<TService>(IServiceCollection services)
+    {
+        var descriptor = services.SingleOrDefault(d => d.ServiceType == typeof(TService));
+        if (descriptor != null)
+        {
+            services.Remove(descriptor);
+        }
     }
 }

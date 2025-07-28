@@ -11,6 +11,7 @@ public class PowersServiceTests
 {
     private readonly PowersService _powersService;
     private readonly IDataProviderService _dataProviderService;
+    private readonly IRepositoryFactory _factory;
 
     public PowersServiceTests()
     {
@@ -22,8 +23,10 @@ public class PowersServiceTests
                             .Returns(Task.FromResult(TestData));
         var repository = new SingleFileRepository<PsiPower>(_dataProviderService);
         repository.Initialize(default).GetAwaiter().GetResult();
+        _factory = Substitute.For<IRepositoryFactory>();
+        _factory.CreateSingleFileRepository<PsiPower>().Returns(repository);
 
-        _powersService = new PowersService(repository);
+        _powersService = new PowersService(_factory);
 
     }
 

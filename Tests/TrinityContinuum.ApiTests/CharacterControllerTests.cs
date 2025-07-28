@@ -51,51 +51,53 @@ public class CharacterControllerTests(WebAppFactory factory) : IClassFixture<Web
                        .And.HaveCount(3);
     }
 
-    [Fact]
-    public async Task ListCharacters_Success_With_Authorization_Test()
-    {
-        // Arrange
-        var files = new Dictionary<string, MockFileData>
-                            {
-                                { "data/characters/1.json", new(CharacterData.OneJson) },
-                                { "data/characters/2.json", new(CharacterData.TwoJson) },
-                                { "data/characters/3.json", new(CharacterData.ThreeJson) },
-                            };
-        var factoryt = _factory.WithWebHostBuilder(_ => { }, files);
-        var client = factoryt.CreateClient();
+    /*
+        [Fact(Skip = "Authentication has been removed for now")]
+        public async Task ListCharacters_Success_With_Authorization_Test()
+        {
+            // Arrange
+            var files = new Dictionary<string, MockFileData>
+                                {
+                                    { "data/characters/1.json", new(CharacterData.OneJson) },
+                                    { "data/characters/2.json", new(CharacterData.TwoJson) },
+                                    { "data/characters/3.json", new(CharacterData.ThreeJson) },
+                                };
+            var factoryt = _factory.WithWebHostBuilder(_ => { }, files);
+            var client = factoryt.CreateClient();
 
-        // Register a new user
-        var response = await client.PostAsJsonAsync("/api/auth/register", new RegisterUserDto("test@login.org", "TestP@ssw0rd"));
-        response.EnsureSuccessStatusCode();
+            // Register a new user
+            var response = await client.PostAsJsonAsync("/api/auth/register", new RegisterUserDto("test@login.org", "TestP@ssw0rd"));
+            response.EnsureSuccessStatusCode();
 
-        // Login with the new user
-        response = await client.PostAsJsonAsync("/api/auth/login", new LoginUserDto("test@login.org", "TestP@ssw0rd"));
-        response.EnsureSuccessStatusCode();
+            // Login with the new user
+            response = await client.PostAsJsonAsync("/api/auth/login", new LoginUserDto("test@login.org", "TestP@ssw0rd"));
+            response.EnsureSuccessStatusCode();
 
-        // Act
-        var token = await response.Content.ReadFromJsonAsync<TokenResponse>();
-        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token?.Token);
+            // Act
+            var token = await response.Content.ReadFromJsonAsync<TokenResponse>();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token?.Token);
 
-        response = await client.GetAsync("/api/character/list");
+            response = await client.GetAsync("/api/character/list");
 
-        // Assert
-        response.EnsureSuccessStatusCode();
-    }
+            // Assert
+            response.EnsureSuccessStatusCode();
+        }
 
-    [Fact]
-    public async Task ListCharacters_Anonymouos_Fails_Test()
-    {
-        // Arrange
-        var client = _factory.WithWebHostBuilder(_ => { })
-                             .CreateClient();
+        [Fact(Skip = "Authentication has been removed for now")]
+        public async Task ListCharacters_Anonymouos_Fails_Test()
+        {
+            // Arrange
+            var client = _factory.WithWebHostBuilder(_ => { })
+                                 .CreateClient();
 
-        // Act
-        var response = await client.GetAsync("/api/character/list");
+            // Act
+            var response = await client.GetAsync("/api/character/list");
 
-        // Assert
-        response.Should().NotBeNull();
-        response.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
-    }
+            // Assert
+            response.Should().NotBeNull();
+            response.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
+        }
+    */
 
 
     [Fact]

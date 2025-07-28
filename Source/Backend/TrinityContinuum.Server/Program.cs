@@ -25,7 +25,7 @@ try
     builder.Services.AddSerilog();
     builder.Services.Configure<ApplicationSettings>(builder.Configuration.GetSection(ApplicationSettings.SectionName));
 
-
+/*
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
     // 1. Configure Entity Framework Core with SQLite
@@ -62,7 +62,7 @@ try
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
         };
     });
-
+  */
     builder.Services.AddSingleton<ApiKeyAuthorizationFilter>();
     builder.Services.AddSingleton<IApiKeyValidator, ApiKeyValidator>();
 

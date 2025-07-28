@@ -1,3 +1,4 @@
+/*
 using System.Net.Http.Json;
 using FluentAssertions;
 using TrinityContinuum.ApiTests.Infrastructure;
@@ -10,7 +11,7 @@ public class AuthControllerTests(WebAppFactory factory) : IClassFixture<WebAppFa
 {
     private readonly WebAppFactory _factory = factory ?? throw new ArgumentNullException(nameof(factory));
 
-    [Fact]
+    [Fact(Skip = "Authentication has been removed for now")]
     public async Task RegisterNewUser_And_Login_Success_Test()
     {
         // Arrange
@@ -38,3 +39,5 @@ public class AuthControllerTests(WebAppFactory factory) : IClassFixture<WebAppFa
 }
 
 public record TokenResponse(string Token);
+
+*/
