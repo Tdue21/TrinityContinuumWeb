@@ -35,7 +35,7 @@ jobs:
       run: dotnet build --no-restore -c Release
 
     - name: Test
-      run: dotnet test --no-build --verbosity normal --logger:"xunit;LogFilePath=test-results.xml"
+      run: dotnet test -c Release --no-build --verbosity normal --logger:"xunit;LogFilePath=test-results.xml"
 
     - name: Publish Test Results
       uses: EnricoMi/publish-unit-test-result-action@v2
