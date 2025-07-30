@@ -17,7 +17,6 @@ permissions:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -34,6 +33,11 @@ jobs:
     - name: Build
       run: dotnet build --no-restore -c Release
 
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
     - name: Test
       run: dotnet test -c Release --no-build --verbosity normal --logger:"xunit;LogFilePath=test-results.xml"
 
@@ -47,7 +51,7 @@ jobs:
           ./Tests/TrinityContinuum.UITests/test-results.xml
 
   package:
-
+    needs: test
     runs-on: ubuntu-latest
 
     steps:
