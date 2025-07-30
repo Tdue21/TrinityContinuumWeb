@@ -32,16 +32,32 @@ jobs:
       run: dotnet restore
 
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore -c Release
 
     - name: Test
-      run: dotnet test --no-build --verbosity normal --logger:"xunit;LogFilePath=test-results.xml"
+      run: dotnet test -c Release --no-build --verbosity normal --logger:"xunit;LogFilePath=test-results.xml"
 
     - name: Publish Test Results
       uses: EnricoMi/publish-unit-test-result-action@v2
       if: always()
       with:
-        files: |
+        files: |        
           ./Tests/TrinityContinuum.ApiTests/test-results.xml
           ./Tests/TrinityContinuum.Tests/test-results.xml
           ./Tests/TrinityContinuum.UITests/test-results.xml
+
+    - name: Upload API Artifact
+      uses: actions/upload-artifact@v4.6.2
+      with:
+        name: api-package # optional, default is artifact
+        path: ./Source/Backend/TrinityContinuum.Server/bin/Release/net9.0/**
+        retention-days: 2 # optional
+        overwrite: true # optional, default is false
+
+    - name: Upload WebApp Artifact
+      uses: actions/upload-artifact@v4.6.2
+      with:
+        name: app-package # optional, default is artifact
+        path: ./Source/Frontend/TrinityContinuum.WebApp/bin/Release/net9.0/**
+        retention-days: 2 # optional
+        overwrite: true # optional, default is false
