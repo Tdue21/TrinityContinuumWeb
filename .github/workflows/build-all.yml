@@ -50,7 +50,7 @@ jobs:
       uses: actions/upload-artifact@v4.6.2
       with:
         name: api-package # optional, default is artifact
-        path: ~/Source/Backend/TrinityContinuum.Server/bin/Release/net9.0/**
+        path: ./Source/Backend/TrinityContinuum.Server/bin/Release/net9.0/**
         retention-days: 2 # optional
         overwrite: true # optional, default is false
 
@@ -58,6 +58,6 @@ jobs:
       uses: actions/upload-artifact@v4.6.2
       with:
         name: app-package # optional, default is artifact
-        path: ~/Source/Frontend/TrinityContinuum.WebApp/bin/Release/net9.0/**
+        path: ./Source/Frontend/TrinityContinuum.WebApp/bin/Release/net9.0/**
         retention-days: 2 # optional
         overwrite: true # optional, default is false
