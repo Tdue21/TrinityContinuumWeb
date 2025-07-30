@@ -3,6 +3,7 @@
     <File Path="Data/characters.json" />
     <File Path="Data/permissions.json" />
     <File Path="Data/psi-powers.json" />
+    <File Path="Data/sources.json" />
     <File Path="Data/weapons.json" />
   </Folder>
   <Folder Name="/.Data/Characters/" Id="02ea681e-c7d8-13c7-8484-4ac65e1b71e8">
