@@ -23,7 +23,7 @@ public interface ICharacterService
     /// <param name="imageType"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<byte[]?> GetCharacterImage(int id, ImageType imageType, CancellationToken cancellationToken = default);
+    Task<byte[]?> GetCharacterImage(int id, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 
@@ -54,10 +54,10 @@ public class CharacterService(IRepositoryFactory factory) : ICharacterService
         return await repository.GetAsync(id, cancellationToken);
     }
 
-    public async Task<byte[]?> GetCharacterImage(int id, ImageType imageType, CancellationToken cancellationToken = default)
+    public async Task<byte[]?> GetCharacterImage(int id, CancellationToken cancellationToken = default)
     {
         var repository = await CreateRepositoryAsync(cancellationToken);
-        return await repository.GetCharacterImage(id, imageType, cancellationToken);
+        return await repository.GetCharacterImage(id, cancellationToken);
     }
 
     public async Task<IEnumerable<CharacterSummary?>?> GetCharacterList(CancellationToken cancellationToken = default)

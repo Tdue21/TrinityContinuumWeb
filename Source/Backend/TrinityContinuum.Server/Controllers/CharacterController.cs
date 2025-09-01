@@ -46,11 +46,11 @@ public class CharacterController(ICharacterService characterService, ILogger<Cha
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [AllowAnonymous]
-    public async Task<IActionResult> GetCharacterImage(int id, ImageType imageType)
+    public async Task<IActionResult> GetCharacterImage(int id)
     {
         try
         {
-            var result = await _characterService.GetCharacterImage(id, imageType);
+            var result = await _characterService.GetCharacterImage(id);
             if (result == null)
             {
                 return NotFound();
