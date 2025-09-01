@@ -25,6 +25,12 @@ public interface ICharacterService
     /// <returns></returns>
     Task<Character?> GetCharacterAsync(int id, CancellationToken cancellationToken = default);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    Uri GetCharacterImageUrl(int id);
 
     /// <summary>
     /// 
@@ -54,6 +60,12 @@ public class CharacterService(IApiClient apiClient) : ICharacterService
     {
         var response = await _apiClient.GetCharacter(id, cancellationToken);
         return response;
+    }
+
+    public Uri GetCharacterImageUrl(int id)
+    {
+        var baseUrl = new Uri(_apiClient.BaseUrl + $"/api/character/image/{id}");
+        return baseUrl;
     }
 
     public IEnumerable<InjuryLevel> CalculateInjuryLevels(int stamina, bool hasEndurance)

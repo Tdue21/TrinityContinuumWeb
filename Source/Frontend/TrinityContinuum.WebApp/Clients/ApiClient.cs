@@ -15,6 +15,11 @@ public interface IApiClient
     /// <summary>
     /// 
     /// </summary>
+    string BaseUrl { get; }
+
+    /// <summary>
+    /// 
+    /// </summary>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
    // Task LoginAsync(HttpClient client, CancellationToken cancellationToken);
@@ -38,6 +43,15 @@ public interface IApiClient
     /// <summary>
     /// 
     /// </summary>
+    /// <param name="id"></param>
+    /// <param name="imageType"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    Task<byte[]?> GetCharacterImageAsync(int id, ImageType imageType, CancellationToken cancellationToken);
+
+    /// <summary>
+    /// 
+    /// </summary>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<IEnumerable<CharacterSummary>?> GetCharacters(CancellationToken cancellationToken);
@@ -48,6 +62,13 @@ public interface IApiClient
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<IEnumerable<PsiPower>?> GetPowers(CancellationToken cancellationToken);
+}
+
+public enum ImageType
+{
+    None = 0,
+    Token = 1,
+    Portrait = 2
 }
 
 /// <summary>
@@ -69,6 +90,9 @@ public class ApiClient(ILogger<ApiClient> logger, IHttpClientFactory clientFacto
     //    var tokenData = await response.Content.ReadFromJsonAsync<TokenResponse>(cancellationToken);
     //    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", tokenData?.Token);
     //}
+
+
+    public string BaseUrl => _settings.ApiBaseUrl ?? throw new InvalidOperationException("API Base URL is not configured.");
 
     public async Task<string> GetAsync(string uri, CancellationToken cancellationToken)
     {
@@ -94,6 +118,22 @@ public class ApiClient(ILogger<ApiClient> logger, IHttpClientFactory clientFacto
         {
             var response = await GetAsync($"api/character/{id}", cancellationToken);
             var result = JsonConvert.DeserializeObject<Character>(response);
+
+            return result;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error fetching character with ID {Id}", id);
+            throw;
+        }
+    }
+
+    public async Task<byte[]?> GetCharacterImageAsync(int id, ImageType imageType, CancellationToken cancellationToken)
+    {
+        try
+        {
+            var response = await GetAsync($"api/character/image/{id}", cancellationToken);
+            var result = JsonConvert.DeserializeObject<byte[]>(response);
 
             return result;
         }

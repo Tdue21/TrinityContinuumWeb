@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Components;
 using TrinityContinuum.Models.Entities;
+using TrinityContinuum.WebApp.Clients;
 using TrinityContinuum.WebApp.Models;
 using TrinityContinuum.WebApp.Services;
 
@@ -11,6 +12,7 @@ public partial class AbstractSectionBase : ComponentBase
     [Inject] protected ICharacterService CharacterService { get; set; } = null!;
 
     [Parameter] public Character? Model { get; set; }
+    [Parameter] public Uri? Token { get; set; }
 
     protected int Stamina { get; private set; }
     protected bool HasEndurance { get; private set; }
@@ -35,6 +37,8 @@ public partial class AbstractSectionBase : ComponentBase
             PsiPoints = psiPoints[Model!.Psi.Trait];
             MaxTolerance = Stamina + Model.Psi.Trait;
 
+            Token ??= CharacterService.GetCharacterImageUrl(Model.Id);
+             
             await base.OnInitializedAsync();
         }
     }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using TrinityContinuum.Models.Entities;
 using TrinityContinuum.Server.Attributes;
 using TrinityContinuum.Services;
+using TrinityContinuum.Services.Repositories;
 
 namespace TrinityContinuum.Server.Controllers;
 
@@ -34,6 +35,31 @@ public class CharacterController(ICharacterService characterService, ILogger<Cha
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error retrieving character with ID {Id}", id);
+            return BadRequest(ex);
+        }
+    }
+
+    [HttpGet("image/{id}")]
+    [ProducesResponseType<Character>(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [AllowAnonymous]
+    public async Task<IActionResult> GetCharacterImage(int id, ImageType imageType)
+    {
+        try
+        {
+            var result = await _characterService.GetCharacterImage(id, imageType);
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return File(result, "image/*");
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error retrieving image for character with id {id}", id);
             return BadRequest(ex);
         }
     }
